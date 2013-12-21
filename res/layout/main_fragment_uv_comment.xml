@@ -1,0 +1,34 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    android:orientation="vertical"
+    
+    tools:context=".UvCommentActivity">
+
+    <fragment
+		android:id="@+id/uv_writer_fragment"
+		android:name="fr.utt.topuv.controller.UvWriterFragment"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:layout="@layout/fragment_uv_writer" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_comments"
+        android:textSize="15sp" />
+    
+    <fragment
+		android:id="@+id/list_fragment"
+		android:name="fr.utt.topuv.controller.ListFragment"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		tools:layout="@layout/fragment_list" />
+
+</LinearLayout>
