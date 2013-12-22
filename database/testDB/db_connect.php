@@ -5,6 +5,7 @@
 	$username = "root"; 
     $password = "admin"; //NEED TO CHANGE IT !
     
+// on n'aura pas besoin de ça  
     // Define name of table (avoid big change if table name change)
     $table_user = "user";
     $table_comment = "comment";
