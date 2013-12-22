@@ -2,7 +2,8 @@ package fr.utt.topuv.constant;
 
 public class WebServiceConstants
 {
-    public static final String ROOT = "http://192.168.1.22:80/android_database/";
+
+	public static final String ROOT = "http://geminantoine.myqnapcloud.com/a/";
 
     public static class CONNEXION
     {
