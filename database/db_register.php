@@ -56,6 +56,7 @@ if (!empty($_POST))
 		$new_user->password=$encrypted_password;
 		$new_user->salt=$salt;
 		$new_user->token=$token ;
+
 		
 	//The new user insertion (Registering)
 		$id = $db->insert($new_user,'user');
@@ -72,6 +73,7 @@ if (!empty($_POST))
 {
 	?>
 	<h1>Register</h1> 
+	
 	<form action="db_register.php" method="post"> 
 	    First Name : <br/> 
 	    <input type="text" name="firstname" value="" /> 

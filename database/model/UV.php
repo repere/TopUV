@@ -1,7 +1,7 @@
 <?php
 class UV
 {
-	public $iduv;
+	public $id;
 	public $code;
 	public $designation;
 	public $categorie;

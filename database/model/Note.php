@@ -5,6 +5,7 @@ class Note
 	public $id_user;
 	public $id_uv;
 	public $note;
+	public $comment;
 	public $date;
 
 	public function toDB()
@@ -13,6 +14,4 @@ class Note
 	//	unset($object['message']);
 		return $object;
 	}
-	
-	//test envoi
 }

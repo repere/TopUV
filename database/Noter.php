@@ -33,29 +33,31 @@ $uvParameters = array(
 	':iduv' => $_POST['iduv']
 );
 
-	$uv = $db->find('UV', 'uv', 'iduv = :iduv', $uvParameters);
 
+	$uv = $db->find('UV', 'uv', 'id = :iduv', $uvParameters);
+	
 		if($uv !== false)
 	{
+		
 	
 	//New_note Object Creation
 		$note = new Note();
 		$note->id_user = $user->id;
-		$note->id_uv = $uv->iduv;
+		$note->id_uv = $uv->id;
 		$note->note = $_POST['note'];
 		$note->comment = $_POST['comment'];
 		$note->date = date('Y-m-d H:i:s');
 			
-		// New_note Insertion
-		$table='comment';
+		// New_Mark Insertion
+		$table='note';
 		$id = $db->insert($note,$table);
 		
 		if($id !== false)
 		{
 			$note->id = (int) $id;
 		
-		//Note Moyenne Updating	
-		$moy = $db->Note_Moyenne($uv->iduv);
+		//Average Mark Updating	
+		$moy = $db->Note_Moyenne($uv->id);
 		
 			$reponse = array(
 				'success' => 1,
@@ -79,10 +81,10 @@ $uvParameters = array(
 						<?php 
 						$config = require_once('config.php');
                         $db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
-						$UVs=$db->lister_uv ('Techniques et Methodes');
-						foreach ($UVs as $uv){
-						echo '<option value='.$uv->iduv .'>'.$uv->designation .'</option>';
-											}
+						$UVs=$db->lister_uv ('Connaissances Scientifiques');
+						foreach ($UVs as $iduv){
+						echo '<option value='. $iduv->id.'>'.$iduv->designation.'</option>';
+											 }
 						?>
 							    
 		</select>  

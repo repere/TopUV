@@ -122,10 +122,10 @@ return $UVs;
 		
 		$whereArgs=array(':iduv'=>$iduv);
 		//Find UV
-		$uv = $this->find('UV','uv','iduv = :iduv', $whereArgs);
+		$uv = $this->find('UV','uv','id = :iduv', $whereArgs);
 		
-		//Moyen Calculating
-		$notes=$this->search('Note','comment','id_uv = :iduv', $whereArgs);
+		//Average Mark Calculation
+		$notes=$this->search('Note','note','id_uv = :iduv', $whereArgs);
 		$note_moyenne=0;
 		foreach($notes as $note) 
 			{
@@ -136,10 +136,10 @@ return $UVs;
 	  
 		$uv->note=$note_moyenne;
 		
-		//Moyen Updating
+		//Average Mark Updating
 		$table='uv';
-	    $where='iduv = :iduv';
-		$whereArgs=array(':iduv'=>$iduv);
+	    $where='id = :iduv';
+		
 		$up=$this->update($uv,$table,$where,$whereArgs);
 		return $note_moyenne;
 	}
