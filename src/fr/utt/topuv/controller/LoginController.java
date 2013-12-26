@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.MenuActivity;
+import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.service.LoginService;
 
 public class LoginController extends Fragment implements OnClickListener
@@ -71,6 +72,9 @@ public class LoginController extends Fragment implements OnClickListener
             if(token != null)
             {
                 Intent intent = new Intent(this.getActivity(), MenuActivity.class);
+                
+                // Add student token to constant
+                intent.putExtra(IntentConstants.TOKEN, token);
                 this.startActivity(intent);
                 this.getActivity().finish();
             }
