@@ -18,14 +18,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 import fr.utt.topuv.R;
 import fr.utt.topuv.constant.IntentConstants;
-import fr.utt.topuv.model.UvSelected;
-import fr.utt.topuv.service.UvService;
+import fr.utt.topuv.model.Uv;
+import fr.utt.topuv.service.GetUvService;
 
 public class CommentController extends Fragment implements OnClickListener
 {
     public interface MessageWriterFragmentListener
     {
-        public void onMessageSent(UvSelected uvSelected);
+        public void onMessageSent(Uv uvSelected);
     }
 
     private MessageWriterFragmentListener messageWriterFragmentListener;
@@ -53,8 +53,8 @@ public class CommentController extends Fragment implements OnClickListener
             int contact = this.getActivity().getIntent().getIntExtra(IntentConstants.CONTACT, -1);
             String message = ((EditText) this.getView().findViewById(R.id.comment)).getText().toString();
 
-            UvService uvService = new UvService();
-            UvSelected messageObject = uvService.execute(token, String.valueOf(contact), message).get();
+            GetUvService uvService = new GetUvService(this.getActivity());
+            Uv messageObject = uvService.execute(token, String.valueOf(contact), message).get();
 
             ((EditText) this.getView().findViewById(R.id.comment)).setText("");
             

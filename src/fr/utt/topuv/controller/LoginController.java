@@ -69,6 +69,8 @@ public class LoginController extends Fragment implements OnClickListener
         try
         {
             String token = loginService.execute(login, password).get();
+            
+            //test if token from db exists
             if(token != null)
             {
                 Intent intent = new Intent(this.getActivity(), MenuActivity.class);

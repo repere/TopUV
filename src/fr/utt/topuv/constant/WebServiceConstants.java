@@ -3,7 +3,7 @@ package fr.utt.topuv.constant;
 public class WebServiceConstants
 {
 
-	public static final String ROOT = "http://geminantoine.myqnapcloud.com/a/";
+	public static final String ROOT = "192.168.1.77/android_project/";
 
     public static class CONNEXION
     {
@@ -14,43 +14,61 @@ public class WebServiceConstants
         public static final String SUCCESS = "success";
     }
 
-    public static class CONTACTS
+    public static class UVS
     {
-        public static final String URI = ROOT + "contacts.php";
+        public static final String URI = ROOT + "getListUV.php";
+        
+        //From DB
+        public static final String CODE = "code";
+        public static final String DESIGNATION = "designation";
+        public static final String UVS = "uvs";
+        
+        //To DB
+        public static final String CATEGORIE = "categorie";
+    }
+    
+    public static class COMMENT
+    {
+    	public static final String URI = ROOT + "putComment.php";
+    	
+    	//From DB
+    	public static final String SUCCESS = "success";
+    	
+    	//To DB
+    	public static final String MARK = "mark";
+        public static final String COMMENT = "comment";
         public static final String TOKEN = "token";
-        public static final String CONTACTS = "contacts";
-
-        public static final String ID = "id";
-        public static final String CONTACT = "contact";
-        public static final String MESSAGE = "uvSelected";
-
-        public static final String FIRST_NAME = "first_name";
-        public static final String LAST_NAME = "last_name";
-        public static final String EMAIL = "email";
-
+        
+    }
+    
+    public static class COMMENTS
+    {
+        public static final String URI = ROOT + "getListComment.php";
+        
+        //From DB
+        public static final String LASTNAME = "lastname";
+        public static final String SURNAME = "surname";
+        public static final String MARK = "mark";
+        public static final String COMMENT = "comment";
         public static final String DATE = "date";
+        public static final String SUCCESS = "success";
+        public static final String COMMENTS = "comments";
+        
+        //To DB
+        public static final String CODE = "code";
+        
     }
 
-    public static class MESSAGES
+    public static class UV
     {
-        public static final String URI = ROOT + "messages.php";
-        public static final String TOKEN = "token";
-        public static final String CONTACT = "contact";
-        public static final String MESSAGES = "messages";
-
-        public static final String MESSAGE = "uvSelected";
-        public static final String DATE = "date";
-        public static final String SENT = "sent";
-    }
-
-    public static class MESSAGE
-    {
-        public static final String URI = ROOT + "uvSelected.php";
-        public static final String TOKEN = "token";
-        public static final String CONTACT = "contact";
-        public static final String MESSAGE = "uvSelected";
-
-        public static final String DATE = "date";
-        public static final String SENT = "sent";
+        public static final String URI = ROOT + "getUV.php";
+        
+        //From DB
+        public static final String DESCRIPTION = "description";
+        public static final String MARK = "mark";
+        public static final String CREDIT = "credit";
+        
+        //To DB
+        public static final String CODE = "code";
     }
 }

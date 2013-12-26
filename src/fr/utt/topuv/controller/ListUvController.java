@@ -6,24 +6,26 @@
 
 package fr.utt.topuv.controller;
 
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
 import fr.utt.topuv.R;
-import android.app.Fragment;
+import fr.utt.topuv.model.Uv;
+import fr.utt.topuv.service.GetListUvService;
+import android.app.ListFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ListUvController extends Fragment implements OnItemClickListener
+public class ListUvController extends ListFragment implements OnItemClickListener
 {
-	
-	public static final String CS = "cs";
-	public static final String TM = "tm";
-	public static final String AUTRES = "autres";
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -32,11 +34,26 @@ public class ListUvController extends Fragment implements OnItemClickListener
 	}
 	
 
-	public void getListUv()
+	public void getListUv(String category)
 	{
-		//Get list of uv selected from Mysql db
-		//Use ListUvService
 		
+		try
+        {
+            GetListUvService listUvService = new GetListUvService(this.getActivity());
+            ArrayList<Uv> messages = listUvService.execute(category).get();
+
+            this.setListAdapter(new ListUvAdapter(this.getActivity(), messages));
+        }
+        catch(InterruptedException interruptedException)
+        {
+
+        }
+        catch(ExecutionException executionException)
+        {
+
+        }
+		
+		/* Precedent method
 		//Sample : Get data list from the Data Access Objects in string.xml
 		String[] items = this.getActivity().getResources().getStringArray(R.array.contacts_list);
 
@@ -46,6 +63,7 @@ public class ListUvController extends Fragment implements OnItemClickListener
 		
 		//Set the event listener
 		((ListView) this.getView().findViewById(R.id.list)).setOnItemClickListener(this);
+		*/
 		
 	}
 	
@@ -55,4 +73,25 @@ public class ListUvController extends Fragment implements OnItemClickListener
 		//launch new activity : uv review + list of comment + add comment		
 		
 	}
+	
+	private class ListUvAdapter extends ArrayAdapter<Uv>
+    {
+        public ListUvAdapter(Context context, ArrayList<Uv> uvs)
+        {
+            super(context, R.layout.uvs_list_entry, uvs);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
+            int layout = R.layout.uvs_list_entry;
+
+            ViewGroup viewGroup = (ViewGroup) LayoutInflater.from(this.getContext()).inflate(layout, null);
+
+            ((TextView) viewGroup.findViewById(R.id.codeUvFromDB)).setText(this.getItem(position).code);
+            ((TextView) viewGroup.findViewById(R.id.designationUvFromDB)).setText(this.getItem(position).designation);
+
+            return viewGroup;
+        }
+    }
 }
