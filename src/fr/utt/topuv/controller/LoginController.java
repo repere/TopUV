@@ -38,11 +38,12 @@ public class LoginController extends Fragment implements OnClickListener
     public void onClick(View v)
     {    	    	
     	/* For testing code without logging
-    	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
+    	Intent intent = new Intent(this.getActivity(), UvActivity.class);
         this.startActivity(intent);
         this.getActivity().finish();
         */
         
+
     	String login = ((EditText) this.getView().findViewById(R.id.login)).getText().toString();
         String password = ((EditText) this.getView().findViewById(R.id.password)).getText().toString();
 
@@ -73,7 +74,7 @@ public class LoginController extends Fragment implements OnClickListener
             //test if token from db exists
             if(token != null)
             {
-                Intent intent = new Intent(this.getActivity(), MenuActivity.class);
+            	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
                 
                 // Add student token to constant
                 intent.putExtra(IntentConstants.TOKEN, token);
@@ -94,14 +95,12 @@ public class LoginController extends Fragment implements OnClickListener
         
         catch (InterruptedException e) 
         {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+        	
 		} 
         
         catch (ExecutionException e) 
         {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+        	
+		}
     }
 }

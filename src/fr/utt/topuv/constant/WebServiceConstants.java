@@ -3,11 +3,11 @@ package fr.utt.topuv.constant;
 public class WebServiceConstants
 {
 
-	public static final String ROOT = "192.168.1.77/android_project/";
+	public static final String ROOT = "http://79.92.123.65/android/";
 
     public static class CONNEXION
     {
-        public static final String URI = ROOT + "db_login.php";
+        public static final String URL = ROOT + "db_login.php";
         public static final String LOGIN = "login";
         public static final String PASSWORD = "password";
         public static final String TOKEN = "token";
@@ -16,7 +16,7 @@ public class WebServiceConstants
 
     public static class UVS
     {
-        public static final String URI = ROOT + "getListUV.php";
+        public static final String URL = ROOT + "getListUV.php";
         
         //From DB
         public static final String CODE = "code";
@@ -29,7 +29,7 @@ public class WebServiceConstants
     
     public static class COMMENT
     {
-    	public static final String URI = ROOT + "putComment.php";
+    	public static final String URL = ROOT + "putComment.php";
     	
     	//From DB
     	public static final String SUCCESS = "success";
@@ -43,7 +43,7 @@ public class WebServiceConstants
     
     public static class COMMENTS
     {
-        public static final String URI = ROOT + "getListComment.php";
+        public static final String URL = ROOT + "getListComment.php";
         
         //From DB
         public static final String LASTNAME = "lastname";
@@ -61,7 +61,7 @@ public class WebServiceConstants
 
     public static class UV
     {
-        public static final String URI = ROOT + "getUV.php";
+        public static final String URL = ROOT + "getUV.php";
         
         //From DB
         public static final String DESCRIPTION = "description";

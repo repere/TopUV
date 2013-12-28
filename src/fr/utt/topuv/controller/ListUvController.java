@@ -11,68 +11,60 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import fr.utt.topuv.R;
+import fr.utt.topuv.activity.UvActivity;
+import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.model.Uv;
 import fr.utt.topuv.service.GetListUvService;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class ListUvController extends ListFragment implements OnItemClickListener
-{
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-	{
-		View view = (View) inflater.inflate(R.layout.fragment_list, container, false);
-		return view;
-	}
+public class ListUvController extends ListFragment
+{	
 	
+	public static final String ARG_SECTION_TYPE = "section_type";
+	
+	@Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
 
-	public void getListUv(String category)
-	{
-		
-		try
+        try
         {
-            GetListUvService listUvService = new GetListUvService(this.getActivity());
-            ArrayList<Uv> messages = listUvService.execute(category).get();
+        	GetListUvService getListUvService = new GetListUvService(this.getActivity());
+            ArrayList<Uv> ArrayListUvs = getListUvService.execute(ARG_SECTION_TYPE).get();
 
-            this.setListAdapter(new ListUvAdapter(this.getActivity(), messages));
+            this.setListAdapter(new ListUvAdapter(this.getActivity(), ArrayListUvs));
         }
+        
         catch(InterruptedException interruptedException)
         {
 
         }
+        
         catch(ExecutionException executionException)
         {
 
         }
-		
-		/* Precedent method
-		//Sample : Get data list from the Data Access Objects in string.xml
-		String[] items = this.getActivity().getResources().getStringArray(R.array.contacts_list);
-
-		//Populate the list with data
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), R.layout.fragment_simple_row, items);
-        ((ListView) this.getView().findViewById(R.id.list)).setAdapter(adapter);
-		
-		//Set the event listener
-		((ListView) this.getView().findViewById(R.id.list)).setOnItemClickListener(this);
-		*/
-		
-	}
+    }
 	
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-	{
-		//launch new activity : uv review + list of comment + add comment		
-		
-	}
+    public void onListItemClick(ListView l, View v, int position, long id)
+    {
+        Uv uvSelected = (Uv) this.getListAdapter().getItem(position);
+
+        Intent intent = new Intent(this.getActivity(), UvActivity.class);
+        intent.putExtra(IntentConstants.CODE, uvSelected.code);
+
+        this.startActivity(intent);
+    }
 	
 	private class ListUvAdapter extends ArrayAdapter<Uv>
     {

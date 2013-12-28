@@ -36,6 +36,14 @@
     
     <!-- BELOW : EXEMPLE SO DELETE AT THE END -->
     
+    <string name="title_section0">CS</string>
+    <string name="title_section1">TM</string>
+    <string name="title_section2">EC</string>
+    <string name="title_section3">ME</string>
+    <string name="title_section4">CT</string>
+    
+    <string name="dummy_section_text">Section %1d is just a dummy section.</string>
+    
     <!-- Contacts List -->
     <string-array name="contacts_list">
         <item>Karina</item>

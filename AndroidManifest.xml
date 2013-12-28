@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name="fr.utt.topuv.activity.UvActivity"
-            android:label="@string/title_activity_uv" >
+            android:label="@string/title_activity_uv"
+            android:parentActivityName="fr.utt.topuv.activity.MenuActivity" >
         </activity>
         <activity
             android:name="fr.utt.topuv.activity.UvCommentActivity"

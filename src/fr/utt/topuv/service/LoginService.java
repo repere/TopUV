@@ -61,8 +61,8 @@ public class LoginService extends AsyncTask<String, String, String>
         String login = params[0];
         String password = params[1];
 
-        // Base uri
-        String uri = WebServiceConstants.CONNEXION.URI;
+        // Base url
+        String url = WebServiceConstants.CONNEXION.URL;
 
         // Query string
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -70,12 +70,11 @@ public class LoginService extends AsyncTask<String, String, String>
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.CONNEXION.PASSWORD, password)); 
         
         DefaultHttpClient httpClient = new DefaultHttpClient();
-        
         try
         {
-	        HttpPost httpPost = new HttpPost(uri);
-	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-	
+        	HttpPost httpPost = new HttpPost(url);
+        	httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+        	
 	        HttpResponse httpResponse = httpClient.execute(httpPost);
 	        HttpEntity httpEntity = httpResponse.getEntity();
 	        

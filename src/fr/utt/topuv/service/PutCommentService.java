@@ -61,7 +61,7 @@ public class PutCommentService extends AsyncTask<String, String, String>
         String mark = params[2];
 
         // Base uri
-        String uri = WebServiceConstants.UV.URI;
+        String uri = WebServiceConstants.UV.URL;
 
         // Query string
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

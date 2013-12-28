@@ -61,7 +61,7 @@ public class GetUvService extends AsyncTask<String, String, Uv>
         String code = params[0];
 
         // Base uri
-        String uri = WebServiceConstants.UV.URI;
+        String uri = WebServiceConstants.UV.URL;
 
         // Query string
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

@@ -60,7 +60,7 @@ public class GetListCommentService extends AsyncTask<String, String, ArrayList<C
 		String uvCode = params[0];
 
         // Base uri
-        String uri = WebServiceConstants.COMMENTS.URI;
+        String uri = WebServiceConstants.COMMENTS.URL;
 
         // Query string
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

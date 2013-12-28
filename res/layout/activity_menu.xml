@@ -1,8 +1,4 @@
-<fragment 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/MenuFragment"
-   	android:name="fr.utt.topuv.controller.MenuController"
-    tools:layout="@layout/main_fragment_menu" />
+    android:layout_height="match_parent" />
