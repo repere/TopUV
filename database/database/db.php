@@ -121,6 +121,36 @@ class DB
 		
 		return $UVs;
 	}
+	
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	public function getListUv ($ct)
+	{
+		$ct1 = 'TM';             //TM
+		$ct2 = 'CS';        //CS
+		$ct3 = 'EC';        //EC
+		$ct4 = 'ME';           //ME
+		$ct5 = 'CT';             //CT
+		switch ($ct)
+		{
+			case $ct1:
+				$UVs = $this->search('UV','uv','cat= :cat',array(':cat' =>$ct1));
+				break;
+			case $ct2:
+				$UVs = $this->search('UV','uv','cat = :cat',array(':cat'=>$ct2));
+				break;
+			case $ct3:
+				$UVs = $this->search('UV','uv','cat = :cat',array(':cat' =>$ct3));
+				break;
+			case $ct4:
+				$UVs = $this->search('UV','uv','cat = :cat',array(':cat' =>$ct4));
+				break;
+			case $ct5:
+				$UVs = $this->search('UV','uv','cat = :cat',array(':cat' =>$ct5));
+				break;
+		}
+	
+		return $UVs;
+	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	public function  Note_Moyenne($iduv)
 	{	

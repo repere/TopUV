@@ -21,7 +21,7 @@ public class WebServiceConstants
         //From DB
         public static final String CODE = "code";
         public static final String DESIGNATION = "designation";
-        public static final String UVS = "uvs";
+        public static final String UVS = "UVs";
         
         //To DB
         public static final String CATEGORIE = "categorie";

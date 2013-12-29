@@ -32,15 +32,19 @@
 
     <!-- Uv description -->
     <string name="uv_description">Description de l\'UV !</string>
-
     
-    <!-- BELOW : EXEMPLE SO DELETE AT THE END -->
-    
+    <!-- ViewPager Title page (UV category) -->
     <string name="title_section0">CS</string>
     <string name="title_section1">TM</string>
     <string name="title_section2">EC</string>
     <string name="title_section3">ME</string>
     <string name="title_section4">CT</string>
+    
+    <!-- Content Description for image -->
+    <string name="arrow">Arrow</string>
+
+    
+    <!-- BELOW : EXEMPLE SO DELETE AT THE END -->
     
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
     

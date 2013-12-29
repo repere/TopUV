@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import fr.utt.top.fragment.DummySectionFragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import fr.utt.topuv.R;
+import fr.utt.topuv.controller.ContactsListController;
 import fr.utt.topuv.controller.ListUvController;
 
-public class UvFragmentPagerAdapter extends FragmentPagerAdapter 
+public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter 
 {
 
     Context TheContext;
@@ -28,32 +29,23 @@ public class UvFragmentPagerAdapter extends FragmentPagerAdapter
         
     	switch (i) 
     	{    
-	    	default:
-	    		Fragment fm = new DummySectionFragment();
-				args.putString(DummySectionFragment.ARG_SECTION_TYPE, "CS");
-				fm.setArguments(args);
-	            return fm;
-    		/*case 0 :
-	    		args.putString(ListUvController.ARG_SECTION_TYPE, "CS");
-	            fragment.setArguments(args);
-	            return fragment;
+    		case 0 :
+    			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "CS");
+    	        fragment.setArguments(args);
 	    	case 1 :
-	    		args.putString(ListUvController.ARG_SECTION_TYPE, "TM");
-	            fragment.setArguments(args);
-	            return fragment;
+	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "TM");
+    	        fragment.setArguments(args);
 	    	case 2 :
-	    		args.putString(ListUvController.ARG_SECTION_TYPE, "EC");
-	            fragment.setArguments(args);
-	            return fragment;
+	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "EC");
+    	        fragment.setArguments(args);
 	    	case 3 :
-	    		args.putString(ListUvController.ARG_SECTION_TYPE, "ME");
-	            fragment.setArguments(args);
-	            return fragment;
+	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "ME");
+    	        fragment.setArguments(args);
     		case 4 :
-        		args.putString(ListUvController.ARG_SECTION_TYPE, "CT");
-                fragment.setArguments(args);
-                return fragment;*/
-        }
+    			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "CT");
+    	        fragment.setArguments(args);
+        }	
+    	return fragment;
     }
 
     @Override
