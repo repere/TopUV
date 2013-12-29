@@ -37,6 +37,10 @@
             android:name="fr.utt.topuv.activity.UvCommentActivity"
             android:label="@string/title_activity_uv_comment" >
         </activity>
+        <activity
+            android:name="fr.utt.topuv.MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
     </application>
 
 </manifest>

@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Général -->
-    
+
     <string name="action_settings">Settings</string>
     <string name="app_name">TopUV</string>
 
@@ -32,22 +32,22 @@
 
     <!-- Uv description -->
     <string name="uv_description">Description de l\'UV !</string>
-    
+
     <!-- ViewPager Title page (UV category) -->
     <string name="title_section0">CS</string>
     <string name="title_section1">TM</string>
     <string name="title_section2">EC</string>
     <string name="title_section3">ME</string>
     <string name="title_section4">CT</string>
-    
+    <string name="title_section5">HP</string>
+
     <!-- Content Description for image -->
     <string name="arrow">Arrow</string>
 
-    
     <!-- BELOW : EXEMPLE SO DELETE AT THE END -->
-    
+
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
-    
+
     <!-- Contacts List -->
     <string-array name="contacts_list">
         <item>Karina</item>
@@ -61,12 +61,14 @@
         <item>Fleur</item>
         <item>Claire</item>
     </string-array>
-    
+
     <!-- Contacts -->
     <string name="activity_contacts">Contacts</string>
     <string name="comment_none">Aucun commentaire</string>
-    
+
     <!-- Autres -->
-	<string name="hello_world">Hello world!</string>
-	
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_fragment_pager_support">FragmentPagerSupport</string>
+    <string name="title_activity_main">MainActivity</string>
+
 </resources>
