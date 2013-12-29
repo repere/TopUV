@@ -1,16 +1,13 @@
-package fr.utt.topuv.adapter;
+package fr.utt.topuv.controller;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import fr.utt.topuv.R;
-import fr.utt.topuv.controller.ContactsListController;
-import fr.utt.topuv.controller.ListUvController;
 
-public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter 
+public class UvFragmentPagerAdapter extends FragmentPagerAdapter 
 {
 
     Context TheContext;

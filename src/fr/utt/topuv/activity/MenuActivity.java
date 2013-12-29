@@ -7,7 +7,7 @@
 package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
-import fr.utt.topuv.adapter.UvFragmentPagerAdapter;
+import fr.utt.topuv.controller.UvFragmentPagerAdapter;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
