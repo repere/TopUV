@@ -46,10 +46,6 @@ public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter
     			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "CT");
     	        fragment.setArguments(args);
     	        return fragment;
-    		case 5 :
-    			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "HP");
-    	        fragment.setArguments(args);
-    	        return fragment;
         }	
     	return null;
     }
@@ -57,7 +53,7 @@ public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter
     @Override
     public int getCount() 
     {
-        return 6;
+        return 5;
     }
 
     @Override
@@ -75,8 +71,6 @@ public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter
                 return TheContext.getString(R.string.title_section3);
             case 4:
                 return TheContext.getString(R.string.title_section4);
-            case 5:
-                return TheContext.getString(R.string.title_section5);
         }
         return null;
     }

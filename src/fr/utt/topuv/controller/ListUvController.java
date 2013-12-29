@@ -26,7 +26,6 @@ public class ListUvController extends ListFragment //implements OnItemClickListe
 {
 	private ArrayList<Uv> uvs = new ArrayList<Uv>();
 	public static final String TYPE_OF_ACTUAL_UV = "actual_uv";
-	ListView myListView;
 	
 	
 	/*

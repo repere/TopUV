@@ -36,7 +36,7 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
 
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
-        fmPagerAdapter = new UvFragmentPagerAdapter(getSupportFragmentManager(), this);
+        fmPagerAdapter = new UvFragmentPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
