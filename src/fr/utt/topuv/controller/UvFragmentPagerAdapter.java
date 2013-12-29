@@ -4,10 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import fr.utt.topuv.R;
 
-public class UvFragmentPagerAdapter extends FragmentPagerAdapter 
+public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter 
 {
 
     Context TheContext;
@@ -29,20 +29,25 @@ public class UvFragmentPagerAdapter extends FragmentPagerAdapter
     		case 0 :
     			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "CS");
     	        fragment.setArguments(args);
+    	        return fragment;
 	    	case 1 :
 	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "TM");
     	        fragment.setArguments(args);
+    	        return fragment;
 	    	case 2 :
 	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "EC");
     	        fragment.setArguments(args);
+    	        return fragment;
 	    	case 3 :
 	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "ME");
     	        fragment.setArguments(args);
+    	        return fragment;
     		case 4 :
     			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "CT");
     	        fragment.setArguments(args);
+    	        return fragment;
         }	
-    	return fragment;
+    	return null;
     }
 
     @Override

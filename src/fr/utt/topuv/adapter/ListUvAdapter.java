@@ -13,16 +13,17 @@ import fr.utt.topuv.model.Uv;
 
 public class  ListUvAdapter extends ArrayAdapter<Uv>
 {
-    public ListUvAdapter(Context context, ArrayList<Uv> uvs)
+	int layout;
+	
+	public ListUvAdapter(Context context, int resource, ArrayList<Uv> uvs)
     {
-        super(context, R.layout.uvs_list_entry, uvs);
+        super(context, resource, uvs);
+        layout = resource;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        int layout = R.layout.uvs_list_entry;
-
         ViewGroup viewGroup = (ViewGroup) LayoutInflater.from(this.getContext()).inflate(layout, null);
 
         ((TextView) viewGroup.findViewById(R.id.codeUvFromDB)).setText(this.getItem(position).code);

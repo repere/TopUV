@@ -7,8 +7,6 @@
 
 package fr.utt.topuv.service;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import org.apache.http.HttpEntity;
@@ -33,6 +31,7 @@ import fr.utt.topuv.model.Uv;
 
 public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
 {
+	/*
 	Activity motherActivity;
 	// Progress Dialog
     private ProgressDialog pDialog;
@@ -55,7 +54,7 @@ public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
         // dismiss the dialog once product deleted
         pDialog.dismiss();
     }
-	
+	*/
 	@Override
     protected ArrayList<Uv> doInBackground(String... params)
     {

@@ -16,26 +16,20 @@ import fr.utt.topuv.adapter.ListUvAdapter;
 import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.model.Uv;
 import fr.utt.topuv.service.GetListUvService;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class ListUvController extends Fragment implements OnItemClickListener
+public class ListUvController extends ListFragment //implements OnItemClickListener
 {
 	private ArrayList<Uv> uvs = new ArrayList<Uv>();
 	public static final String TYPE_OF_ACTUAL_UV = "actual_uv";
+	ListView myListView;
 	
-	public ListUvController() 
-	{
-    }
 	
+	/*
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -60,9 +54,9 @@ public class ListUvController extends Fragment implements OnItemClickListener
         }
 		
 		View view = inflater.inflate(R.layout.fragment_list, null);
-		ListView myListView = (ListView) view.findViewById(R.id.list);
+		myListView = (ListView) view.findViewById(R.id.list);
 		
-		ListUvAdapter adapter = new ListUvAdapter(container.getContext(), uvs);
+		ListUvAdapter adapter = new ListUvAdapter(container.getContext(),R.layout.uvs_list_entry, uvs);
 		
 		myListView.setAdapter(adapter);
 		
@@ -73,64 +67,40 @@ public class ListUvController extends Fragment implements OnItemClickListener
 		return view;
 	}
 	
-
-	public void getListUv(String typeOfUv)
-	{	
-		try
-		{
-        	GetListUvService getListUvService = new GetListUvService(this.getActivity());
-            ArrayList<Uv> ArrayListUvs = getListUvService.execute(typeOfUv).get();
-            uvs = ArrayListUvs;
-		}
-		
-		catch(InterruptedException interruptedException)
-        {
-
-        }
-        
-        catch(ExecutionException executionException)
-        {
-
-        }
-		
-		ListUvAdapter adapter = new ListUvAdapter(this.getActivity().getApplicationContext(), uvs);
-		
-		((ListView) this.getView().findViewById(R.id.list)).setAdapter(adapter);
-		
-		//Set the event listener
-		((ListView) this.getView().findViewById(R.id.list)).setOnItemClickListener(this);
-		
-	}
-	
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
 		//Show extra toast that indicates post date maybe ?		
-		
+		String tmp = (String) parent.getItemAtPosition(position);
+		Intent intent = new Intent(this.getActivity(), UvActivity.class);
+        intent.putExtra(IntentConstants.CODE, tmp);
+
+        this.startActivity(intent);
 	}
-	
-		
+	*/
 	
 
-	/*
 	@Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+        Bundle args = getArguments();
+        String actualTypeOfUv = args.getString(TYPE_OF_ACTUAL_UV);
+		
+		try
+		{
+        	GetListUvService getListUvService = new GetListUvService();
+            ArrayList<Uv> ArrayListUvs = getListUvService.execute(actualTypeOfUv).get();
+            uvs = ArrayListUvs;
 
-        try
-        {
-        	GetListUvService getListUvService = new GetListUvService(this.getActivity());
-            ArrayList<Uv> ArrayListUvs = getListUvService.execute(TYPE_OF_ACTUAL_UV).get();
-
-            this.setListAdapter(new ListUvAdapter(this.getActivity(), ArrayListUvs));
+            ListUvAdapter adapter = new ListUvAdapter(this.getActivity().getApplicationContext(),R.layout.uvs_list_entry, uvs);
+            
+            this.setListAdapter(adapter);
         }
-        
         catch(InterruptedException interruptedException)
         {
 
         }
-        
         catch(ExecutionException executionException)
         {
 
@@ -147,6 +117,6 @@ public class ListUvController extends Fragment implements OnItemClickListener
 
         this.startActivity(intent);
     }
-    */
+    
     
 }
