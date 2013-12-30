@@ -7,6 +7,8 @@
 
 package fr.utt.topuv.service;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import org.apache.http.HttpEntity;
@@ -31,7 +33,6 @@ import fr.utt.topuv.model.Uv;
 
 public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
 {
-	/*
 	Activity motherActivity;
 	// Progress Dialog
     private ProgressDialog pDialog;
@@ -44,17 +45,18 @@ public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
     protected void onPreExecute() {
         super.onPreExecute();
         pDialog = new ProgressDialog(motherActivity);
-        pDialog.setMessage("Chargement des UVs en cours...");
-        pDialog.setIndeterminate(false);
+        pDialog.setTitle("Récupération des UVs");
+        pDialog.setMessage("Chargement en cours...");
+        pDialog.setIndeterminate(true);
         pDialog.setCancelable(true);
         pDialog.show();
     }
 	
-	protected void onPostExecute(String file_url) {
+	protected void onPostExecute(ArrayList<Uv> resultOfAsyncTask) {
         // dismiss the dialog once product deleted
         pDialog.dismiss();
     }
-	*/
+	
 	@Override
     protected ArrayList<Uv> doInBackground(String... params)
     {

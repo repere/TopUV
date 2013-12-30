@@ -1,11 +1,16 @@
 package fr.utt.topuv.controller;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.ListFragment;
 import fr.utt.topuv.R;
+import fr.utt.topuv.fragment.ListCsFragment;
+import fr.utt.topuv.fragment.ListCtFragment;
+import fr.utt.topuv.fragment.ListEcFragment;
+import fr.utt.topuv.fragment.ListMeFragment;
+import fr.utt.topuv.fragment.ListTmFragment;
 
 public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter 
 {
@@ -21,30 +26,24 @@ public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter
     @Override
     public Fragment getItem(int i) 
     {
-    	Fragment fragment = new ListUvController();
-        Bundle args = new Bundle();
+    	ListFragment fragment;
         
     	switch (i) 
     	{    
     		case 0 :
-    			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "CS");
-    	        fragment.setArguments(args);
+    			fragment = new ListCsFragment();
     	        return fragment;
 	    	case 1 :
-	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "TM");
-    	        fragment.setArguments(args);
+	    		fragment = new ListTmFragment();
     	        return fragment;
 	    	case 2 :
-	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "EC");
-    	        fragment.setArguments(args);
+	    		fragment = new ListEcFragment();
     	        return fragment;
 	    	case 3 :
-	    		args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "ME");
-    	        fragment.setArguments(args);
+	    		fragment = new ListMeFragment();
     	        return fragment;
     		case 4 :
-    			args.putString(ListUvController.TYPE_OF_ACTUAL_UV, "CT");
-    	        fragment.setArguments(args);
+    			fragment = new ListCtFragment();
     	        return fragment;
         }	
     	return null;

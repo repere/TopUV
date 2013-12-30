@@ -14,10 +14,12 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.MenuItem;
 
-public class UvActivity extends Activity {
+public class UvActivity extends Activity 
+{
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_uv);
 
@@ -26,14 +28,17 @@ public class UvActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
-	public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+	public boolean onOptionsItemSelected(MenuItem item) 
+	{
+        switch (item.getItemId()) 
+        {
             case android.R.id.home:
                 // This is called when the Home (Up) button is pressed in the action bar.
                 // Create a simple intent that starts the hierarchical parent activity and
                 // use NavUtils in the Support Package to ensure proper handling of Up.
                 Intent upIntent = new Intent(this, MenuActivity.class);
-                if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+                if (NavUtils.shouldUpRecreateTask(this, upIntent)) 
+                {
                     // This activity is NOT part of this app's task, so create a new task
                     // when navigating up, with a synthesized back stack.
                     TaskStackBuilder.create(this)
@@ -41,7 +46,10 @@ public class UvActivity extends Activity {
                             .addNextIntentWithParentStack(upIntent)
                             // Navigate up to the closest parent
                             .startActivities();
-                } else {
+                } 
+                
+                else 
+                {
                     // This activity is part of this app's task, so simply
                     // navigate up to the logical parent activity.
                     NavUtils.navigateUpTo(this, upIntent);

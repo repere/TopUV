@@ -46,6 +46,8 @@
     <!-- BELOW : EXEMPLE SO DELETE AT THE END -->
 
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
+    <string name="first">one</string>
+    <string name="last">last</string>
 
     <!-- Contacts List -->
     <string-array name="contacts_list">
@@ -69,5 +71,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_fragment_pager_support">FragmentPagerSupport</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_fragment_state_pager_support">FragmentStatePagerSupport</string>
 
 </resources>
