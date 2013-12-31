@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le : Mar 31 Décembre 2013 à 16:19
+-- Généré le : Dim 22 Décembre 2013 à 15:48
 -- Version du serveur: 5.5.15
 -- Version de PHP: 5.3.8
 
@@ -99,17 +99,17 @@ CREATE TABLE IF NOT EXISTS `uv` (
 --
 
 INSERT INTO `uv` (`id`, `code`, `designation`, `categorie`, `credit`, `description`, `note`) VALUES
-(1, 'IF26', 'Conception securisee d''applications : Web Mobile et Smartphone', 'TM', 6, 'Apprentissage des methodes et outils de conception d’applications securisees appliques au developpement pour smartphones', 0),
-(2, 'IF01', 'Theorie et codage de l’information', 'CS', 6, 'se familiariser avec certains aspects des nouvelles technologies de l''information dans un cadre theorique adapte', 5.5),
-(3, 'LE01', 'Anglais - niveau elementaire / Structures de base', 'EC', 2, '', 0),
-(4, 'LE02', 'Anglais - niveau moyen', 'EC', 2, '', 0),
-(5, 'NF14', 'Algoritmique', 'TM', 6, '', 0),
-(6, 'NF05', 'Introduction au langage C', 'TM', 6, '', 0),
-(7, 'GS15', 'Cryptologie et signature electronique', 'CS', 6, '', 6.5),
-(8, 'GE21', 'Entreprise et le droit', 'ME', 4, '', 0),
-(9, 'GE28', 'Droit du commerce et des affaires', 'ME', 4, '', 0),
-(10, 'SP02', 'Animateur sportif', 'CT', 4, '', 0),
-(11, 'SP03', 'Animateur qualifie', 'CT', 4, '', 0);
+(1, 'IF26', 'Conception securisee d''applications : Web Mobile et Smartphone', 'Techniques et Methodes', 6, 'Apprentissage des methodes et outils de conception d’applications securisees appliques au developpement pour smartphones', 0),
+(2, 'IF01', 'Theorie et codage de l’information', 'Connaissances Scientifiques', 6, 'se familiariser avec certains aspects des nouvelles technologies de l''information dans un cadre theorique adapte', 5.5),
+(3, 'LE01', 'Anglais - niveau elementaire / Structures de base', 'Expression et Communication', 2, '', 0),
+(4, 'LE02', 'Anglais - niveau moyen', 'Expression et Communication', 2, '', 0),
+(5, 'NF14', 'Algoritmique', 'Techniques et Methodes', 6, '', 0),
+(6, 'NF05', 'Introduction au langage C', 'Techniques et Methodes', 6, '', 0),
+(7, 'GS15', 'Cryptologie et signature electronique', 'Connaissances Scientifiques', 6, '', 6.5),
+(8, 'GE21', 'Entreprise et le droit', 'Management de Entreprise', 4, '', 0),
+(9, 'GE28', 'Droit du commerce et des affaires', 'Management de Entreprise', 4, '', 0),
+(10, 'SP02', 'Animateur sportif', 'Culture et Technologie', 4, '', 0),
+(11, 'SP03', 'Animateur qualifie', 'Culture et Technologie', 4, '', 0);
 
 --
 -- Contraintes pour les tables exportées
@@ -119,8 +119,8 @@ INSERT INTO `uv` (`id`, `code`, `designation`, `categorie`, `credit`, `descripti
 -- Contraintes pour la table `note`
 --
 ALTER TABLE `note`
-  ADD CONSTRAINT `note_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `note_ibfk_2` FOREIGN KEY (`id_uv`) REFERENCES `uv` (`id`);
+  ADD CONSTRAINT `note_ibfk_2` FOREIGN KEY (`id_uv`) REFERENCES `uv` (`id`),
+  ADD CONSTRAINT `note_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
