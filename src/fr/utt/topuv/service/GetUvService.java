@@ -40,6 +40,7 @@ public class GetUvService extends AsyncTask<String, String, Uv>
 		motherActivity = activity;
 	}
 	
+	/*
 	@Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -54,6 +55,7 @@ public class GetUvService extends AsyncTask<String, String, Uv>
         // dismiss the dialog once product deleted
         pDialog.dismiss();
     }
+    */
 	
 	@Override
     protected Uv doInBackground(String... params)
@@ -82,9 +84,12 @@ public class GetUvService extends AsyncTask<String, String, Uv>
 	        JSONObject jsonObject = new JSONObject(response);
 
             Uv uvSelectedObject = new Uv();
-            uvSelectedObject.description = jsonObject.getJSONObject(WebServiceConstants.UV.DESCRIPTION).getString(WebServiceConstants.UV.DESCRIPTION);
-            uvSelectedObject.mark = jsonObject.getJSONObject(WebServiceConstants.UV.MARK).getString(WebServiceConstants.UV.MARK);
-            uvSelectedObject.credit = jsonObject.getJSONObject(WebServiceConstants.UV.CREDIT).getString(WebServiceConstants.UV.CREDIT);
+            uvSelectedObject.setCode(jsonObject.getJSONObject(WebServiceConstants.UV.CODE).getString(WebServiceConstants.UV.CODE));
+            uvSelectedObject.setDesignation(jsonObject.getJSONObject(WebServiceConstants.UV.DESIGNATION).getString(WebServiceConstants.UV.DESIGNATION));
+            uvSelectedObject.setCredit(jsonObject.getJSONObject(WebServiceConstants.UV.CREDIT).getInt(WebServiceConstants.UV.CREDIT));
+            uvSelectedObject.setDescription(jsonObject.getJSONObject(WebServiceConstants.UV.DESCRIPTION).getString(WebServiceConstants.UV.DESCRIPTION));
+            uvSelectedObject.setNote(jsonObject.getJSONObject(WebServiceConstants.UV.NOTE).getInt(WebServiceConstants.UV.NOTE));
+            uvSelectedObject.setCat(jsonObject.getJSONObject(WebServiceConstants.UV.CAT).getString(WebServiceConstants.UV.CAT));
             
             return uvSelectedObject;
         }

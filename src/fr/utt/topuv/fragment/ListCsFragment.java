@@ -51,8 +51,12 @@ public class ListCsFragment extends ListFragment
         Uv uvSelected = (Uv) this.getListAdapter().getItem(position);
 
         Intent intent = new Intent(this.getActivity(), UvActivity.class);
-        intent.putExtra(IntentConstants.CODE, uvSelected.code);
-        intent.putExtra(IntentConstants.DESCRIPTION, uvSelected.description);
+        intent.putExtra(IntentConstants.CODE, uvSelected.getCode());
+        intent.putExtra(IntentConstants.DESIGNATION, uvSelected.getDesignation());
+        intent.putExtra(IntentConstants.CREDIT, uvSelected.getCredit());
+        intent.putExtra(IntentConstants.DESCRIPTION, uvSelected.getDescription());
+        intent.putExtra(IntentConstants.NOTE, uvSelected.getNote());
+        intent.putExtra(IntentConstants.CAT, uvSelected.getCat());
 
         this.startActivity(intent);
     }

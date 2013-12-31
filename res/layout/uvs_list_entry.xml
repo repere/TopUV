@@ -2,42 +2,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:textIsSelectable="false"
-    android:background="@drawable/list_row_background"
-    android:textColor="@android:color/black" >
-    
-		<LinearLayout
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content" 
-		    android:orientation="vertical"
-		    android:padding="10dp" >
-		    
-			    <TextView
-			        android:id="@+id/codeUvFromDB"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:singleLine="true"
-			        android:textStyle="bold"
-			        android:textSize="15sp" />
-			    <TextView
-			        android:id="@+id/designationUvFromDB"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:textSize="12sp"  />
-			     
-		</LinearLayout>
-	
-		<LinearLayout
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content" 
-		    android:orientation="vertical" >
-				<ImageView
-				    android:layout_gravity="center"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:contentDescription="@string/arrow"
-				    android:src="@drawable/blue_accessory" />
-		</LinearLayout>
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@drawable/list_row_background"> 
+
+	    <TextView
+	        android:id="@+id/codeUvFromDB"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:singleLine="true"
+	        android:textColor="#000000"
+	        android:textSize="15sp"
+	        android:textStyle="bold" />
+
+	    <TextView
+	        android:id="@+id/designationUvFromDB"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#555555"
+	        android:textSize="12sp" />
 
 </LinearLayout>

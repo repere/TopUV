@@ -64,9 +64,11 @@ public class WebServiceConstants
         public static final String URL = ROOT + "getUV.php";
         
         //From DB
-        public static final String DESCRIPTION = "description";
-        public static final String MARK = "mark";
+        public static final String DESIGNATION = "designation";
         public static final String CREDIT = "credit";
+        public static final String DESCRIPTION = "description";
+        public static final String NOTE = "note";
+        public static final String CAT = "cat";
         
         //To DB
         public static final String CODE = "code";

@@ -44,6 +44,7 @@ public class LoginService extends AsyncTask<String, String, String>
     protected void onPreExecute() {
         super.onPreExecute();
         pDialog = new ProgressDialog(motherActivity);
+        pDialog.setTitle("Identification");
         pDialog.setMessage("Connexion en cours...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(true);

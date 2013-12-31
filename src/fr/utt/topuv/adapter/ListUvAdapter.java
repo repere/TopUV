@@ -26,8 +26,8 @@ public class  ListUvAdapter extends ArrayAdapter<Uv>
     {
         ViewGroup viewGroup = (ViewGroup) LayoutInflater.from(this.getContext()).inflate(layout, null);
 
-        ((TextView) viewGroup.findViewById(R.id.codeUvFromDB)).setText(this.getItem(position).code);
-        ((TextView) viewGroup.findViewById(R.id.designationUvFromDB)).setText(this.getItem(position).designation);
+        ((TextView) viewGroup.findViewById(R.id.codeUvFromDB)).setText(this.getItem(position).getCode());
+        ((TextView) viewGroup.findViewById(R.id.designationUvFromDB)).setText(this.getItem(position).getDesignation());
 
         return viewGroup;
     }

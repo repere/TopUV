@@ -48,10 +48,15 @@ public class ListCtFragment extends ListFragment
 	@Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
-        Uv uvSelected = (Uv) this.getListAdapter().getItem(position);
+		Uv uvSelected = (Uv) this.getListAdapter().getItem(position);
 
         Intent intent = new Intent(this.getActivity(), UvActivity.class);
-        intent.putExtra(IntentConstants.CODE, uvSelected.code);
+        intent.putExtra(IntentConstants.CODE, uvSelected.getCode());
+        intent.putExtra(IntentConstants.DESIGNATION, uvSelected.getDesignation());
+        intent.putExtra(IntentConstants.CREDIT, uvSelected.getCredit());
+        intent.putExtra(IntentConstants.DESCRIPTION, uvSelected.getDescription());
+        intent.putExtra(IntentConstants.NOTE, uvSelected.getNote());
+        intent.putExtra(IntentConstants.CAT, uvSelected.getCat());
 
         this.startActivity(intent);
     }

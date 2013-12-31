@@ -32,6 +32,7 @@
 
     <!-- Uv description -->
     <string name="uv_description">Description de l\'UV !</string>
+    <string name="note_uv">Note moyenne de l\'UV :</string>
 
     <!-- ViewPager Title page (UV category) -->
     <string name="title_section0">CS</string>

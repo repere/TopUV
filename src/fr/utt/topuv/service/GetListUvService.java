@@ -31,7 +31,7 @@ import java.util.List;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.Uv;
 
-public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
+public class GetListUvService extends AsyncTask<String, Void, ArrayList<Uv>>
 {
 	Activity motherActivity;
 	// Progress Dialog
@@ -40,7 +40,7 @@ public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
 	public GetListUvService(Activity activity) {
 		motherActivity = activity;
 	}
-	
+	/*
 	@Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -55,7 +55,7 @@ public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
 	protected void onPostExecute(ArrayList<Uv> resultOfAsyncTask) {
         // dismiss the dialog once product deleted
         pDialog.dismiss();
-    }
+    }*/
 	
 	@Override
     protected ArrayList<Uv> doInBackground(String... params)
@@ -90,8 +90,8 @@ public class GetListUvService extends AsyncTask<String, String, ArrayList<Uv>>
                 for(int index = 0; index < jsonArray.length(); index++)
                 {
                     Uv uvSelected = new Uv();
-                    uvSelected.code = jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CODE);
-                    uvSelected.designation = jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESIGNATION);
+                    uvSelected.setCode(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CODE));
+                    uvSelected.setDesignation(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESIGNATION));
 
                     ArrayListUv.add(uvSelected);
                 }
