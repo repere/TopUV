@@ -27,7 +27,7 @@
 	{
 ?>
 		<h1>Afficher catégorie</h1> 
-		<form action="getListUV.php" method="post"> 
+		<form action="getUV.php" method="post"> 
 		    Categorie : <br/> 
 		    <input type="text" name="code" placeholder="code" /> 
 		    
