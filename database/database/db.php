@@ -93,13 +93,15 @@ class DB
 	}
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
-	public function lister_uv ($ct)
+// fonction qui retourne une liste des UV d'une meme Categorie
+	
+	public function getListUv ($ct)
 	{
-		$ct1 = 'Techniques et Methodes';             //TM
-		$ct2 = 'Connaissances Scientifiques';        //CS
-		$ct3 = 'Expression et Communication';        //EC
-		$ct4 = 'Management de Entreprise';           //ME
-		$ct5 = 'Culture et Technologie';             //CT
+		$ct1 = 'TM';        //TM
+		$ct2 = 'CS';        //CS
+		$ct3 = 'EC';        //EC
+		$ct4 = 'ME';        //ME
+		$ct5 = 'CT';        //CT
 		switch ($ct) 
 		{
 		    case $ct1:
@@ -123,36 +125,6 @@ class DB
 	}
 	
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// fonction qui retourne une liste des UV d'une meme Categorie
-	
-	public function getListUv ($ct)
-	{
-		$ct1 = 'TM';        //TM
-		$ct2 = 'CS';        //CS
-		$ct3 = 'EC';        //EC
-		$ct4 = 'ME';        //ME
-		$ct5 = 'CT';        //CT
-		switch ($ct)
-		{
-			case $ct1:
-				$UVs = $this->search('UV','uv','cat= :cat',array(':cat' =>$ct1));
-				break;
-			case $ct2:
-				$UVs = $this->search('UV','uv','cat = :cat',array(':cat'=>$ct2));
-				break;
-			case $ct3:
-				$UVs = $this->search('UV','uv','cat = :cat',array(':cat' =>$ct3));
-				break;
-			case $ct4:
-				$UVs = $this->search('UV','uv','cat = :cat',array(':cat' =>$ct4));
-				break;
-			case $ct5:
-				$UVs = $this->search('UV','uv','cat = :cat',array(':cat' =>$ct5));
-				break;
-		}
-	
-		return $UVs;
-	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // fonction qui calcule la note moyenne d'une UV 
 	public function  Note_Moyenne($iduv)
