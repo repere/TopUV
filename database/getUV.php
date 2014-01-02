@@ -10,7 +10,7 @@
 	//Answer message 
 	$response = array
 	(
-			'error' => true
+			'succes' => 0
 			
 	);
 	// POST test
@@ -23,7 +23,6 @@
 		// get the UV by code
 		$UVs=$db->getUv ($_POST['code']);
 		
-		
 		foreach($UVs as $uv)
 		{
 			unset($uv->id);
@@ -31,10 +30,11 @@
 			unset($uv->designation);
 			unset($uv->categorie);
 		}
+		
 		// answer message 
 		$response = array
 		(
-           'error' => false,
+           'succes' => 1,
            'UVs' => $UVs
 		);
 	

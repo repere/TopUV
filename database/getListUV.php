@@ -3,24 +3,44 @@
 	require_once('model/User.php');
 	require_once('model/UV.php');
 	
-	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-	//Login check
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+//retourner une liste des UVs d'une meme categorie
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
+	//Answer message
+	$response = array
+	(
+			'succes' => 0
+				
+	);
+	
+	// POST test
 	if (!empty($_POST))
 	{
 		//DB Connection
 		$config = require_once('config.php');
 		$db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
 	
-		$UVs=$db->getListUv ($_POST['categorie']);
-		$json = array
+		$UVs=$db->lister_uv ($_POST['categorie']);
+	
+		foreach($UVs as $uv)
+		{
+			unset($uv->id);
+			unset($uv->categorie);
+			unset($uv->credit);
+			unset($uv->description);
+			unset($uv->note);
+		}
+		
+		//Answer message
+		$response = array
 		(
-           'error' => false,
+           'succes' => 1,
            'UVs' => $UVs
 		);
-		// echo json_encode($json, JSON_PRETTY_PRINT);            5.4 required!!
-		echo json_encode($json);
+		
+		echo json_encode($response);
+		
 			
 	}
 	else 
