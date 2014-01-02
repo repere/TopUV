@@ -3,32 +3,50 @@
 	require_once('model/User.php');
 	require_once('model/UV.php');
 	
-	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-	//retourner l'UV (appel de la fonction getUv)
-	//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+//retourner l'UV (appel de la fonction getUv)
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
+	//Answer message 
+	$response = array
+	(
+			'error' => true
+			
+	);
+	// POST test
 	if (!empty($_POST))
 	{
 		//DB Connection
 		$config = require_once('config.php');
 		$db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
 	
+		// get the UV by code
 		$UVs=$db->getUv ($_POST['code']);
-		$json = array
+		
+		
+		foreach($UVs as $uv)
+		{
+			unset($uv->id);
+			unset($uv->code);
+			unset($uv->designation);
+			unset($uv->categorie);
+		}
+		// answer message 
+		$response = array
 		(
            'error' => false,
            'UVs' => $UVs
 		);
-		// echo json_encode($json, JSON_PRETTY_PRINT);            5.4 required!!
-		echo json_encode($json);
+	
+		echo json_encode($response);
 			
 	}
 	else 
 	{
 ?>
-		<h1>Afficher catégorie</h1> 
+		<h1>Afficher UV</h1> 
 		<form action="getUV.php" method="post"> 
-		    Categorie : <br/> 
+		    Code : <br/> 
 		    <input type="text" name="code" placeholder="code" /> 
 		    
 		    <br/><br/> 
