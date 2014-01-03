@@ -62,7 +62,7 @@
 					<input type="text" name="mark" placeholder="Note" /> 
 					<br/> <br/>  
 					
-						Etudiant (Token) :  <br/> 
+						User:  <br/> 
 					<select name="id" >
 							<option value='-1'>Qui etes Vous ?</option>
 							<?php 

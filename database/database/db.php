@@ -286,7 +286,47 @@ public function topUv ($ct)
 		
 		return $UVs;
 	}
-
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// fonction qui retourne les commentaires sur une UV à partir de son code (unique)
+	public function getListUserComment($id)
+	{
+		
+		$whereArgs=array(':id'=>$id);
+		// Find User by id
+		$user = $this->find('User','user','id = :id', $whereArgs);
+		$id_user=$user->id;
+		
+		//Find all comments of this user
+		$whereArgs=array(':id_user' =>$id_user);
+		$userComments = $this->search('Note','note','id_user = :id_user', $whereArgs);
+		
+		// Find UVs Commented 
+		$i=0;
+		$result = array(array()) ;
+		foreach($userComments as $comment)
+		{	
+			$id_uv=$comment->id_uv;
+			$whereArgs=array(':id_uv' =>$id_uv);
+			$UVs = $this->search('UV','uv','id = :id_uv', $whereArgs);
+					
+					foreach($UVs as $uv)
+					{
+					$result[$i]['Code'] = $uv->code;
+					$result[$i]['Designation'] = $uv->designation;
+					$result[$i]['User Comment '] = $comment->comment;
+					$result[$i]['User Mark '] = $comment->note;
+					$result[$i]['date'] = $comment->date;
+					$result[$i]['Average Mark'] = $uv->note;							
+					}
+					
+			$i=$i+1;
+		
+		}
+	
+		return $result;
+	}
+	
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }
 
 
