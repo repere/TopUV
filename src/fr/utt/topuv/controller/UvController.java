@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import fr.utt.topuv.R;
@@ -31,24 +32,32 @@ public class UvController extends Fragment implements OnClickListener
 {
     private String code;
     private String designation;
+    private String code_designation;
     private int credit;
     private String description;
     private int note;
-    private String cat;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
     	ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.main_fragment_uv, null);
  
+    	//Retrieve code, designation, note and credit from intent
     	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
         designation = this.getActivity().getIntent().getStringExtra(IntentConstants.DESIGNATION);
+        code_designation = code + " : " + designation;
+        note = this.getActivity().getIntent().getIntExtra(IntentConstants.NOTE,0);
+        credit = this.getActivity().getIntent().getIntExtra(IntentConstants.CREDIT,0);
     	
-    	((TextView) viewGroup.findViewById(R.id.name_uv_bar)).setText(code);
+    	((TextView) viewGroup.findViewById(R.id.name_uv_bar)).setText(code_designation);
         
-        ((TextView) viewGroup.findViewById(R.id.uv_description)).setText(designation);
+        ((TextView) viewGroup.findViewById(R.id.uv_description)).setText(description);
         
-        //view.findViewById(R.id.send).setOnClickListener(this);
+        ((TextView) viewGroup.findViewById(R.id.credit_uv)).setText(credit);
+        
+        ((RatingBar) viewGroup.findViewById(R.id.ratingBar_current_note)).setRating(note);
+        
+        viewGroup.findViewById(R.id.add_comment_button).setOnClickListener(this);
 
         return viewGroup;
     }
@@ -57,6 +66,7 @@ public class UvController extends Fragment implements OnClickListener
     public void onClick(View v)
     {
     	Intent intent = new Intent(this.getActivity(), UvCommentActivity.class);
+    	intent.putExtra(IntentConstants.CODE, code);
         this.startActivity(intent);
     }
 }

@@ -31,8 +31,11 @@
     <string name="title_activity_uv">Descriptif de l\'UV</string>
 
     <!-- Uv description -->
+    <string name="uv_description_title">Description de l\'UV :</string>
+    <string name="credit_uv_title">Nombre de crédits pour cette UV :</string>
     <string name="uv_description">Description de l\'UV !</string>
     <string name="note_uv">Note moyenne de l\'UV :</string>
+    <string name="add_comment">Ajouter une note</string>
 
     <!-- ViewPager Title page (UV category) -->
     <string name="title_section0">CS</string>
