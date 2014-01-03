@@ -252,7 +252,40 @@ return $insertion ;
 	}
 	
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+// Top UVs By category
+public function topUv ($ct)
+	{
+		$ct1 = 'TM';        //TM
+		$ct2 = 'CS';        //CS
+		$ct3 = 'EC';        //EC
+		$ct4 = 'ME';        //ME
+		$ct5 = 'CT';        //CT
+		$ct6 = 'ALL';
+		switch ($ct) 
+		{
+		    case $ct1:
+		        $UVs = $this->search('UV','uv','categorie= :categorie ORDER BY note DESC',array(':categorie' =>$ct1));
+		        break;
+		    case $ct2:
+		        $UVs = $this->search('UV','uv','categorie = :categorie ORDER BY note DESC',array(':categorie'=>$ct2));
+		        break;
+		    case $ct3:
+		       $UVs = $this->search('UV','uv','categorie = :categorie ORDER BY note DESC',array(':categorie' =>$ct3));
+		        break;
+			case $ct4:
+		       $UVs = $this->search('UV','uv','categorie = :categorie ORDER BY note DESC',array(':categorie' =>$ct4));
+		        break;
+			case $ct5:
+		       $UVs = $this->search('UV','uv','categorie = :categorie ORDER BY note DESC',array(':categorie' =>$ct5));
+		        break;
+			case $ct6:
+			   $UVs = $this->search('UV','uv','1=1 ORDER BY note DESC');
+
+		}
+		
+		return $UVs;
+	}
 
 }
 
