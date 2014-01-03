@@ -4,6 +4,8 @@
 	require_once('model/UV.php');
 	require_once('model/User.php');
 	
+// identifcation de User par token n'a pas marché , donc j'ai en sorte que je reçois son id au lieu de son token 
+
 	// Json Answer
 	$reponse = array
 	(
@@ -15,96 +17,75 @@
 		// DB Connection
 		$config = require_once('config.php');
 		$db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
-		
-		// Find User
-		$_Session['id']='23';// on va le changer par token 
-		$userParameters = array
-		(
-			':id' => $_Session['id']
-		);
-		
-		$user = $db->find('User', 'user', 'id = :id', $userParameters);
-		
-		if($user !== false)
-		{
-		
-			// Find UV
-			$uvParameters = array
-			(
-				':iduv' => $_POST['iduv']
-			);
-		
-		// on va chercher l'UV par son code ( non pas par son id (à changer) )
-			$uv = $db->find('UV', 'uv', 'id = :iduv', $uvParameters);
-			
-			if($uv !== false)
-			{
-			//New_note Object Creation
-				$note = new Note();
-				$note->id_user = $user->id;
-				$note->id_uv = $uv->id;
-				$note->note = $_POST['note'];
-				$note->comment = $_POST['comment'];
-				$note->date = date('Y-m-d H:i:s');
-					
-				// New_Mark Insertion
-				$table='note';
-				$id = $db->insert($note,$table);
+	
+	 $new_comment=$db->putComment($_POST['id'],$_POST['code'],$_POST['comment'],$_POST['mark']);
 				
-				if($id !== false)
+				
+				// Json Answer
+				if ($new_comment!=false)
 				{
-					$note->id = (int) $id;
-				
-					//Average Mark Updating	
-					$moy = $db->Note_Moyenne($uv->id);
-					
 					$reponse = array
 					(
 						'success' => 1,
-						'message' => ' Thank you for your collaboration! ',
-						'note_moyenne'=>$moy
 					);
 				}
 			
-			}
-			
 			echo json_encode($reponse);
-		}
-
 	}
-	
 	else 
 	{
 ?>
 		<h1>Notation</h1> 
-		<form action="Noter.php" method="post"> 
-		    UV : <br/> 
-			 <select name="iduv" >
-							<option value='-1'>Choisir une UV</option>
+		<form action="putComment.php" method="post"> 
+		 
+					Choir UV:  <br/> 
+					
+					<select name="code" >
+							<option value='-1'>Choisir UV</option>
 							<?php 
 								$config = require_once('config.php');
 		                        $db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
-								$UVs=$db->lister_uv ('Connaissances Scientifiques');
-								foreach ($UVs as $iduv)
+								$UVs=$db->getListUv('CS');
+								foreach ($UVs as $uv)
 									{
-										echo '<option value='. $iduv->id.'>'.$iduv->designation.'</option>';
+										echo '<option value='. $uv->code.'>'.$uv->designation.'</option>';
 	 								}
 							?>
 								    
-			</select>  
+					</select> 
+					<br/> <br/>   
+					    
+						Commenter:  <br/> 		
+					<input type="text" name="comment" placeholder="Commentaire" /> 
+					<br/> <br/>  
+						Noter:  <br/> 					
+					<input type="text" name="mark" placeholder="Note" /> 
+					<br/> <br/>  
+					
+						Etudiant (Token) :  <br/> 
+					<select name="id" >
+							<option value='-1'>Qui etes Vous ?</option>
+							<?php 
+						
+								$users=$db->search('User','user','1=1');
+								foreach ($users as $user)
+									{
+										echo '<option value='. $user->id.'>'.$user->first_name.' '.$user->last_name.'</option>';
+	 								}
+							?>
+								    
+					</select> 
+					<br/> <br/> 
+					<input type="submit" value="Envoyer" /> 
 			
-		    <br/><br/> 
+					<br/>  
+					
+
+
 		    
-		    Comment :<br/> 
-		    <input type="memo" name="comment" placeholder="Comment" value="" /> 
+			
 		    
-		    <br/><br/> 
-			 Note : <br/> 
-		    <input type="text" name="note" placeholder="Note" /> 
-		    
-		    <br/><br/>
-		    
-		    <input type="submit" value="Envoyer" /> 
+		   
 		</form> 
 	
 <?php

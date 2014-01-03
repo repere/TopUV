@@ -91,7 +91,7 @@ class DB
 		
 		return $pdoStatement->execute($whereArgs);
 	}
-
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 // fonction qui retourne une liste des UV d'une meme Categorie
 	
@@ -124,13 +124,13 @@ class DB
 		return $UVs;
 	}
 	
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // fonction qui calcule la note moyenne d'une UV 
 	public function  Note_Moyenne($iduv)
 	{	
 		$whereArgs=array(':iduv'=>$iduv);
-		//Find UV
+		//Find UV  by id 
 		$uv = $this->find('UV','uv','id = :iduv', $whereArgs);
 		
 		//Average Mark Calculation
@@ -167,25 +167,91 @@ class DB
 	}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// fonction qui retourne des commentaires sur une UV à partir de son code (unique)
+// fonction qui retourne les commentaires sur une UV à partir de son code (unique)
 	public function  getListComment($code)
 	{
+		
 		$whereArgs=array(':code'=>$code);
-		//Find UV
+		// Find UV by Code
 		$uv = $this->find('UV','uv','code = :code', $whereArgs);
-	   // retourner la liste des commentaires de la table note (contient les comment) " en utilisant iduv retourné par find
-	   //$comment=....; 
-		return $comment;
+		$id_uv=$uv->id;
+		
+		//Find all comments about the UV
+		$whereArgs=array(':id_uv' =>$id_uv);
+		$comments = $this->search('Note','note','id_uv = :id_uv', $whereArgs);
+		
+		// Find comments authors
+		$i=0;
+		$result = array(array()) ;
+		foreach($comments as $comment)
+		{	
+			$id_user=$comment->id_user;
+			$whereArgs=array(':id_user' =>$id_user);
+			$users = $this->search('User','user','id = :id_user', $whereArgs);
+					
+					foreach($users as $user)
+					{
+					$result[$i]['first_name'] = $user->first_name;
+					$result[$i]['last_name'] = $user->last_name;
+					$result[$i]['comment'] = $comment->comment;
+					$result[$i]['mark'] = $comment->note;
+					$result[$i]['date'] = $comment->date;							
+					}
+					
+			$i=$i+1;
+		
+		}
+	
+		return $result;
 	}
-
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	// fonction qui retourne des commentaires sur une UV à partir de son code (unique)
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 // fonction pour l'insertion d'un commentaire,une note d'un utilisateur (token) sur une UV (code) 
-	public function  putComment($token,$code)
+	public function  putComment($id,$code,$comment,$mark)
 	{
-		// le code de cette fonction est déja fait dans le fichier php putComment.php
-		// mais on va changer le code un petit peu 
+	
+		$userParameters = array
+		(
+			':id' => $id
+		);
+		
+		// find user by id 
+		$user = $this->find('User', 'user', 'id= :id', $userParameters);
+		
+		if($user !== false)
+		{
+			// Find UV by code
+			$uvParameters = array
+			(
+				':code' => $code
+			);
+		
+	
+			$uv = $this->find('UV', 'uv', 'code= :code', $uvParameters);
+			
+			if($uv !== false)
+			{
+			//New_note Object Creation
+				$note = new Note();
+				$note->id_user = $user->id;
+				$note->id_uv = $uv->id;
+				$note->note = $mark;
+				$note->comment = $comment;
+				$note->date = date('Y-m-d H:i:s');
+					
+			// New_Mark Insertion
+				$table='note';
+				$insertion = $this->insert($note,$table);
+				
+			//Average Mark Updating	
+				$moy = $this->Note_Moyenne($uv->id);
+	 
+			}
+		}
+return $insertion ;		
 	}
+	
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 }
