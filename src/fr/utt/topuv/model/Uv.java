@@ -3,7 +3,7 @@ package fr.utt.topuv.model;
 public class Uv
 {
 	private int id;
-	public String code;
+	private String code;
 	private String designation;
 	private int credit;
 	private String description;
