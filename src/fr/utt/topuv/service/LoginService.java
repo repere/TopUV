@@ -23,8 +23,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import fr.utt.topuv.constant.WebServiceConstants;
@@ -32,31 +30,6 @@ import fr.utt.topuv.model.User;
 
 public class LoginService extends AsyncTask<String, Void, User>
 {
-		
-	Activity motherActivity;
-	// Progress Dialog
-    private ProgressDialog pDialog;
-	
-	public LoginService(Activity activity) {
-		motherActivity = activity;
-	}
-	
-	@Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        pDialog = new ProgressDialog(motherActivity);
-        pDialog.setTitle("Identification");
-        pDialog.setMessage("Connexion en cours...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(true);
-        pDialog.show();
-    }
-	
-	protected void onPostExecute(String file_url) {
-        // dismiss the dialog once product deleted
-        pDialog.dismiss();
-    }
-
 	@Override
     protected User doInBackground(String... params)
     {

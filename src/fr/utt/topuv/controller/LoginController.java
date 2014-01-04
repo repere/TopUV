@@ -67,7 +67,7 @@ public class LoginController extends Fragment implements OnClickListener
             return;
         }
         
-        LoginService loginService = new LoginService(this.getActivity());
+        LoginService loginService = new LoginService();
         try
         {
             User userConnected = new User();
@@ -78,6 +78,8 @@ public class LoginController extends Fragment implements OnClickListener
             //test if token from db exists
             if(success.equals("1"))
             {
+            	Toast.makeText(this.getActivity(), R.string.connexion_success, Toast.LENGTH_SHORT).show();
+            	
             	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
                 
             	String idUser = userConnected.getId();
