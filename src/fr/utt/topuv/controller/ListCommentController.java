@@ -54,8 +54,8 @@ public class ListCommentController extends ListFragment
     public void onListItemClick(ListView l, View v, int position, long id)
     {
 		Note noteSelected = (Note) this.getListAdapter().getItem(position);
-		Float noteFromDbToRatingBar = noteSelected.getNote();
+		int noteFromDbToRatingBar = (int) noteSelected.getNote();
 		//Display rating bar in toast
-		Toast.makeText(this.getActivity(), String.valueOf(noteFromDbToRatingBar), Toast.LENGTH_SHORT).show();
+		Toast.makeText(this.getActivity(), "Note donnée : " + String.valueOf(noteFromDbToRatingBar), Toast.LENGTH_SHORT).show();
     }
 }
