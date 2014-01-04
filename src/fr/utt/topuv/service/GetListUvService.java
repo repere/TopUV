@@ -8,7 +8,7 @@
 package fr.utt.topuv.service;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+//import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import org.apache.http.HttpEntity;
@@ -34,13 +34,16 @@ import fr.utt.topuv.model.Uv;
 public class GetListUvService extends AsyncTask<String, Void, ArrayList<Uv>>
 {
 	Activity motherActivity;
-	// Progress Dialog
-    private ProgressDialog pDialog;
-	
+
 	public GetListUvService(Activity activity) {
 		motherActivity = activity;
 	}
+	
+	
 	/*
+	// Progress Dialog
+    private ProgressDialog pDialog;
+	
 	@Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -92,6 +95,9 @@ public class GetListUvService extends AsyncTask<String, Void, ArrayList<Uv>>
                     Uv uvSelected = new Uv();
                     uvSelected.setCode(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CODE));
                     uvSelected.setDesignation(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESIGNATION));
+                    uvSelected.setCredit(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.CREDIT));
+                    uvSelected.setDescription(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESCRIPTION));
+                    uvSelected.setNote(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.NOTE));
 
                     ArrayListUv.add(uvSelected);
                 }

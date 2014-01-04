@@ -1,4 +1,4 @@
-package fr.utt.topuv.fragment;
+package fr.utt.topuv.controller;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -15,11 +15,12 @@ import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.model.Uv;
 import fr.utt.topuv.service.GetListUvService;
 
-public class ListCtFragment extends ListFragment
+public class ListUvController extends ListFragment
 {
 	private ArrayList<Uv> uvs = new ArrayList<Uv>();
-	String actualTypeOfUv = "CT";
-
+	Bundle bundle;
+	String actualTypeOfUv;
+	
 	@Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
@@ -27,7 +28,9 @@ public class ListCtFragment extends ListFragment
         
 		try
 		{
-        	GetListUvService getListUvService = new GetListUvService(this.getActivity());
+			bundle = getArguments();
+			actualTypeOfUv = bundle.getString(IntentConstants.CODE);
+			GetListUvService getListUvService = new GetListUvService(this.getActivity());
             ArrayList<Uv> ArrayListUvs = getListUvService.execute(actualTypeOfUv).get();
             uvs = ArrayListUvs;
 
@@ -48,7 +51,7 @@ public class ListCtFragment extends ListFragment
 	@Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
-		Uv uvSelected = (Uv) this.getListAdapter().getItem(position);
+        Uv uvSelected = (Uv) this.getListAdapter().getItem(position);
 
         Intent intent = new Intent(this.getActivity(), UvActivity.class);
         intent.putExtra(IntentConstants.CODE, uvSelected.getCode());
@@ -56,7 +59,7 @@ public class ListCtFragment extends ListFragment
         intent.putExtra(IntentConstants.CREDIT, uvSelected.getCredit());
         intent.putExtra(IntentConstants.DESCRIPTION, uvSelected.getDescription());
         intent.putExtra(IntentConstants.NOTE, uvSelected.getNote());
-        intent.putExtra(IntentConstants.CAT, uvSelected.getCat());
+        intent.putExtra(IntentConstants.CATEGORIE, uvSelected.getCategorie());
 
         this.startActivity(intent);
     }

@@ -7,8 +7,8 @@ public class Uv
 	private String designation;
 	private int credit;
 	private String description;
-	private int note;
-	private String cat;
+	private float note;
+	private String categorie;
 	
 	//Getter & Setter Id
 	public void setId(int inId)
@@ -71,25 +71,25 @@ public class Uv
 	
 	
 	//Getter & Setter Note
-	public void setNote(int inNote)
+	public void setNote(float inNote)
 	{
 		this.note = inNote;
 	}
 	
-	public int getNote()
+	public float getNote()
 	{
 		return this.note;
 	}
 	
 	
 	//Getter & Setter Description
-	public void setCat(String inCat)
+	public void setCategorie(String inCategorie)
 	{
-		this.cat = inCat;
+		this.categorie = inCategorie;
 	}
 	
-	public String getCat()
+	public String getCategorie()
 	{
-		return this.cat;
+		return this.categorie;
 	}
 }

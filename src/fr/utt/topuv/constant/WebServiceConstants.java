@@ -3,7 +3,7 @@ package fr.utt.topuv.constant;
 public class WebServiceConstants
 {
 
-	public static final String ROOT = "http://79.92.123.65/android/";
+	public static final String ROOT = "http://geminantoine.myqnapcloud.com/android/";
 
     public static class CONNEXION
     {
@@ -21,6 +21,9 @@ public class WebServiceConstants
         //From DB
         public static final String CODE = "code";
         public static final String DESIGNATION = "designation";
+        public static final String CREDIT = "credit";
+        public static final String DESCRIPTION = "description";
+        public static final String NOTE = "note";
         public static final String UVS = "UVs";
         
         //To DB
@@ -68,7 +71,7 @@ public class WebServiceConstants
         public static final String CREDIT = "credit";
         public static final String DESCRIPTION = "description";
         public static final String NOTE = "note";
-        public static final String CAT = "cat";
+        public static final String CATEGORIE = "categorie";
         
         //To DB
         public static final String CODE = "code";

@@ -5,7 +5,6 @@ public class IntentConstants
     public static final String TOKEN = "token";
     public static final String CONTACT = "contact";
     public static final String TITLE = "title";
-    public static final String ACTUAL_UV = "CS";
     
     
     /* UV Content */
@@ -14,5 +13,5 @@ public class IntentConstants
     public static final String CREDIT = "credit";
     public static final String DESCRIPTION = "description";
     public static final String NOTE = "note";
-    public static final String CAT = "cat";
+    public static final String CATEGORIE = "categorie";
 }

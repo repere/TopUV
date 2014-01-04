@@ -1,16 +1,13 @@
 package fr.utt.topuv.controller;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.ListFragment;
 import fr.utt.topuv.R;
-import fr.utt.topuv.fragment.ListCsFragment;
-import fr.utt.topuv.fragment.ListCtFragment;
-import fr.utt.topuv.fragment.ListEcFragment;
-import fr.utt.topuv.fragment.ListMeFragment;
-import fr.utt.topuv.fragment.ListTmFragment;
+import fr.utt.topuv.constant.IntentConstants;
 
 public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter 
 {
@@ -25,27 +22,34 @@ public class UvFragmentPagerAdapter extends FragmentStatePagerAdapter
 
     @Override
     public Fragment getItem(int i) 
-    {
-    	ListFragment fragment;
-        
+    { 	
+    	ListFragment fragment = new ListUvController();
+    	Bundle bundle_uv = new Bundle();
+    	
     	switch (i) 
     	{    
     		case 0 :
-    			fragment = new ListCsFragment();
+    			bundle_uv.putString(IntentConstants.CODE, "CS");
+    			fragment.setArguments(bundle_uv);
     	        return fragment;
 	    	case 1 :
-	    		fragment = new ListTmFragment();
+	    		bundle_uv.putString(IntentConstants.CODE, "TM");
+    			fragment.setArguments(bundle_uv);
     	        return fragment;
 	    	case 2 :
-	    		fragment = new ListEcFragment();
+	    		bundle_uv.putString(IntentConstants.CODE, "EC");
+    			fragment.setArguments(bundle_uv);
     	        return fragment;
 	    	case 3 :
-	    		fragment = new ListMeFragment();
+	    		bundle_uv.putString(IntentConstants.CODE, "ME");
+    			fragment.setArguments(bundle_uv);
     	        return fragment;
     		case 4 :
-    			fragment = new ListCtFragment();
+    			bundle_uv.putString(IntentConstants.CODE, "CT");
+    			fragment.setArguments(bundle_uv);
     	        return fragment;
-        }	
+        }
+    	
     	return null;
     }
 

@@ -10,8 +10,7 @@
 	//Answer message
 	$response = array
 	(
-			'succes' => 0
-				
+			'succes' => 0		
 	);
 	
 	// POST test
@@ -21,15 +20,12 @@
 		$config = require_once('config.php');
 		$db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
 	
-		$UVs=$db->lister_uv ($_POST['categorie']);
+		$UVs=$db->getListUv ($_POST['categorie']);
 	
 		foreach($UVs as $uv)
 		{
 			unset($uv->id);
 			unset($uv->categorie);
-			unset($uv->credit);
-			unset($uv->description);
-			unset($uv->note);
 		}
 		
 		//Answer message

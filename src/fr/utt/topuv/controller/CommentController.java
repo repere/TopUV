@@ -5,7 +5,7 @@
  */
 
 package fr.utt.topuv.controller;
-
+/*
 import java.util.concurrent.ExecutionException;
 
 import android.app.Fragment;
@@ -19,7 +19,6 @@ import android.widget.Toast;
 import fr.utt.topuv.R;
 import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.model.Uv;
-import fr.utt.topuv.service.GetUvService;
 
 public class CommentController extends Fragment implements OnClickListener
 {
@@ -84,4 +83,4 @@ public class CommentController extends Fragment implements OnClickListener
 
         }
     }
-}
+}*/
