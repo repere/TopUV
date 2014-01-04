@@ -15,7 +15,8 @@
 		//JSon response
 		$reponse = array
 		(
-			'success' => 0
+			'success' => "0",
+			'id' => null
 		);
 	
 		//DB Connection
@@ -31,7 +32,6 @@
 			$salt=$user->salt;
 			$encrypted_password_from_db=$user->password;
 			$id=$user->id;
-			$token=$user->token;
 			
 			//Encode password from the user
 			$password_encoded = base64_encode( sha1( $_POST['password'] . $salt, true) . $salt );
@@ -41,23 +41,11 @@
 	        {
 				$reponse = array
 				(
-					'success' => 1,
-					'token' => $token,
+					'success' => "1",
 					'id' => $id,
-					'message'=> "Login successful !"
 				);
 			
 			}	
-			
-			else 
-			{
-				$reponse = array
-				(
-					'success' => 0,
-					'message'=> "Invalid Credentials !"
-				);
-			
-			}
 		 }
 		 
 		 echo json_encode($reponse);

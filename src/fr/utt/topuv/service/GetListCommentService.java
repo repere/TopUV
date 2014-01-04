@@ -23,37 +23,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.Note;
 
-public class GetListCommentService extends AsyncTask<String, String, ArrayList<Note>>
-{
-	Activity motherActivity;
-	// Progress Dialog
-    private ProgressDialog pDialog;
-	
-	public GetListCommentService(Activity activity) {
-		motherActivity = activity;
-	}
-	
-	@Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        pDialog = new ProgressDialog(motherActivity);
-        pDialog.setMessage("Chargement des notes et commentaires en cours...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(true);
-        pDialog.show();
-    }
-	
-	protected void onPostExecute(String file_url) {
-        // dismiss the dialog once product deleted
-        pDialog.dismiss();
-    }
-	
+public class GetListCommentService extends AsyncTask<String, Void, ArrayList<Note>>
+{	
 	@Override
     protected ArrayList<Note> doInBackground(String... params)
     {
@@ -87,9 +62,11 @@ public class GetListCommentService extends AsyncTask<String, String, ArrayList<N
                 for(int index = 0; index < jsonArray.length(); index++)
                 {
                     Note commentSelected = new Note();
-                    commentSelected.setNote((Float) jsonArray.getJSONObject(index).get(WebServiceConstants.COMMENTS.NOTE));
+                    commentSelected.setNote(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.NOTE));
                     commentSelected.setComment(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.COMMENT));
                     commentSelected.setDate(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.DATE));
+                    commentSelected.setFirstName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.FIRSTNAME));
+                    commentSelected.setLastName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.LASTNAME));
 
                     ArrayListComments.add(commentSelected);
                 }

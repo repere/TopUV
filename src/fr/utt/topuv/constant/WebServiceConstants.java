@@ -15,7 +15,6 @@ public class WebServiceConstants
         
         //From DB
         public static final String ID_USER = "id";
-        public static final String TOKEN = "token";
         public static final String SUCCESS = "success";
     }
 
@@ -54,12 +53,12 @@ public class WebServiceConstants
         public static final String URL = ROOT + "getListComment.php";
         
         //From DB
-        public static final String LASTNAME = "lastname";
-        public static final String SURNAME = "surname";
-        public static final String NOTE = "note";
+        public static final String LASTNAME = "last_name";
+        public static final String FIRSTNAME = "first_name";
+        public static final String NOTE = "mark";
         public static final String COMMENT = "comment";
         public static final String DATE = "date";
-        public static final String COMMENTS = "comments";
+        public static final String COMMENTS = "Comments";
         
         //To DB
         public static final String CODE = "code";

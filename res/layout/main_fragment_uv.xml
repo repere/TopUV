@@ -13,7 +13,7 @@
 		android:textStyle="bold"
 		android:textIsSelectable="false"
 		android:textColor="@android:color/white"
-		android:maxLines="1"
+		android:maxLines="2"
 		android:ellipsize="end"
 		android:padding="2dp"
 		android:background="@color/name_bar_background" />
@@ -60,18 +60,18 @@
         android:isIndicator="true"
         android:numStars="5"
         android:stepSize="0.1" />
+    
+    <Button
+        android:id="@+id/add_comment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_comment" />
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/all_comments"
         android:textSize="15sp" />
-    
-
-    <Button
-        android:id="@+id/add_comment_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_comment" />
 
 </LinearLayout>

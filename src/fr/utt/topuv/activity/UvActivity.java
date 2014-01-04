@@ -8,13 +8,13 @@ package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.MenuItem;
 
-public class UvActivity extends Activity 
+public class UvActivity extends FragmentActivity 
 {
 
 	@Override

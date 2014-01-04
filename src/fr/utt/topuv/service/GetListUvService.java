@@ -97,7 +97,7 @@ public class GetListUvService extends AsyncTask<String, Void, ArrayList<Uv>>
                     uvSelected.setDesignation(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESIGNATION));
                     uvSelected.setCredit(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.CREDIT));
                     uvSelected.setDescription(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESCRIPTION));
-                    uvSelected.setNote(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.NOTE));
+                    uvSelected.setNote(Float.valueOf(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.NOTE)));
 
                     ArrayListUv.add(uvSelected);
                 }

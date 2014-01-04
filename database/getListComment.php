@@ -24,14 +24,17 @@
         // Marks,Comments and authors names, about UV
 		$Comments=$db->getListComment($_POST['code']);
 		
-		// answer message 
-		$response = array
-		(
-           'succes' => 1,
-           'Comments' => $Comments
-		);
+		if(!empty($Comments[0]['date']))
+		{
+			// answer message 
+			$response = array
+			(
+	           'succes' => 1,
+	           'Comments' => $Comments
+			);
+		}
 		
-				echo json_encode($response);
+		echo json_encode($response);
 			
 	}
 	else 

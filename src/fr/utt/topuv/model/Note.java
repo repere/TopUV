@@ -42,8 +42,34 @@ public class Note {
   		return this.date;
   	}
   	
+  	
+  	//Getter & Setter Lastname
+  	public void setLastName(String inLastName)
+  	{
+  		this.last_name = inLastName;
+  	}
+  	
+  	public String getLastName()
+  	{
+  		return this.last_name;
+  	}
+  	
+  	
+  	//Getter & Setter Firstname
+  	public void setFirstName(String inFirstName)
+  	{
+  		this.first_name = inFirstName;
+  	}
+  	
+  	public String getFirst()
+  	{
+  		return this.first_name;
+  	}
+  	
+  	
+  	//Get full description lastname + firstname + date
   	public String getFullDescription()
   	{
-  		return "by" + this.last_name + " " + this.first_name + " on " + this.date;
+  		return "by " + this.last_name + " " + this.first_name + " on " + this.date;
   	}
 }

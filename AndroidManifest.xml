@@ -35,7 +35,7 @@
         </activity>
         <activity
             android:name="fr.utt.topuv.activity.UvCommentActivity"
-            android:label="@string/title_activity_uv_comment">
+            android:label="@string/title_activity_uv_comment" >
         </activity>
     </application>
 

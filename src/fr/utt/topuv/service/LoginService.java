@@ -30,7 +30,7 @@ import android.os.AsyncTask;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.User;
 
-public class LoginService extends AsyncTask<String, String, User>
+public class LoginService extends AsyncTask<String, Void, User>
 {
 		
 	Activity motherActivity;
@@ -86,7 +86,7 @@ public class LoginService extends AsyncTask<String, String, User>
 	        
 	        User userSelected = new User();
 	        userSelected.setId(jsonObject.getString(WebServiceConstants.CONNEXION.ID_USER));
-	        userSelected.setToken(jsonObject.getString(WebServiceConstants.CONNEXION.TOKEN));
+	        userSelected.setSuccess(jsonObject.getString(WebServiceConstants.CONNEXION.SUCCESS));
 	        
 	        return userSelected;
         }

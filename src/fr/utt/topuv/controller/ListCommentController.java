@@ -21,8 +21,8 @@ import fr.utt.topuv.model.Note;
 import fr.utt.topuv.service.GetListCommentService;
 
 public class ListCommentController extends ListFragment
-{
-    private String code;
+{	
+	private String code;
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
@@ -33,7 +33,7 @@ public class ListCommentController extends ListFragment
         {
         	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
 
-            GetListCommentService getListCommentService = new GetListCommentService(this.getActivity());
+            GetListCommentService getListCommentService = new GetListCommentService();
             ArrayList<Note> arrayListNotes = getListCommentService.execute(code).get();
 
             ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity().getApplicationContext(),R.layout.comments_list_entry, arrayListNotes);

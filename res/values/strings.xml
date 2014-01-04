@@ -24,22 +24,19 @@
     <string name="all_comments">Commentaires et notes des autres :</string>
 
     <!-- Menu -->
-    <string name="csHint">CS</string>
-    <string name="tmHint">TM</string>
-    <string name="autresHint">EC/ME/CT</string>
-    <string name="title_activity_menu">Liste d\'UV</string>
+    <string name="title_activity_menu">Liste des UVs par catégories</string>
     <string name="title_activity_uv">Descriptif de l\'UV</string>
 
     <!-- Uv description -->
-    <string name="uv_description_title">Description de l\'UV :</string>
-    <string name="credit_uv_title">Nombre de crédits pour cette UV :</string>
+    <string name="uv_description_title">Fiche complète de l\'UV :</string>
+    <string name="credit_uv_title">Nombre de crédits ECTS pour cette UV : </string>
     <string name="note_uv">Note moyenne de l\'UV :</string>
     <string name="add_comment">Ajouter une note</string>
-    
+
     <!-- Uv Comment -->
     <string name="note_title">Votre note concernant l\'UV :</string>
     <string name="note_from_user_to_ratingBar_0">0 : Tout est à refaire !</string>
-    <string name="note_from_user_to_ratingBar_1">1 : Ca passe juste juste</string>
+    <string name="note_from_user_to_ratingBar_1">1 : Ca passe tout juste</string>
     <string name="note_from_user_to_ratingBar_2">2 : Pas si mal</string>
     <string name="note_from_user_to_ratingBar_3">3 : Dans la moyenne</string>
     <string name="note_from_user_to_ratingBar_4">4 : Très bonne UV</string>
@@ -86,5 +83,6 @@
     <string name="title_activity_fragment_pager_support">FragmentPagerSupport</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_fragment_state_pager_support">FragmentStatePagerSupport</string>
+    <string name="title_activity_test">TestActivity</string>
 
 </resources>

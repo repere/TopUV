@@ -6,6 +6,7 @@ public class User
     private String first_name;
     private String last_name;
     private String token;
+    private String success;
 
     public String getIdentity()
     {
@@ -33,5 +34,17 @@ public class User
   	public String getId()
   	{
   		return this.id;
+  	}
+  	
+  	
+  	//Getter & Setter Success
+  	public void setSuccess(String inSuccess)
+  	{
+  		this.success = inSuccess;
+  	}
+  	
+  	public String getSuccess()
+  	{
+  		return this.success;
   	}
 }
