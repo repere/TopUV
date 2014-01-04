@@ -4,12 +4,13 @@
     <!-- Général -->
     <string name="action_settings">Settings</string>
     <string name="app_name">TopUV</string>
-    
+
     <!-- Activity title -->
     <string name="title_activity_login">Identification</string>
     <string name="title_activity_uv_comment">Poster votre commentaire</string>
     <string name="title_activity_menu">Liste des UVs par catégories</string>
     <string name="title_activity_uv">Fiche complète de l\'UV</string>
+    <string name="title_activity_top_uv">Classement des meilleurs Uvs</string>
 
     <!-- Login -->
     <string name="login">Login</string>
@@ -38,7 +39,6 @@
     <string name="note_from_user_to_ratingBar_3">3 : Dans la moyenne</string>
     <string name="note_from_user_to_ratingBar_4">4 : Très bonne UV</string>
     <string name="note_from_user_to_ratingBar_5">5 : Amazing !</string>
-    
 
     <!-- ViewPager Title page (UV category) -->
     <string name="title_section0">CS</string>
@@ -49,5 +49,5 @@
 
     <!-- Content Description for image -->
     <string name="arrow">Arrow</string>
-    
+
 </resources>

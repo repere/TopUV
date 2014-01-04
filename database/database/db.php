@@ -237,7 +237,7 @@ class DB
 				$note->id_uv = $uv->id;
 				$note->note = $mark;
 				$note->comment = $comment;
-				$note->date = date('Y-m-d H:i:s');
+				$note->date = date('Y-m-d');
 					
 			// New_Mark Insertion
 				$table='note';

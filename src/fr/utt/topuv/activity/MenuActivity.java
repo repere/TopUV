@@ -71,7 +71,7 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
                             .setTabListener(this));
         }
     }
-
+    
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
