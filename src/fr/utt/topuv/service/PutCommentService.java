@@ -50,7 +50,7 @@ public class PutCommentService extends AsyncTask<String, Void, String>
         try
         {
         	HttpPost httpPost = new HttpPost(url);
-	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF_8"));
+	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
 	
 	        HttpResponse httpResponse = httpClient.execute(httpPost);
 	        HttpEntity httpEntity = httpResponse.getEntity();
