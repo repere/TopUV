@@ -7,7 +7,6 @@
 package fr.utt.topuv.service;
 
 import android.os.AsyncTask;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -45,13 +44,13 @@ public class PutCommentService extends AsyncTask<String, Void, String>
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.COMMENT.CODE, code));
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.COMMENT.COMMENT, comment));
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.COMMENT.NOTE, note));
-
+        
         DefaultHttpClient httpClient = new DefaultHttpClient();
 
         try
         {
         	HttpPost httpPost = new HttpPost(url);
-	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF_8"));
 	
 	        HttpResponse httpResponse = httpClient.execute(httpPost);
 	        HttpEntity httpEntity = httpResponse.getEntity();

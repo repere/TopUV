@@ -47,7 +47,7 @@ public class UvCommentController extends Fragment implements OnClickListener
 	    	note = note.substring(0, 1);
         	
             String comment = ((EditText) this.getView().findViewById(R.id.comment_to_add)).getText().toString();
-
+            
             PutCommentService putCommentService = new PutCommentService();
             String result = putCommentService.execute(idUser, code, comment, note).get();
             

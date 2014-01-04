@@ -48,7 +48,7 @@ public class LoginService extends AsyncTask<String, Void, User>
         try
         {
         	HttpPost httpPost = new HttpPost(url);
-        	httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+        	httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF_8"));
         	
 	        HttpResponse httpResponse = httpClient.execute(httpPost);
 	        HttpEntity httpEntity = httpResponse.getEntity();

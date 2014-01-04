@@ -2,9 +2,14 @@
 <resources>
 
     <!-- Général -->
-
     <string name="action_settings">Settings</string>
     <string name="app_name">TopUV</string>
+    
+    <!-- Activity title -->
+    <string name="title_activity_login">Identification</string>
+    <string name="title_activity_uv_comment">Poster votre commentaire</string>
+    <string name="title_activity_menu">Liste des UVs par catégories</string>
+    <string name="title_activity_uv">Fiche complète de l\'UV</string>
 
     <!-- Login -->
     <string name="login">Login</string>
@@ -14,36 +19,26 @@
     <string name="password_required">Mot de passe requis</string>
     <string name="connexion_error">Mauvais combinaison login/mot de passe</string>
     <string name="connexion_success">Connexion réussie - Ouverture de l\'application en cours</string>
-    <string name="title_activity_login">Identification</string>
-
-    <!-- Commentaire -->
-    <string name="title_activity_uv_comment">Poster votre commentaire</string>
-    <string name="activity_messages">Messages</string>
-    <string name="send">Envoyer</string>
-    <string name="write_comment_hint">Ecrivez votre commentaire sur l\'UV ici !</string>
-    <string name="comment_not_sent">Votre commentaire n\'a pu être envoyé</string>
-    <string name="all_comments">Commentaires et notes des autres :</string>
-
-    <!-- Menu -->
-    <string name="title_activity_menu">Liste des UVs par catégories</string>
-    <string name="title_activity_uv">Descriptif de l\'UV</string>
 
     <!-- Uv description -->
-    <string name="uv_description_title">Fiche complète de l\'UV :</string>
+    <string name="uv_description_title">Description de l\'UV :</string>
     <string name="credit_uv_title">Nombre de crédits ECTS pour cette UV : </string>
     <string name="note_uv">Note moyenne de l\'UV :</string>
     <string name="add_comment">Ajouter une note</string>
+    <string name="all_comments">Pour informations, commentaires et notes des étudiants :</string>
 
     <!-- Uv Comment -->
     <string name="note_title">Votre note concernant l\'UV :</string>
+    <string name="comment_title">Votre commentaire concernant l\'UV :</string>
+    <string name="confirm_comment">Envoyer votre note</string>
+    <string name="comment_not_sent">Votre commentaire n\'a pu être envoyé</string>
     <string name="note_from_user_to_ratingBar_0">0 : Tout est à refaire !</string>
     <string name="note_from_user_to_ratingBar_1">1 : Ca passe tout juste</string>
     <string name="note_from_user_to_ratingBar_2">2 : Pas si mal</string>
     <string name="note_from_user_to_ratingBar_3">3 : Dans la moyenne</string>
     <string name="note_from_user_to_ratingBar_4">4 : Très bonne UV</string>
     <string name="note_from_user_to_ratingBar_5">5 : Amazing !</string>
-    <string name="comment_title">Votre commentaire concernant l\'UV :</string>
-    <string name="confirm_comment">Envoyer votre note</string>
+    
 
     <!-- ViewPager Title page (UV category) -->
     <string name="title_section0">CS</string>
@@ -54,36 +49,5 @@
 
     <!-- Content Description for image -->
     <string name="arrow">Arrow</string>
-
-    <!-- BELOW : EXEMPLE SO DELETE AT THE END -->
-
-    <string name="dummy_section_text">Section %1d is just a dummy section.</string>
-    <string name="first">one</string>
-    <string name="last">last</string>
-
-    <!-- Contacts List -->
-    <string-array name="contacts_list">
-        <item>Karina</item>
-        <item>Charles</item>
-        <item>Alain</item>
-        <item>Juliette</item>
-        <item>Fabien</item>
-        <item>Serge</item>
-        <item>Monique</item>
-        <item>Natali</item>
-        <item>Fleur</item>
-        <item>Claire</item>
-    </string-array>
-
-    <!-- Contacts -->
-    <string name="activity_contacts">Contacts</string>
-    <string name="comment_none">Aucun commentaire</string>
-
-    <!-- Autres -->
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_fragment_pager_support">FragmentPagerSupport</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_fragment_state_pager_support">FragmentStatePagerSupport</string>
-    <string name="title_activity_test">TestActivity</string>
-
+    
 </resources>
