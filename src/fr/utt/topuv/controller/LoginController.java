@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutionException;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,7 +79,9 @@ public class LoginController extends Fragment implements OnClickListener
             //test if token from db exists
             if(success.equals("1"))
             {
-            	Toast.makeText(this.getActivity(), R.string.connexion_success, Toast.LENGTH_SHORT).show();
+            	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_success, Toast.LENGTH_SHORT);
+            	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            	toast.show();
             	
             	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
                 
@@ -90,7 +93,9 @@ public class LoginController extends Fragment implements OnClickListener
             
             else
             {
-                Toast.makeText(this.getActivity(), R.string.connexion_error, Toast.LENGTH_SHORT).show();
+            	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_error, Toast.LENGTH_LONG);
+            	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            	toast.show();
             }
         }
         
