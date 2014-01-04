@@ -12,7 +12,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
-import android.view.Menu;
 import android.view.MenuItem;
 
 public class UvCommentActivity extends Activity {
@@ -25,13 +24,6 @@ public class UvCommentActivity extends Activity {
 		// Specify that the Home button should show an "Up" caret, indicating that touching the
         // button will take the user one step up in the application's hierarchy.
         getActionBar().setDisplayHomeAsUpEnabled(true);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu, menu);
-		return true;
 	}
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
