@@ -60,7 +60,10 @@ public class ListUvController extends ListFragment
         intent.putExtra(IntentConstants.DESCRIPTION, uvSelected.getDescription());
         intent.putExtra(IntentConstants.NOTE, uvSelected.getNote());
         intent.putExtra(IntentConstants.CATEGORIE, uvSelected.getCategorie());
-
+        
+        String idUser = this.getActivity().getIntent().getStringExtra(IntentConstants.ID_USER);
+        intent.putExtra(IntentConstants.ID_USER, idUser);
+        
         this.startActivity(intent);
     }
     

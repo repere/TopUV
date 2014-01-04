@@ -6,6 +6,9 @@
 
 package fr.utt.topuv.controller;
 
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +18,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.UvCommentActivity;
+import fr.utt.topuv.adapter.ListUvAdapter;
 import fr.utt.topuv.constant.IntentConstants;
+import fr.utt.topuv.model.Uv;
+import fr.utt.topuv.service.GetListUvService;
 
 public class UvController extends Fragment implements OnClickListener
 {
@@ -59,8 +66,14 @@ public class UvController extends Fragment implements OnClickListener
 
     @Override
     public void onClick(View v)
-    {
+    {	
     	Intent intent = new Intent(this.getActivity(), UvCommentActivity.class);
+    	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
+    	intent.putExtra(IntentConstants.CODE, code);
+    	
+    	String idUser = this.getActivity().getIntent().getStringExtra(IntentConstants.ID_USER);
+        intent.putExtra(IntentConstants.ID_USER, idUser);
+        
         this.startActivity(intent);
     }
 }

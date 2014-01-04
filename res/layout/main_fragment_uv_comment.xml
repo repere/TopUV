@@ -1,34 +1,80 @@
 <LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
     android:orientation="vertical"
-    
-    tools:context=".UvCommentActivity">
-
-    <fragment
-		android:id="@+id/uv_writer_fragment"
-		android:name="fr.utt.topuv.controller.UvWriterFragment"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:layout="@layout/fragment_uv_writer" />
+    tools:context=".UvCommentActivity" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/all_comments"
-        android:textSize="15sp" />
-    
-    <fragment
-		android:id="@+id/list_fragment"
-		android:name="fr.utt.topuv.controller.ListFragment"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-		tools:layout="@layout/fragment_list" />
+        android:text="@string/note_title" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/note_from_user_to_ratingBar_0" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/note_from_user_to_ratingBar_1" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/note_from_user_to_ratingBar_2" />
+        
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/note_from_user_to_ratingBar_3" />
+        
+        <RadioButton
+            android:id="@+id/radio4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/note_from_user_to_ratingBar_4" />
+        
+        <RadioButton
+            android:id="@+id/radio5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/note_from_user_to_ratingBar_5" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comment_title" />
+
+    <EditText
+        android:id="@+id/comment_to_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/send_comment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm_comment" />
 
 </LinearLayout>

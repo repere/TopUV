@@ -30,6 +30,7 @@
 			//Retrieve salt,encrypted password and token from db
 			$salt=$user->salt;
 			$encrypted_password_from_db=$user->password;
+			$id=$user->id;
 			$token=$user->token;
 			
 			//Encode password from the user
@@ -42,6 +43,7 @@
 				(
 					'success' => 1,
 					'token' => $token,
+					'id' => $id,
 					'message'=> "Login successful !"
 				);
 			

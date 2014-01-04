@@ -21,6 +21,7 @@ import android.widget.Toast;
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.MenuActivity;
 import fr.utt.topuv.constant.IntentConstants;
+import fr.utt.topuv.model.User;
 import fr.utt.topuv.service.LoginService;
 
 public class LoginController extends Fragment implements OnClickListener
@@ -29,7 +30,7 @@ public class LoginController extends Fragment implements OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.main_fragment_login, null);
-        viewGroup.findViewById(R.id.connect).setOnClickListener(this);
+        viewGroup.findViewById(R.id.connect_button).setOnClickListener(this);
 
         return viewGroup;
     }
@@ -69,17 +70,20 @@ public class LoginController extends Fragment implements OnClickListener
         LoginService loginService = new LoginService(this.getActivity());
         try
         {
-            String token = loginService.execute(login, password).get();
+            User userConnected = new User();
+        	
+            userConnected = loginService.execute(login, password).get();
+        	String token = userConnected.getToken();
             
             //test if token from db exists
             if(token != null)
             {
             	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
                 
-                // Add student token to constant
-                intent.putExtra(IntentConstants.TOKEN, token);
+            	String idUser = userConnected.getId();
+            	
+                intent.putExtra(IntentConstants.ID_USER, idUser);
                 this.startActivity(intent);
-                this.getActivity().finish();
             }
             
             else

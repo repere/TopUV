@@ -2,15 +2,36 @@ package fr.utt.topuv.model;
 
 public class User
 {
-    public int id;
-    public String first_name;
-    public String last_name;
-    public String login;
-    public String password;
-    public String token;
+    private String id;
+    private String first_name;
+    private String last_name;
+    private String token;
 
     public String getIdentity()
     {
         return this.first_name + " " + this.last_name;
     }
+    
+    //Getter & Setter Token
+  	public void setToken(String inToken)
+  	{
+  		this.token = inToken;
+  	}
+  	
+  	public String getToken()
+  	{
+  		return this.token;
+  	}
+  	
+  	
+  	//Getter & Setter Id
+  	public void setId(String inId)
+  	{
+  		this.id = inId;
+  	}
+  	
+  	public String getId()
+  	{
+  		return this.id;
+  	}
 }

@@ -28,8 +28,9 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import fr.utt.topuv.constant.WebServiceConstants;
+import fr.utt.topuv.model.User;
 
-public class LoginService extends AsyncTask<String, String, String>
+public class LoginService extends AsyncTask<String, String, User>
 {
 		
 	Activity motherActivity;
@@ -57,7 +58,7 @@ public class LoginService extends AsyncTask<String, String, String>
     }
 
 	@Override
-    protected String doInBackground(String... params)
+    protected User doInBackground(String... params)
     {
         String login = params[0];
         String password = params[1];
@@ -82,7 +83,12 @@ public class LoginService extends AsyncTask<String, String, String>
 	        String response = EntityUtils.toString(httpEntity);
 	        
 	        JSONObject jsonObject = new JSONObject(response);
-	        return jsonObject.getString(WebServiceConstants.CONNEXION.TOKEN);
+	        
+	        User userSelected = new User();
+	        userSelected.setId(jsonObject.getString(WebServiceConstants.CONNEXION.ID_USER));
+	        userSelected.setToken(jsonObject.getString(WebServiceConstants.CONNEXION.TOKEN));
+	        
+	        return userSelected;
         }
         
 	    catch(JSONException jsonException)

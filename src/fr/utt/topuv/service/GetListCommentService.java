@@ -27,9 +27,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import fr.utt.topuv.constant.WebServiceConstants;
-import fr.utt.topuv.model.Comment;
+import fr.utt.topuv.model.Note;
 
-public class GetListCommentService extends AsyncTask<String, String, ArrayList<Comment>>
+public class GetListCommentService extends AsyncTask<String, String, ArrayList<Note>>
 {
 	Activity motherActivity;
 	// Progress Dialog
@@ -55,7 +55,7 @@ public class GetListCommentService extends AsyncTask<String, String, ArrayList<C
     }
 	
 	@Override
-    protected ArrayList<Comment> doInBackground(String... params)
+    protected ArrayList<Note> doInBackground(String... params)
     {
 		String uvCode = params[0];
 
@@ -68,7 +68,7 @@ public class GetListCommentService extends AsyncTask<String, String, ArrayList<C
         
         DefaultHttpClient httpClient = new DefaultHttpClient();
 
-        ArrayList<Comment> ArrayListComments = new ArrayList<Comment>();
+        ArrayList<Note> ArrayListComments = new ArrayList<Note>();
         try
         {
         	HttpPost httpPost = new HttpPost(uri);
@@ -86,12 +86,10 @@ public class GetListCommentService extends AsyncTask<String, String, ArrayList<C
                 JSONArray jsonArray = jsonObject.getJSONArray(WebServiceConstants.COMMENTS.COMMENTS);
                 for(int index = 0; index < jsonArray.length(); index++)
                 {
-                    Comment commentSelected = new Comment();
-                    commentSelected.lastname = jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.LASTNAME);
-                    commentSelected.surname = jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.SURNAME);
-                    commentSelected.note = (int) jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.MARK);
-                    commentSelected.comment = jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.COMMENT);
-                    commentSelected.date = jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.DATE);
+                    Note commentSelected = new Note();
+                    commentSelected.setNote((Float) jsonArray.getJSONObject(index).get(WebServiceConstants.COMMENTS.NOTE));
+                    commentSelected.setComment(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.COMMENT));
+                    commentSelected.setDate(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.DATE));
 
                     ArrayListComments.add(commentSelected);
                 }

@@ -6,54 +6,56 @@
 
 package fr.utt.topuv.controller;
 
-import android.app.Fragment;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 import fr.utt.topuv.R;
+import fr.utt.topuv.adapter.ListCommentAdapter;
+import fr.utt.topuv.constant.IntentConstants;
+import fr.utt.topuv.model.Note;
+import fr.utt.topuv.service.GetListCommentService;
 
-public class ListCommentController extends Fragment implements OnItemClickListener
+public class ListCommentController extends ListFragment
 {
-	
-	public static final String CS = "cs";
-	public static final String TM = "tm";
-	public static final String AUTRES = "autres";
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-	{
-		// Create new fragment_list_comment that show properly comment + rating
-		View view = inflater.inflate(R.layout.fragment_list, null);
-		return view;
-	}
-	
+    private String code;
+    
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
 
-	public void getListComment(String typeOfUv)
-	{
-		//Get list of comments and rates selected from Mysql db
-		//Use ListCommentsService
-		
-		//Sample : Get data list from the Data Access Objects in string.xml
-		String[] items = this.getActivity().getResources().getStringArray(R.array.contacts_list);
+        try
+        {
+        	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
 
-		//Populate the list with data
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), R.layout.fragment_simple_row, items);
-        ((ListView) this.getView().findViewById(R.id.list)).setAdapter(adapter);
-		
-		//Set the event listener
-		((ListView) this.getView().findViewById(R.id.list)).setOnItemClickListener(this);
-		
-	}
-	
+            GetListCommentService getListCommentService = new GetListCommentService(this.getActivity());
+            ArrayList<Note> arrayListNotes = getListCommentService.execute(code).get();
+
+            ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity().getApplicationContext(),R.layout.comments_list_entry, arrayListNotes);
+            
+            this.setListAdapter(adapter);
+        }
+        catch(InterruptedException interruptedException)
+        {
+
+        }
+        catch(ExecutionException executionException)
+        {
+
+        }
+    }
+
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-	{
-		//Show extra toast that indicates post date maybe ?		
-		
-	}
+    public void onListItemClick(ListView l, View v, int position, long id)
+    {
+		Note noteSelected = (Note) this.getListAdapter().getItem(position);
+		Float noteFromDbToRatingBar = noteSelected.getNote();
+		//Display rating bar in toast
+		Toast.makeText(this.getActivity(), String.valueOf(noteFromDbToRatingBar), Toast.LENGTH_SHORT).show();
+    }
 }

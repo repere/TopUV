@@ -6,6 +6,8 @@ public class IntentConstants
     public static final String CONTACT = "contact";
     public static final String TITLE = "title";
     
+    /* Connexion content */
+    public static final String ID_USER = "id";
     
     /* UV Content */
     public static final String CODE = "code";

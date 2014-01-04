@@ -35,6 +35,17 @@
     <string name="credit_uv_title">Nombre de crédits pour cette UV :</string>
     <string name="note_uv">Note moyenne de l\'UV :</string>
     <string name="add_comment">Ajouter une note</string>
+    
+    <!-- Uv Comment -->
+    <string name="note_title">Votre note concernant l\'UV :</string>
+    <string name="note_from_user_to_ratingBar_0">0 : Tout est à refaire !</string>
+    <string name="note_from_user_to_ratingBar_1">1 : Ca passe juste juste</string>
+    <string name="note_from_user_to_ratingBar_2">2 : Pas si mal</string>
+    <string name="note_from_user_to_ratingBar_3">3 : Dans la moyenne</string>
+    <string name="note_from_user_to_ratingBar_4">4 : Très bonne UV</string>
+    <string name="note_from_user_to_ratingBar_5">5 : Amazing !</string>
+    <string name="comment_title">Votre commentaire concernant l\'UV :</string>
+    <string name="confirm_comment">Envoyer votre note</string>
 
     <!-- ViewPager Title page (UV category) -->
     <string name="title_section0">CS</string>
