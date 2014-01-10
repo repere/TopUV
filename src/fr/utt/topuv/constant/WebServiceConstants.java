@@ -20,7 +20,7 @@ public class WebServiceConstants
 
     public static class UVS
     {
-        public static final String URL = ROOT + "getListUV.php";
+        public static final String URL = ROOT + "getAllUv.php";
         
         //From DB
         public static final String CODE = "code";

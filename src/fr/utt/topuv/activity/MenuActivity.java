@@ -8,11 +8,15 @@ package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
 import fr.utt.topuv.controller.UvFragmentPagerAdapter;
+import fr.utt.topuv.service.GetAllUvService;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class MenuActivity extends FragmentActivity implements ActionBar.TabListener {
 
@@ -71,6 +75,29 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
                             .setTabListener(this));
         }
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) 
+	    {  
+	    	case R.id.action_search:
+	        	GetAllUvService getAllUvService = new GetAllUvService(this);
+	        	getAllUvService.execute();
+        		return true;
+        		
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
     
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
