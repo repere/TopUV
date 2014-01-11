@@ -26,7 +26,7 @@
     <string name="credit_uv_title">Nombre de crédits ECTS pour cette UV : </string>
     <string name="note_uv">Note moyenne de l\'UV :</string>
     <string name="add_comment">Ajouter une note</string>
-    <string name="all_comments">Pour informations, commentaires et notes des étudiants :</string>
+    <string name="all_comments">Commentaires et notes des autres étudiants :</string>
 
     <!-- Uv Comment -->
     <string name="note_title">Votre note concernant l\'UV :</string>
@@ -46,8 +46,5 @@
     <string name="title_section2">EC</string>
     <string name="title_section3">ME</string>
     <string name="title_section4">CT</string>
-
-    <!-- Content Description for image -->
-    <string name="arrow">Arrow</string>
-
+    
 </resources>

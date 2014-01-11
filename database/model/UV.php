@@ -9,8 +9,6 @@
 		public $description;
 		public $note;
 	
-		// public $sent = false;
-	
 		public function toDB()
 		{
 			$object = get_object_vars($this);

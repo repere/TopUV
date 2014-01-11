@@ -4,7 +4,7 @@ public class User
 {
     private int id;
     private String token;
-    private String success;
+    private int success;
     private int idUserFromMysql;
     private String firstName;
     private String lastName;
@@ -67,12 +67,12 @@ public class User
   	
   	
   	//Getter & Setter Success
-  	public void setSuccess(String inSuccess)
+  	public void setSuccess(int inSuccess)
   	{
   		this.success = inSuccess;
   	}
   	
-  	public String getSuccess()
+  	public int getSuccess()
   	{
   		return this.success;
   	}

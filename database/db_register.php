@@ -59,7 +59,7 @@
 		$new_user->login =$_POST['login'];
 		$new_user->password=$encrypted_password;
 		$new_user->salt=$salt;
-		$new_user->token=$token ;
+		$new_user->token=$token;
 	
 			
 		//The new user insertion (Registering)

@@ -35,6 +35,8 @@ public class LoginController extends Fragment implements OnClickListener
     
     private String login;
     private String password;
+    
+    private int success = 0;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -48,13 +50,20 @@ public class LoginController extends Fragment implements OnClickListener
     @Override
     public void onClick(View v)
     {    	    	
-    	/* For testing code without logging
-    	Intent intent = new Intent(this.getActivity(), UvActivity.class);
-        this.startActivity(intent);
-        */       
-
+    	//For testing code without logging
+    	/*Intent intent = new Intent(this.getActivity(), MenuActivity.class);  
+    	int idUser = 24;
+        intent.putExtra(IntentConstants.ID_USER, idUser);
+        this.startActivity(intent);*/
+              
+    	
+    	
     	login = ((EditText) this.getView().findViewById(R.id.login)).getText().toString();
         password = ((EditText) this.getView().findViewById(R.id.password)).getText().toString();
+        
+        //Initiate login and user
+        loginService = new LoginService();
+        userConnected = new User();
 
         // Basic local validation
         boolean error = false;
@@ -76,38 +85,12 @@ public class LoginController extends Fragment implements OnClickListener
         }
     	
         try
-        {
-	        //Initiate login and user
-	        loginService = new LoginService();
-	        userConnected = new User();
-	        
+        {     
 	        //Get user result from asynctask and wait 10s before cancel it
 	        userConnected = loginService.execute(login, password).get(10, TimeUnit.SECONDS);
 	        
 	        //Get success key from user object
-	    	String success = userConnected.getSuccess();
-	        
-	        //test if success from db equal 1
-	        if(success.equals("1"))
-	        {
-	        	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_success, Toast.LENGTH_SHORT);
-	        	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-	        	toast.show();
-	        	
-	        	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
-	            
-	        	int idUser = userConnected.getId();
-	        	
-	            intent.putExtra(IntentConstants.ID_USER, idUser);
-	            this.startActivity(intent);
-	        }
-	        
-	        else
-	        {
-	        	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_error, Toast.LENGTH_LONG);
-	        	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-	        	toast.show();
-	        }
+	    	success = userConnected.getSuccess();
         }
         
         catch(NullPointerException e)
@@ -132,6 +115,28 @@ public class LoginController extends Fragment implements OnClickListener
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
+        //test if success from db equal 1
+        if(success == 1)
+        {
+        	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_success, Toast.LENGTH_SHORT);
+        	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+        	toast.show();
+        	
+        	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
+            
+        	int idUser = userConnected.getId();
+        	
+            intent.putExtra(IntentConstants.ID_USER, idUser);
+            this.startActivity(intent);
+        }
+        
+        else
+        {
+        	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_error, Toast.LENGTH_LONG);
+        	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+        	toast.show();
+        }
         
     }
 }

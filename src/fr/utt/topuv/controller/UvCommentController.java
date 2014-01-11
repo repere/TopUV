@@ -38,7 +38,9 @@ public class UvCommentController extends Fragment implements OnClickListener
     	try
         {
             String code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
-    		String idUser = this.getActivity().getIntent().getStringExtra(IntentConstants.ID_USER);
+    		int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER,0);
+    		//Convert the idUser int to String to due AsyncTask restriction (only accept one type, here String)
+    		String idUserToString = String.valueOf(idUser);
         	
         	RadioGroup radioGroup = (RadioGroup) getActivity().findViewById(R.id.radioGroup1);
 	    	int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -49,7 +51,7 @@ public class UvCommentController extends Fragment implements OnClickListener
             String comment = ((EditText) this.getView().findViewById(R.id.comment_to_add)).getText().toString();
             
             PutCommentService putCommentService = new PutCommentService();
-            String result = putCommentService.execute(idUser, code, comment, note).get();
+            String result = putCommentService.execute(idUserToString, code, comment, note).get();
             
             if(result == null || result.equals("0"))
             {

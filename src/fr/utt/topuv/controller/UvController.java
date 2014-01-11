@@ -63,7 +63,7 @@ public class UvController extends Fragment implements OnClickListener
     	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
     	intent.putExtra(IntentConstants.CODE, code);
     	
-    	String idUser = this.getActivity().getIntent().getStringExtra(IntentConstants.ID_USER);
+    	int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER,0);
         intent.putExtra(IntentConstants.ID_USER, idUser);
         
         this.startActivity(intent);

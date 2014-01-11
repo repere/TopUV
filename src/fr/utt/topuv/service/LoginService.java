@@ -59,7 +59,7 @@ public class LoginService extends AsyncTask<String, Void, User>
 	        
 	        User userSelected = new User();
 	        userSelected.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
-	        userSelected.setSuccess(jsonObject.getString(WebServiceConstants.CONNEXION.SUCCESS));
+	        userSelected.setSuccess(jsonObject.getInt(WebServiceConstants.CONNEXION.SUCCESS));
 	        
 	        return userSelected;
         }

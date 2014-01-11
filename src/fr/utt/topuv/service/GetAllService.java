@@ -31,7 +31,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
 	private int numberOfUvDownloaded;
 	private int numberOfNoteDownloaded;
 	
-	private int secondTask;
+	private int secondTask = 1;
 	
 	// Progress Dialog
     private ProgressDialog pDialog = null;   
@@ -49,7 +49,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
         pDialog.setTitle("Récupération des UVs 1/2");
         pDialog.setMessage("Chargement en cours...");
         pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        pDialog.setCancelable(true);
+        pDialog.setCancelable(false);
         pDialog.show();
     }
 	
@@ -83,118 +83,86 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
 		UvDb uvDb = new UvDb(motherActivity);
 		CommentDb commentDb = new CommentDb(motherActivity);
 
-	        try
-	        {
-	        	DefaultHttpClient httpClient = new DefaultHttpClient();
-	        	
-	        	HttpPost httpPost = new HttpPost(url_uv);
-		
-		        HttpResponse httpResponse = httpClient.execute(httpPost);
-		        HttpEntity httpEntity = httpResponse.getEntity();
-		        
-		        String response = EntityUtils.toString(httpEntity);
-		        
-		        JSONObject jsonObject = new JSONObject(response);
-		        
-		        // UV part
-	            if(jsonObject.has(WebServiceConstants.UVS.UVS))
-	            {
-	                //Just open once because uv, comment and user share the same db
-	            	uvDb.open();
-	            	
-	            	//Delete all the Sqlite Db once and rebuilt it
-	            	uvDb.onUpgrade();
-	            	
-	            	JSONArray jsonArray = jsonObject.getJSONArray(WebServiceConstants.UVS.UVS);
-	            	
-	            	numberOfUvDownloaded = jsonArray.length() - 1;
-	            	
-	                for(int index = 0; index < jsonArray.length(); index++)
-	                {
-	                    Uv uvSelected = new Uv();
-	                    uvSelected.setCode(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CODE));
-	                    uvSelected.setDesignation(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESIGNATION));
-	                    uvSelected.setCredit(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.CREDIT));
-	                    uvSelected.setDescription(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESCRIPTION));
-	                    uvSelected.setNote(Float.valueOf(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.NOTE)));
-	                    uvSelected.setCategorie(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CATEGORIE));
-	                    
-	                    uvDb.insertUv(uvSelected);
-	                    
-	                    //Update progress bar
-	                    publishProgress((int) ((index / (float) numberOfUvDownloaded) * 100));
-	                }
-	            }
-	            
-	            
-	            //Again but for Comment
-	            httpClient = new DefaultHttpClient();
-	        	
-	        	httpPost = new HttpPost(url_comment);
-		
-		        httpResponse = httpClient.execute(httpPost);
-		        httpEntity = httpResponse.getEntity();
-		        
-		        response = EntityUtils.toString(httpEntity);
-		        
-		        jsonObject = new JSONObject(response);
-	            
-	            // Comments part
-	            if(jsonObject.has(WebServiceConstants.COMMENTS.COMMENTS))
-	            {           	
-	            	secondTask = 2;
-	            	
-	            	//Just open once because uv, comment and user share the same db
-	            	commentDb.open();
-	            	
-	            	//Delete all the Sqlite Db once and rebuilt it
-	            	commentDb.onUpgrade();
-	            	
-	            	JSONArray jsonArray = jsonObject.getJSONArray(WebServiceConstants.COMMENTS.COMMENTS);
-	            	
-	            	numberOfNoteDownloaded = jsonArray.length() - 1;
-	            	
-	                for(int index = 0; index < jsonArray.length(); index++)
-	                {
-	                    Note noteSelected = new Note();
-	                    noteSelected.setFirstName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.FIRSTNAME));
-	                	noteSelected.setLastName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.LASTNAME));
-	                    noteSelected.setIdUser(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID_USER));
-	                	noteSelected.setIdUv(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID_UV));
-	                	noteSelected.setComment(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.COMMENT));
-	                	noteSelected.setNote(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.NOTE));
-	                	noteSelected.setDate(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.DATE));
-	 
-	                    commentDb.insertComment(noteSelected);
-	                    
-	                    //Update progress bar
-	                    publishProgress((int) ((index / (float) numberOfNoteDownloaded) * 100));
-	                }
-	            }
-	            
-	            return numberOfUvDownloaded;
-	        }
+        try
+        {  
+        	uvDb.open();
+        	JSONObject jsonObject = makeHttpPostRequestAndReturnJsonObject(url_uv);
 	        
-	        catch(JSONException jsonException)
-	        {
-	
-	        }
-	        
-	        catch(ClientProtocolException clientProtocolException)
-	        {
-	
-	        }
-	        
-	        catch(IOException ioException)
-	        {
-	
-	        }
-	        
-	        finally
-	        {
-	        	uvDb.close();
-	        	commentDb.close();
-	        }
+	        // UV part
+            if(jsonObject.has(WebServiceConstants.UVS.UVS))
+            {
+            	//Delete all the Uv Sqlite Db and rebuilt it
+            	uvDb.onUpgrade();
+            	
+            	JSONArray jsonArray = jsonObject.getJSONArray(WebServiceConstants.UVS.UVS);
+            	
+            	numberOfUvDownloaded = jsonArray.length() - 1;
+            	
+                for(int index = 0; index < jsonArray.length(); index++)
+                {
+                    Uv uvSelected = new Uv();
+                    uvSelected.setCode(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CODE));
+                    uvSelected.setDesignation(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESIGNATION));
+                    uvSelected.setCredit(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.CREDIT));
+                    uvSelected.setDescription(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESCRIPTION));
+                    uvSelected.setNote(Float.valueOf(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.NOTE)));
+                    uvSelected.setCategorie(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CATEGORIE));
+                    
+                    uvDb.insertUv(uvSelected);
+                    
+                    //Update progress bar
+                    publishProgress((int) ((index / (float) numberOfUvDownloaded) * 100));
+                }
+            }
+            
+            
+            //Again but for Comment
+            commentDb.open();
+            jsonObject = makeHttpPostRequestAndReturnJsonObject(url_comment);
+            
+            // Comments part
+            if(jsonObject.has(WebServiceConstants.COMMENTS.COMMENTS))
+            {           	
+            	secondTask = 2;
+
+            	//Delete all the Comment Sqlite Db and rebuilt it
+            	commentDb.onUpgrade();
+            	
+            	JSONArray jsonArray = jsonObject.getJSONArray(WebServiceConstants.COMMENTS.COMMENTS);
+            	
+            	numberOfNoteDownloaded = jsonArray.length() - 1;
+            	
+                for(int index = 0; index < jsonArray.length(); index++)
+                {
+                    Note noteSelected = new Note();
+                    noteSelected.setFirstName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.FIRSTNAME));
+                	noteSelected.setLastName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.LASTNAME));
+                    noteSelected.setIdUser(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID_USER));
+                	noteSelected.setIdUv(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID_UV));
+                	noteSelected.setComment(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.COMMENT));
+                	noteSelected.setNote(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.NOTE));
+                	noteSelected.setDate(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.DATE));
+ 
+                    commentDb.insertComment(noteSelected);
+                    
+                    //Update progress bar
+                    publishProgress((int) ((index / (float) numberOfNoteDownloaded) * 100));
+                }
+            }
+            
+            return 1;
+        }
+        
+        catch(JSONException jsonException)
+        {
+
+        }
+        
+        finally
+        {
+        	uvDb.close();
+        	commentDb.close();
+        }
 	        
 		return 0;
     }
@@ -208,5 +176,41 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
         intent.putExtra(IntentConstants.ID_USER, idUser);
         
         motherActivity.startActivity(intent);
+	}
+	
+	private JSONObject makeHttpPostRequestAndReturnJsonObject(String url)
+	{
+		try
+		{
+			DefaultHttpClient httpClient = new DefaultHttpClient();
+	    	
+	    	HttpPost httpPost = new HttpPost(url);
+	
+	        HttpResponse httpResponse = httpClient.execute(httpPost);
+	        HttpEntity httpEntity = httpResponse.getEntity();
+	        
+	        String response = EntityUtils.toString(httpEntity);
+	        
+	        JSONObject jsonObject = new JSONObject(response);
+	        
+	        return jsonObject;
+		}
+		
+        catch(JSONException jsonException)
+        {
+
+        }
+        
+        catch(ClientProtocolException clientProtocolException)
+        {
+
+        }
+        
+        catch(IOException ioException)
+        {
+
+        }
+        
+        return null;
 	}
 }
