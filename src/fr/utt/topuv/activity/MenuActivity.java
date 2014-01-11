@@ -7,8 +7,9 @@
 package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
+import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.controller.UvFragmentPagerAdapter;
-import fr.utt.topuv.service.GetAllUvService;
+import fr.utt.topuv.service.GetAllService;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -77,7 +78,8 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
     }
     
     @Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+    {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main, menu);
@@ -85,13 +87,18 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) 
+	{
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) 
 	    {  
 	    	case R.id.action_search:
-	        	GetAllUvService getAllUvService = new GetAllUvService(this);
-	        	getAllUvService.execute();
+	    		String url_uv = WebServiceConstants.UVS.URL;
+	    		String url_comment = WebServiceConstants.COMMENTS.URL;
+	    		
+	    		GetAllService getAllService = new GetAllService(this);
+	        	getAllService.execute(url_uv, url_comment);
+	        	
         		return true;
         		
 	        default:

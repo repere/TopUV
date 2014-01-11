@@ -50,9 +50,11 @@ public class WebServiceConstants
     
     public static class COMMENTS
     {
-        public static final String URL = ROOT + "getListComment.php";
+    	public static final String URL = ROOT + "getAllComment.php";
         
         //From DB
+        public static final String ID_USER = "id_user";
+        public static final String ID_UV = "id_uv";
         public static final String LASTNAME = "last_name";
         public static final String FIRSTNAME = "first_name";
         public static final String NOTE = "mark";
@@ -61,7 +63,17 @@ public class WebServiceConstants
         public static final String COMMENTS = "Comments";
         
         //To DB
-        public static final String CODE = "code";
-        
+        public static final String CODE = "code";  
+    }
+    
+    public static class USERS
+    {        
+    	public static final String URL = ROOT + "getAllUser.php";
+    	
+    	//From DB
+    	public static final String ID = "id";
+    	public static final String LASTNAME = "last_name";
+        public static final String FIRSTNAME = "first_name";
+        public static final String USERS = "Users";
     }
 }

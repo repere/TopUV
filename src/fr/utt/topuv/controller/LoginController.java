@@ -7,6 +7,8 @@
 package fr.utt.topuv.controller;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -27,6 +29,13 @@ import fr.utt.topuv.service.LoginService;
 
 public class LoginController extends Fragment implements OnClickListener
 {
+	
+	private LoginService loginService;
+    private User userConnected;
+    
+    private String login;
+    private String password;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -42,12 +51,10 @@ public class LoginController extends Fragment implements OnClickListener
     	/* For testing code without logging
     	Intent intent = new Intent(this.getActivity(), UvActivity.class);
         this.startActivity(intent);
-        this.getActivity().finish();
-        */
-        
+        */       
 
-    	String login = ((EditText) this.getView().findViewById(R.id.login)).getText().toString();
-        String password = ((EditText) this.getView().findViewById(R.id.password)).getText().toString();
+    	login = ((EditText) this.getView().findViewById(R.id.login)).getText().toString();
+        password = ((EditText) this.getView().findViewById(R.id.password)).getText().toString();
 
         // Basic local validation
         boolean error = false;
@@ -67,51 +74,64 @@ public class LoginController extends Fragment implements OnClickListener
         {
             return;
         }
-        
-        LoginService loginService = new LoginService();
+    	
         try
         {
-            User userConnected = new User();
-        	
-            userConnected = loginService.execute(login, password).get();
-        	String success = userConnected.getSuccess();
-            
-            //test if token from db exists
-            if(success.equals("1"))
-            {
-            	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_success, Toast.LENGTH_SHORT);
-            	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            	toast.show();
-            	
-            	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
-                
-            	String idUser = userConnected.getId();
-            	
-                intent.putExtra(IntentConstants.ID_USER, idUser);
-                this.startActivity(intent);
-            }
-            
-            else
-            {
-            	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_error, Toast.LENGTH_LONG);
-            	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            	toast.show();
-            }
+	        //Initiate login and user
+	        loginService = new LoginService();
+	        userConnected = new User();
+	        
+	        //Get user result from asynctask and wait 10s before cancel it
+	        userConnected = loginService.execute(login, password).get(10, TimeUnit.SECONDS);
+	        
+	        //Get success key from user object
+	    	String success = userConnected.getSuccess();
+	        
+	        //test if success from db equal 1
+	        if(success.equals("1"))
+	        {
+	        	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_success, Toast.LENGTH_SHORT);
+	        	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+	        	toast.show();
+	        	
+	        	Intent intent = new Intent(this.getActivity(), MenuActivity.class);
+	            
+	        	int idUser = userConnected.getId();
+	        	
+	            intent.putExtra(IntentConstants.ID_USER, idUser);
+	            this.startActivity(intent);
+	        }
+	        
+	        else
+	        {
+	        	Toast toast = Toast.makeText(this.getActivity(), R.string.connexion_error, Toast.LENGTH_LONG);
+	        	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+	        	toast.show();
+	        }
         }
         
-        catch(NullPointerException nullPointerException)
+        catch(NullPointerException e)
         {
-
-        }
+        	// TODO Auto-generated catch block
+			e.printStackTrace();
+        } 
         
         catch (InterruptedException e) 
         {
-        	
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} 
         
         catch (ExecutionException e) 
         {
-        	
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+        catch (TimeoutException e) 
+        {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+        
     }
 }

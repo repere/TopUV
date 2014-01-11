@@ -19,7 +19,7 @@
     <string name="login_required">Login requis</string>
     <string name="password_required">Mot de passe requis</string>
     <string name="connexion_error">Mauvais combinaison login/mot de passe</string>
-    <string name="connexion_success">Connexion réussie - Ouverture de l\'application en cours</string>
+    <string name="connexion_success">Connexion réussie</string>
 
     <!-- Uv description -->
     <string name="uv_description_title">Description de l\'UV :</string>

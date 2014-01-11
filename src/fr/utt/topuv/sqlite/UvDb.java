@@ -7,12 +7,13 @@ import fr.utt.topuv.model.Uv;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-public class UvsDb {
+public class UvDb {
 	 
 	private static final int VERSION_BDD = 1;
-	private static final String NOM_BDD = "topuv_sqlite_database.db";
+	private static final String NOM_BDD = "topuv_uvs.db";
  
 	private static final String TABLE_UVS = "table_uvs";
 	
@@ -44,26 +45,28 @@ public class UvsDb {
 		COL_DESIGNATION, 
 		COL_CREDIT, 
 		COL_DESCRIPTION, 
-		COL_NOTE, COL_NOTE, COL_CATEGORIE 
+		COL_NOTE, 
+		COL_NOTE, 
+		COL_CATEGORIE 
 	};
  
 	private SQLiteDatabase bdd;
  
-	private SQLiteBase sQLiteBase;
+	private SQLiteBaseUv sQLiteBaseUv;
  
-	public UvsDb(Context context)
+	public UvDb(Context context)
 	{
-		sQLiteBase = new SQLiteBase(context, NOM_BDD, null, VERSION_BDD);
+		sQLiteBaseUv = new SQLiteBaseUv(context, NOM_BDD, null, VERSION_BDD);
 	}
  
-	public void open()
+	public void open() throws SQLException
 	{
-		bdd = sQLiteBase.getWritableDatabase();
+		bdd = sQLiteBaseUv.getWritableDatabase();
 	}
 	
-	public void read()
+	public void read() throws SQLException
 	{
-		bdd = sQLiteBase.getReadableDatabase();
+		bdd = sQLiteBaseUv.getReadableDatabase();
 	}
  
 	public void close()
@@ -73,14 +76,16 @@ public class UvsDb {
 	
 	public void onUpgrade()
 	{
-		sQLiteBase.deleteAllAndRebuild(bdd);
+		sQLiteBaseUv.deleteAllAndRebuild(bdd);
 	}
  
-	public SQLiteDatabase getBDD(){
+	public SQLiteDatabase getBDD()
+	{
 		return bdd;
 	}
  
-	public long insertUv(Uv uv){
+	public long insertUv(Uv uv)
+	{
 		ContentValues values = new ContentValues();
 
 		values.put(COL_CODE, uv.getCode());
@@ -98,6 +103,25 @@ public class UvsDb {
 	    ArrayList<Uv> arrayListUvs = new ArrayList<Uv>();
 
 	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CATEGORIE + " LIKE \"" + categorie +"\"", null, null, null, null);
+
+	    cursor.moveToFirst();
+	    
+	    while (!cursor.isAfterLast()) 
+	    {
+	    	Uv uv = cursorToUv(cursor);
+	    	arrayListUvs.add(uv);
+	    	cursor.moveToNext();
+	    }
+	    
+	    cursor.close();
+	    return arrayListUvs;
+	}
+	
+	public ArrayList<Uv> getIdUvByUvCode(String categorie) 
+	{
+	    ArrayList<Uv> arrayListUvs = new ArrayList<Uv>();
+
+	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + categorie +"\"", null, null, null, null);
 
 	    cursor.moveToFirst();
 	    

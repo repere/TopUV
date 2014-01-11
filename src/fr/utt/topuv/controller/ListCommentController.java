@@ -7,8 +7,6 @@
 package fr.utt.topuv.controller;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -18,7 +16,9 @@ import fr.utt.topuv.R;
 import fr.utt.topuv.adapter.ListCommentAdapter;
 import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.model.Note;
-import fr.utt.topuv.service.GetListCommentService;
+import fr.utt.topuv.model.Uv;
+import fr.utt.topuv.sqlite.CommentDb;
+import fr.utt.topuv.sqlite.UvDb;
 
 public class ListCommentController extends ListFragment
 {	
@@ -28,26 +28,30 @@ public class ListCommentController extends ListFragment
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+        
+    	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
+    	
+    	// Retrieve ID from SQlite db by their code
+    	UvDb uvDb= new UvDb(getActivity().getApplicationContext());
+    	uvDb.read();
+    	
+    	//not a very clean method...
+    	ArrayList<Uv> arrayListUvs  =  uvDb.getIdUvByUvCode(code);
+    	
+    	int uvId = arrayListUvs.get(0).getId();
+    	
+    	// Collects arraylist of notes thanks to the id of uv previously retrieved
+    	CommentDb commentDb= new CommentDb(getActivity().getApplicationContext());
+    	commentDb.read();
+    	
+    	ArrayList<Note> arrayListNotes = commentDb.getCommentByCodeUv(uvId);
 
-        try
-        {
-        	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
-
-            GetListCommentService getListCommentService = new GetListCommentService();
-            ArrayList<Note> arrayListNotes = getListCommentService.execute(code).get();
-
-            ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity().getApplicationContext(),R.layout.comments_list_entry, arrayListNotes);
+        ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity().getApplicationContext(),R.layout.comments_list_entry, arrayListNotes);
             
-            this.setListAdapter(adapter);
-        }
-        catch(InterruptedException interruptedException)
-        {
-
-        }
-        catch(ExecutionException executionException)
-        {
-
-        }
+        this.setListAdapter(adapter);
+        
+        uvDb.close();
+        commentDb.close();
     }
 
 	@Override

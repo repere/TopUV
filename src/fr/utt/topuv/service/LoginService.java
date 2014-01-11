@@ -29,7 +29,7 @@ import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.User;
 
 public class LoginService extends AsyncTask<String, Void, User>
-{
+{	
 	@Override
     protected User doInBackground(String... params)
     {
@@ -58,7 +58,7 @@ public class LoginService extends AsyncTask<String, Void, User>
 	        JSONObject jsonObject = new JSONObject(response);
 	        
 	        User userSelected = new User();
-	        userSelected.setId(jsonObject.getString(WebServiceConstants.CONNEXION.ID_USER));
+	        userSelected.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
 	        userSelected.setSuccess(jsonObject.getString(WebServiceConstants.CONNEXION.SUCCESS));
 	        
 	        return userSelected;

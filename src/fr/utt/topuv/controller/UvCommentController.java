@@ -51,7 +51,7 @@ public class UvCommentController extends Fragment implements OnClickListener
             PutCommentService putCommentService = new PutCommentService();
             String result = putCommentService.execute(idUser, code, comment, note).get();
             
-            if(result == null || result == "0")
+            if(result == null || result.equals("0"))
             {
             	Toast.makeText(this.getActivity(), R.string.comment_not_sent, Toast.LENGTH_SHORT).show();
             }

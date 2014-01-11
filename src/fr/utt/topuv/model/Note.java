@@ -1,19 +1,55 @@
 package fr.utt.topuv.model;
 
 public class Note {
-	private float note;
+	private int id;
+	private int id_user;
+	private int id_uv;
+	private int note;
 	private String last_name;
 	private String first_name;
 	private String comment;
 	private String date;
     
-    //Getter & Setter Note
-  	public void setNote(float inNote)
+	//Getter & Setter Id
+  	public void setId(int inId)
+  	{
+  		this.note = inId;
+  	}
+  	
+  	public int getId()
+  	{
+  		return this.id;
+  	}
+	
+	//Getter & Setter Id User
+  	public void setIdUser(int inIdUser)
+  	{
+  		this.id_user = inIdUser;
+  	}
+  	
+  	public int getIdUser()
+  	{
+  		return this.id_user;
+  	}
+	
+	//Getter & Setter Id Uv
+  	public void setIdUv(int inIdUv)
+  	{
+  		this.id_uv = inIdUv;
+  	}
+  	
+  	public int getIdUv()
+  	{
+  		return this.id_uv;
+  	}
+	
+	//Getter & Setter Note
+  	public void setNote(int inNote)
   	{
   		this.note = inNote;
   	}
   	
-  	public float getNote()
+  	public int getNote()
   	{
   		return this.note;
   	}
@@ -61,7 +97,7 @@ public class Note {
   		this.first_name = inFirstName;
   	}
   	
-  	public String getFirst()
+  	public String getFirstName()
   	{
   		return this.first_name;
   	}

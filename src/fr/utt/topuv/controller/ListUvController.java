@@ -11,7 +11,7 @@ import fr.utt.topuv.activity.UvActivity;
 import fr.utt.topuv.adapter.ListUvAdapter;
 import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.model.Uv;
-import fr.utt.topuv.sqlite.UvsDb;
+import fr.utt.topuv.sqlite.UvDb;
 
 public class ListUvController extends ListFragment
 {
@@ -24,7 +24,7 @@ public class ListUvController extends ListFragment
     {
         super.onActivityCreated(savedInstanceState);
         
-        UvsDb uvDb= new UvsDb(getActivity().getApplicationContext());
+        UvDb uvDb= new UvDb(getActivity().getApplicationContext());
         uvDb.read();
         
         bundle = getArguments();
@@ -55,7 +55,7 @@ public class ListUvController extends ListFragment
         intent.putExtra(IntentConstants.NOTE, uvSelected.getNote());
         intent.putExtra(IntentConstants.CATEGORIE, uvSelected.getCategorie());
         
-        String idUser = this.getActivity().getIntent().getStringExtra(IntentConstants.ID_USER);
+        int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER,0);
         intent.putExtra(IntentConstants.ID_USER, idUser);
         
         this.startActivity(intent);
