@@ -14,11 +14,23 @@
 	
     tools:context=".UvCommentActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/note_title" />
+    <LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+    	
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/note_title" />
+	    
+	    <TextView
+	        android:id="@+id/uv_code"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+    
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/radioGroup1"

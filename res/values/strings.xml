@@ -23,13 +23,13 @@
 
     <!-- Uv description -->
     <string name="uv_description_title">Description de l\'UV :</string>
-    <string name="credit_uv_title">Nombre de crédits ECTS pour cette UV : </string>
+    <string name="credit_uv_title">Nombre de crédits ECTS pour cette UV :</string>
     <string name="note_uv">Note moyenne de l\'UV :</string>
     <string name="add_comment">Ajouter une note</string>
     <string name="all_comments">Commentaires et notes des étudiants :</string>
 
     <!-- Uv Comment -->
-    <string name="note_title">Votre note concernant l\'UV :</string>
+    <string name="note_title">Votre note concernant l\'UV</string>
     <string name="comment_title">Votre commentaire concernant l\'UV :</string>
     <string name="confirm_comment">Envoyer votre note</string>
     <string name="comment_not_sent">Votre commentaire n\'a pu être envoyé</string>

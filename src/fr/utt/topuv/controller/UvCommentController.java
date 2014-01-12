@@ -21,14 +21,22 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class UvCommentController extends Fragment implements OnClickListener
 {
+	private String code;
+	private int idUser;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.main_fragment_uv_comment, null);
+        
+        code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
+        ((TextView) viewGroup.findViewById(R.id.uv_code)).setText(" "+ code + " :");
+        
         viewGroup.findViewById(R.id.send_comment_button).setOnClickListener(this);
                 
         return viewGroup;
@@ -41,8 +49,8 @@ public class UvCommentController extends Fragment implements OnClickListener
         
     	try
         {
-            String code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
-    		int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
+            code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
+    		idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
     		
     		//Convert the idUser int to String to due AsyncTask restriction (only accept one type, here String)
     		String idUserToString = String.valueOf(idUser);
