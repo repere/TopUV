@@ -6,8 +6,11 @@
 
 package fr.utt.topuv.service;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,13 +29,66 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.utt.topuv.R;
 import fr.utt.topuv.constant.WebServiceConstants;
 
 public class PutCommentService extends AsyncTask<String, Void, String>
 {
+	//To create the Progress Dialog
+	private Activity motherActivity;
 	
 	// THE MAGIC SENTENCE :p
 	private String theMagicSentence = "sesameOuvreToi!";
+	
+	private String result = null;
+	private String resultToGive;
+	
+	// Progress Dialog
+    private ProgressDialog pDialog = null;   
+
+	public PutCommentService(Activity activity) 
+	{
+		motherActivity = activity;
+	}
+
+	@Override
+    protected void onPreExecute() 
+	{
+        super.onPreExecute();
+        pDialog = new ProgressDialog(motherActivity);
+        pDialog.setTitle("Envoi de la note");
+        pDialog.setMessage("Traitement en cours...");
+        pDialog.setIndeterminate(true);
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
+	
+	@Override
+	protected void onPostExecute(String isSentOrNot) 
+	{      
+		// dismiss the dialog once product deleted
+        pDialog.dismiss();
+        
+        commentSendStatus(isSentOrNot);
+    }
+	
+	private void commentSendStatus(String status)
+	{
+		if(status.equals("2"))
+	    {
+	    	resultToGive = motherActivity.getString(R.string.comment_sent);
+	    }
+	    else if (status.equals("1"))
+	    {
+	    	resultToGive = motherActivity.getString(R.string.comment_already_sent);
+	    }
+	    else
+	    {
+	    	resultToGive = motherActivity.getString(R.string.comment_not_sent);
+	    }
+		
+		Toast.makeText(motherActivity, resultToGive, Toast.LENGTH_LONG).show();
+	}
 	
 	@Override
     protected String doInBackground(String... params)
@@ -80,7 +136,10 @@ public class PutCommentService extends AsyncTask<String, Void, String>
 	        
 	        JSONObject jsonObject = new JSONObject(response);
 	        
-	        return jsonObject.getString(WebServiceConstants.COMMENT.SUCCESS).toString();
+	        result = jsonObject.getString(WebServiceConstants.COMMENT.SUCCESS).toString();
+		    
+		    return result;
+		    	
         }
         
         catch(JSONException jsonException)

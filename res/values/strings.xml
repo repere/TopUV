@@ -34,6 +34,8 @@
     <string name="confirm_comment">Envoyer votre note</string>
     <string name="comment_not_sent">Votre commentaire n\'a pu être envoyé</string>
     <string name="comment_already_sent">Vous avez déjà noté cette Uv</string>
+    <string name="comment_required">Commentaire requis</string>
+    <string name="comment_sent">Commentaire envoyé, merci !</string>
     <string name="note_from_user_to_ratingBar_0">0 : Tout est à refaire !</string>
     <string name="note_from_user_to_ratingBar_1">1 : Ca passe tout juste</string>
     <string name="note_from_user_to_ratingBar_2">2 : Pas si mal</string>
