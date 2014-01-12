@@ -88,6 +88,7 @@ public class UvDb {
 	{
 		ContentValues values = new ContentValues();
 
+		values.put(COL_ID, uv.getId());
 		values.put(COL_CODE, uv.getCode());
 		values.put(COL_DESIGNATION, uv.getDesignation());
 		values.put(COL_CREDIT, uv.getCredit());

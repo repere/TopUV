@@ -1,3 +1,7 @@
+/*
+ * class to define mark and comment
+ */
+
 package fr.utt.topuv.model;
 
 public class Note {

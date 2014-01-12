@@ -1,3 +1,7 @@
+/*
+ * Class that defines intent constants
+ */
+
 package fr.utt.topuv.constant;
 
 public class IntentConstants

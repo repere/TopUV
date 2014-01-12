@@ -1,3 +1,7 @@
+/*
+ * Class define web service constants to match informations with Mysql result (JSON)
+ */
+
 package fr.utt.topuv.constant;
 
 public class WebServiceConstants
@@ -23,15 +27,17 @@ public class WebServiceConstants
         public static final String URL = ROOT + "getAllUv.php";
         
         //From DB
+        public static final String ID = "id";
         public static final String CODE = "code";
         public static final String DESIGNATION = "designation";
         public static final String CREDIT = "credit";
         public static final String DESCRIPTION = "description";
         public static final String NOTE = "note";
+        public static final String CATEGORIE = "categorie";
         public static final String UVS = "UVs";
         
         //To DB
-        public static final String CATEGORIE = "categorie";
+        public static final String TAG = "tag";
     }
     
     public static class COMMENT

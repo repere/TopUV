@@ -1,3 +1,7 @@
+/*
+ * Class to define Uv
+ */
+
 package fr.utt.topuv.model;
 
 public class Uv

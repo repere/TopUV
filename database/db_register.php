@@ -12,8 +12,7 @@
 	if (!empty($_POST)) 
 	{
 	// Test if we receive not empty input fields
-	    if (empty($_POST['login']) || empty($_POST['password'])|| empty($_POST['firstname'])
-		|| empty($_POST['lastname']) || empty($_POST['email'])) 
+	    if (empty($_POST['login']) || empty($_POST['password'])|| empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email'])) 
 	    { 
 	        $response["success"] = 0;
 	        $response["message"] = "Please Enter All Fields !";

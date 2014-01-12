@@ -1,3 +1,7 @@
+/*
+ * A beautifull adapter to populate listview of comments more specifically  
+ */
+
 package fr.utt.topuv.adapter;
 
 import java.util.ArrayList;

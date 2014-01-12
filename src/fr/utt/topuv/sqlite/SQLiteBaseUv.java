@@ -18,7 +18,7 @@ public class SQLiteBaseUv extends SQLiteOpenHelper
 	private static final String COL_UV_CATEGORIE = "categorie";
 	
 	private static final String CREATE_DB_UV = "CREATE TABLE " + TABLE_UVS + " ("
-			+ COL_UV_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
+			+ COL_UV_ID + " INTEGER PRIMARY KEY, " 
 			+ COL_UV_CODE + " TEXT, "
 			+ COL_UV_DESIGNATION + " TEXT, "
 			+ COL_UV_CREDIT + " INTEGER, "

@@ -1,3 +1,7 @@
+/*
+ * Pager adapter for the view pager
+ */
+
 package fr.utt.topuv.controller;
 
 import android.content.Context;

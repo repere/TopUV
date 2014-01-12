@@ -1,7 +1,7 @@
 /*
  * Activity launch after login connection
  * Launch layout activity_menu
- * Populate firstly list with CS UV and makes the link bar active
+ * Include view pager
  */
 
 package fr.utt.topuv.activity;

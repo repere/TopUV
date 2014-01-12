@@ -1,12 +1,17 @@
 package fr.utt.topuv.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,12 +31,18 @@ import fr.utt.topuv.sqlite.UvDb;
 
 public class GetAllService extends AsyncTask<String, Integer, Integer>
 {
+	//To create the Progress Dialog
 	private Activity motherActivity;
 	
+	//To calculate how many comments/uvs we have to dl
 	private int numberOfUvDownloaded;
 	private int numberOfNoteDownloaded;
 	
+	//To change title and message during the second DL
 	private int secondTask = 1;
+	
+	// THE MAGIC SENTENCE :p
+	private String theMagicSentence = "sesameOuvreToi!";
 	
 	// Progress Dialog
     private ProgressDialog pDialog = null;   
@@ -62,7 +73,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
         this.restartActivity();
     }
 	
-	// This is called each time you call publishProgress()
+	// This is called each time we call publishProgress()
     protected void onProgressUpdate(Integer... progress) 
     {
         super.onProgressUpdate(progress);
@@ -71,6 +82,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
     	if (i == 2)
     	{
     		pDialog.setTitle("Récupération des Notes 2/2");
+    		pDialog.setMessage("Encore un peu de patience !");
     	}
     }
 	
@@ -101,6 +113,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
                 for(int index = 0; index < jsonArray.length(); index++)
                 {
                     Uv uvSelected = new Uv();
+                    uvSelected.setId(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.ID));
                     uvSelected.setCode(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CODE));
                     uvSelected.setDesignation(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.DESIGNATION));
                     uvSelected.setCredit(jsonArray.getJSONObject(index).getInt(WebServiceConstants.UVS.CREDIT));
@@ -182,9 +195,13 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
 	{
 		try
 		{
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+	        nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.UVS.TAG, theMagicSentence));
+	        
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 	    	
 	    	HttpPost httpPost = new HttpPost(url);
+	    	httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 	
 	        HttpResponse httpResponse = httpClient.execute(httpPost);
 	        HttpEntity httpEntity = httpResponse.getEntity();

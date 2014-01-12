@@ -7,49 +7,55 @@
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 //retourner une liste des UVs d'une meme categorie
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	
-	//Answer message
-	$response = array
-	(
-			'success' => 0		
-	);
-	
-
-	//DB Connection
-	$config = require_once('config.php');
-	$db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
-
-	$comments=$db->search('Note','note','1=1');
-	
-	$i=0;
-	$result = array(array()) ;
-	foreach($comments as $comment)
+	if($_POST['tag'] === "sesameOuvreToi!")
 	{
-		$id_user=$comment->id_user;
-		$whereArgs=array(':id_user' => $id_user);
-		$users = $db->search('User','user','id = :id_user', $whereArgs);
-			
-		foreach($users as $user)
+		//Answer message
+		$response = array
+		(
+				'success' => 0		
+		);
+		
+	
+		//DB Connection
+		$config = require_once('config.php');
+		$db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
+	
+		$comments=$db->search('Note','note','1=1');
+		
+		$i=0;
+		$result = array(array()) ;
+		foreach($comments as $comment)
 		{
-			$result[$i]['first_name'] = $user->first_name;
-			$result[$i]['last_name'] = $user->last_name;
-			$result[$i]['id_user'] = $comment->id_user;
-			$result[$i]['id_uv'] = $comment->id_uv;
-			$result[$i]['comment'] = $comment->comment;
-			$result[$i]['mark'] = $comment->note;
-			$result[$i]['date'] = $comment->date;
+			$id_user=$comment->id_user;
+			$whereArgs=array(':id_user' => $id_user);
+			$users = $db->search('User','user','id = :id_user', $whereArgs);
+				
+			foreach($users as $user)
+			{
+				$result[$i]['first_name'] = $user->first_name;
+				$result[$i]['last_name'] = $user->last_name;
+				$result[$i]['id_user'] = $comment->id_user;
+				$result[$i]['id_uv'] = $comment->id_uv;
+				$result[$i]['comment'] = $comment->comment;
+				$result[$i]['mark'] = $comment->note;
+				$result[$i]['date'] = $comment->date;
+			}
+				
+			$i=$i+1;
+		
 		}
 			
-		$i=$i+1;
-	
+		//Answer message
+		$response = array
+		(
+			'success' => 1,
+			'Comments' => $result
+		);
+			
+		echo json_encode($response);
 	}
-		
-	//Answer message
-	$response = array
-	(
-		'success' => 1,
-		'Comments' => $result
-	);
-		
-	echo json_encode($response);	
+	else
+	{
+		print "Ouai ?! On peut savoir ce que tu fais là ?";
+	}	
 ?>

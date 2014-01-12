@@ -1,6 +1,5 @@
 /*
  * Display list of comments link to the specific UV
- * Display additional informations when clicking on comments from other users
  * 
  */
 

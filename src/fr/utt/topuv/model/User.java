@@ -1,3 +1,7 @@
+/*
+ * Class to define user
+ */
+
 package fr.utt.topuv.model;
 
 public class User
@@ -5,20 +9,8 @@ public class User
     private int id;
     private String token;
     private int success;
-    private int idUserFromMysql;
     private String firstName;
     private String lastName;
-    
-    //Getter & Setter Id from Mysql
-  	public void setidUserFromMysql(int inIdUserFromMysql)
-  	{
-  		this.idUserFromMysql = inIdUserFromMysql;
-  	}
-  	
-  	public int getidUserFromMysql()
-  	{
-  		return this.idUserFromMysql;
-  	}
     
     //Getter & Setter First Name
   	public void setFirstName(String inFirstName)

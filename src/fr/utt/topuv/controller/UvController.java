@@ -1,6 +1,5 @@
 /*
  * Add controller on Add comment button
- * Ask UvService to retrieve UV selected
  * Launch UvCommentActivity when button is clicked
  */
 
