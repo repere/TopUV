@@ -48,10 +48,11 @@ public class WebServiceConstants
     	public static final String SUCCESS = "success";
     	
     	//To DB
-    	public static final String ID_USER = "id";
+    	public static final String ID_USER = "id_user";
         public static final String CODE = "code";
         public static final String NOTE = "mark";
-        public static final String COMMENT = "comment";   
+        public static final String COMMENT = "comment";
+        public static final String TAG = "tag";
     }
     
     public static class COMMENTS

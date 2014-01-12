@@ -4,14 +4,14 @@
 	require_once('model/UV.php');
 	require_once('model/User.php');
 
-	// Json Answer
-	$reponse = array
-	(
-		'success' => 0
-	);
-	
-	if (!empty($_POST)) 
+	if ($_POST["tag"] === "sesameOuvreToi!") 
 	{
+		// Json Answer
+		$reponse = array
+		(
+				'success' => 0
+		);
+		
 		// DB Connection
 		$config = require_once('config.php');
 		$db = new DB($config['dsn'], $config['username'], $config['password'], $config['options']);
@@ -19,11 +19,19 @@
 		//decoding comment
 		$commentDecode = base64_decode($_POST['comment']);
 	
-	 	$new_comment=$db->putComment($_POST['id'],$_POST['code'],$commentDecode,$_POST['mark']);
+	 	$new_comment=$db->putComment($_POST['id_user'],$_POST['code'],$commentDecode,$_POST['mark']);
 				
 				
 		// Json Answer
-		if ($new_comment!=false)
+		if ($new_comment != false)
+		{
+			$reponse = array
+			(
+				'success' => 2,
+			);
+		}
+		
+		else
 		{
 			$reponse = array
 			(

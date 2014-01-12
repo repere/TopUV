@@ -30,6 +30,10 @@ import fr.utt.topuv.constant.WebServiceConstants;
 
 public class PutCommentService extends AsyncTask<String, Void, String>
 {
+	
+	// THE MAGIC SENTENCE :p
+	private String theMagicSentence = "sesameOuvreToi!";
+	
 	@Override
     protected String doInBackground(String... params)
     {
@@ -60,6 +64,7 @@ public class PutCommentService extends AsyncTask<String, Void, String>
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.COMMENT.CODE, code));
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.COMMENT.COMMENT, commentToBase64));
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.COMMENT.NOTE, note));
+        nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.COMMENT.TAG, theMagicSentence));
         
         DefaultHttpClient httpClient = new DefaultHttpClient();
 

@@ -207,7 +207,7 @@ class DB
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 // fonction pour l'insertion d'un commentaire,une note d'un utilisateur (id) sur une UV (code) 
-	public function  putComment($id,$code,$comment,$mark)
+public function  putComment($id,$code,$comment,$mark)
 	{
 	
 		$userParameters = array
@@ -215,8 +215,8 @@ class DB
 			':id' => $id
 		);
 		
-		// find user by id 
-		$user = $this->find('User', 'user', 'id= :id', $userParameters);
+		// Find user by id 
+		$user = $this->find('User', 'user', 'id = :id', $userParameters);
 		
 		if($user !== false)
 		{
@@ -230,25 +230,42 @@ class DB
 			$uv = $this->find('UV', 'uv', 'code= :code', $uvParameters);
 			
 			if($uv !== false)
-			{
-			//New_note Object Creation
-				$note = new Note();
-				$note->id_user = $user->id;
-				$note->id_uv = $uv->id;
-				$note->note = $mark;
-				$note->comment = $comment;
-				$note->date = date('Y-m-d');
-					
-			// New_Mark Insertion
-				$table='note';
-				$insertion = $this->insert($note,$table);
+			{			
+				$finalParameters = array
+				(
+					':id_user' => $id,
+					':id_uv' => $uv->id
+				);
+
+				$userAlreadySendComment = $this->find('Note','note', 'id_user = :id_user and id_uv = :id_uv', $finalParameters);
 				
-			//Average Mark Updating	
-				$moy = $this->Note_Moyenne($uv->id);
+				if($userAlreadySendComment !== false)
+				{
+					$insertion = false;
+				}
+				
+				else
+				{	
+					//New_note Object Creation
+					$note = new Note();
+					$note->id_user = $user->id;
+					$note->id_uv = $uv->id;
+					$note->note = $mark;
+					$note->comment = $comment;
+					$note->date = date('Y-m-d');
+						
+					// New_Mark Insertion
+					$table='note';
+					$insertion = $this->insert($note,$table);
+					
+					//Average Mark Updating	
+					$moy = $this->Note_Moyenne($uv->id);
+				}
 	 
 			}
 		}
-	return $insertion ;		
+		
+		return $insertion ;		
 	}
 	
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -62,6 +62,12 @@ public class UvCommentController extends Fragment implements OnClickListener
             {
             	Toast.makeText(this.getActivity(), R.string.comment_not_sent, Toast.LENGTH_SHORT).show();
             }
+            
+            else if (result.equals("1"))
+            {
+            	Toast.makeText(this.getActivity(), R.string.comment_already_sent, Toast.LENGTH_SHORT).show();
+            }
+            
             else
             {
         		Intent intent = new Intent(this.getActivity(), MenuActivity.class);
