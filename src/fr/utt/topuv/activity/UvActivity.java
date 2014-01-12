@@ -7,6 +7,7 @@
 package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
+import fr.utt.topuv.constant.IntentConstants;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
@@ -37,6 +38,8 @@ public class UvActivity extends FragmentActivity
                 // Create a simple intent that starts the hierarchical parent activity and
                 // use NavUtils in the Support Package to ensure proper handling of Up.
                 Intent upIntent = new Intent(this, MenuActivity.class);
+                int idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER,0);
+                upIntent.putExtra(IntentConstants.ID_USER, idUser);
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) 
                 {
                     // This activity is NOT part of this app's task, so create a new task
