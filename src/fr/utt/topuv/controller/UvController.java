@@ -17,6 +17,8 @@ import android.widget.TextView;
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.UvCommentActivity;
 import fr.utt.topuv.constant.IntentConstants;
+import fr.utt.topuv.model.Uv;
+import fr.utt.topuv.sqlite.UvDb;
 
 public class UvController extends Fragment implements OnClickListener
 {
@@ -28,19 +30,26 @@ public class UvController extends Fragment implements OnClickListener
     private float note;
     private int idUser;
     
+    private Uv currentUv;
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
     	ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.main_fragment_uv, null);
     	
-    	//Retrieve code, designation, note and credit from intent
-    	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
-    	designation = this.getActivity().getIntent().getStringExtra(IntentConstants.DESIGNATION);
+    	UvDb uvDb= new UvDb(getActivity().getApplicationContext());
+        uvDb.read();
+        
+        code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
+        
+        currentUv = uvDb.getUvByUvCode(code);
+        
+        designation = currentUv.getDesignation();
         code_designation = code + " : " + designation;
-        description = this.getActivity().getIntent().getStringExtra(IntentConstants.DESCRIPTION);
-        note = this.getActivity().getIntent().getFloatExtra(IntentConstants.NOTE, (float) 0);
-        credit = this.getActivity().getIntent().getIntExtra(IntentConstants.CREDIT, 0);
-    	
+        description = currentUv.getDescription();
+        note = currentUv.getNote();
+        credit = currentUv.getCredit();
+        
         //Set text
     	((TextView) viewGroup.findViewById(R.id.name_uv_bar)).setText(code_designation);
         

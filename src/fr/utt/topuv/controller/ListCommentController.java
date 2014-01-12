@@ -34,7 +34,7 @@ public class ListCommentController extends ListFragment
     	UvDb uvDb= new UvDb(getActivity().getApplicationContext());
     	uvDb.read();
 
-    	Uv uv = uvDb.getIdUvByUvCode(code);
+    	Uv uv = uvDb.getUvByUvCode(code);
     	int uvId = uv.getId();
 
     	CommentDb commentDb= new CommentDb(getActivity().getApplicationContext());

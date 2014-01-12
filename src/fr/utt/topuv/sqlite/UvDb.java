@@ -133,7 +133,7 @@ public class UvDb {
 	    return arrayListUvs;
 	}
 	
-	public Uv getIdUvByUvCode(String code) 
+	public Uv getUvByUvCode(String code) 
 	{
 	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + code +"\"", null, null, null, null);
 
