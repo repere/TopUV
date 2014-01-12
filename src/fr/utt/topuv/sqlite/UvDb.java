@@ -84,19 +84,34 @@ public class UvDb {
 		return bdd;
 	}
  
-	public long insertUv(Uv uv)
+	public long insertUv(Uv inUv)
 	{
 		ContentValues values = new ContentValues();
 
-		values.put(COL_ID, uv.getId());
-		values.put(COL_CODE, uv.getCode());
-		values.put(COL_DESIGNATION, uv.getDesignation());
-		values.put(COL_CREDIT, uv.getCredit());
-		values.put(COL_DESCRIPTION, uv.getDescription());
-		values.put(COL_NOTE, uv.getNote());
-		values.put(COL_CATEGORIE, uv.getCategorie());
+		values.put(COL_ID, inUv.getId());
+		values.put(COL_CODE, inUv.getCode());
+		values.put(COL_DESIGNATION, inUv.getDesignation());
+		values.put(COL_CREDIT, inUv.getCredit());
+		values.put(COL_DESCRIPTION, inUv.getDescription());
+		values.put(COL_NOTE, inUv.getNote());
+		values.put(COL_CATEGORIE, inUv.getCategorie());
 
 		return bdd.insert(TABLE_UVS, null, values);
+	}
+	
+	// In case for the future, if we need to do update
+	public long updateUv (int inId, Uv inUv)
+	{
+		ContentValues values = new ContentValues();
+		
+		values.put(COL_CODE, inUv.getCode());
+		values.put(COL_DESIGNATION, inUv.getDesignation());
+		values.put(COL_CREDIT, inUv.getCredit());
+		values.put(COL_DESCRIPTION, inUv.getDescription());
+		values.put(COL_NOTE, inUv.getNote());
+		values.put(COL_CATEGORIE, inUv.getCategorie());
+
+		return bdd.update(TABLE_UVS, values, COL_ID + " = " + inId, null);
 	}
 	 
 	public ArrayList<Uv> getUvByCategory(String categorie) 
@@ -118,23 +133,13 @@ public class UvDb {
 	    return arrayListUvs;
 	}
 	
-	public ArrayList<Uv> getIdUvByUvCode(String categorie) 
+	public Uv getIdUvByUvCode(String code) 
 	{
-	    ArrayList<Uv> arrayListUvs = new ArrayList<Uv>();
-
-	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + categorie +"\"", null, null, null, null);
+	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + code +"\"", null, null, null, null);
 
 	    cursor.moveToFirst();
-	    
-	    while (!cursor.isAfterLast()) 
-	    {
-	    	Uv uv = cursorToUv(cursor);
-	    	arrayListUvs.add(uv);
-	    	cursor.moveToNext();
-	    }
-	    
-	    cursor.close();
-	    return arrayListUvs;
+
+	    return cursorToUv(cursor);
 	}
 
 	private Uv cursorToUv(Cursor c) 

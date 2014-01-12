@@ -33,13 +33,10 @@ public class ListCommentController extends ListFragment
     	// Retrieve ID from SQlite db by their code
     	UvDb uvDb= new UvDb(getActivity().getApplicationContext());
     	uvDb.read();
-    	
-    	//not a very clean method...
-    	ArrayList<Uv> arrayListUvs  =  uvDb.getIdUvByUvCode(code);
-    	
-    	int uvId = arrayListUvs.get(0).getId();
-    	
-    	// Collects arraylist of notes thanks to the id of uv previously retrieved
+
+    	Uv uv = uvDb.getIdUvByUvCode(code);
+    	int uvId = uv.getId();
+
     	CommentDb commentDb= new CommentDb(getActivity().getApplicationContext());
     	commentDb.read();
     	
