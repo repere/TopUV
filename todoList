@@ -15,7 +15,3 @@ Things that we have to do :
   4. Hash the result with sha256
 
 - Change the Logo by a new one
-
-- Bug 01 : apply crash when you turn phone during asynctask
-
-- Bug 02 : we lose user id when we go back manually (button from the actionBar) so we cannot send comment.
