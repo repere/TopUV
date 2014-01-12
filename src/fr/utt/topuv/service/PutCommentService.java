@@ -40,7 +40,7 @@ public class PutCommentService extends AsyncTask<String, Void, String>
 	// THE MAGIC SENTENCE :p
 	private String theMagicSentence = "sesameOuvreToi!";
 	
-	private String result = null;
+	private String result;
 	private String resultToGive;
 	
 	// Progress Dialog
