@@ -1,7 +1,5 @@
 Things that we have to do :
 
-- Add Search activity + controller
-
 - (IMPOSSIBLE, my PHP server is not up-to-date) Encrypt password before sending it by POST Method (instead of implemanting https)
 
 - (DONE) Add protection against brute force ; block user account (10 tries per day)
@@ -13,5 +11,3 @@ Things that we have to do :
   2. Generate random salt for each studiant 
   3. Concatenate password with this pattern : salt.hashPassword.salt
   4. Hash the result with sha256
-
-- Change the Logo by a new one
