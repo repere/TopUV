@@ -21,14 +21,14 @@ import fr.utt.topuv.sqlite.UvDb;
 
 public class ListCommentController extends ListFragment
 {	
-	private String code;
+	private String code = null;
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
         
-    	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
+    	code = getActivity().getIntent().getStringExtra(IntentConstants.CODE);
     	
     	// Retrieve ID from SQlite db by their code
     	UvDb uvDb= new UvDb(getActivity().getApplicationContext());

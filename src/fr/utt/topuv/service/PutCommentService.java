@@ -80,7 +80,7 @@ public class PutCommentService extends AsyncTask<String, Void, String>
 	        
 	        JSONObject jsonObject = new JSONObject(response);
 	        
-	        return jsonObject.getString(WebServiceConstants.COMMENT.SUCCESS);
+	        return jsonObject.getString(WebServiceConstants.COMMENT.SUCCESS).toString();
         }
         
         catch(JSONException jsonException)

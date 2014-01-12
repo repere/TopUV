@@ -26,6 +26,7 @@ public class UvController extends Fragment implements OnClickListener
     private int credit;
     private String description;
     private float note;
+    private int idUser;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -59,10 +60,11 @@ public class UvController extends Fragment implements OnClickListener
     public void onClick(View v)
     {	
     	Intent intent = new Intent(this.getActivity(), UvCommentActivity.class);
+    	
     	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
     	intent.putExtra(IntentConstants.CODE, code);
     	
-    	int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER,0);
+    	idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER,0);
         intent.putExtra(IntentConstants.ID_USER, idUser);
         
         this.startActivity(intent);

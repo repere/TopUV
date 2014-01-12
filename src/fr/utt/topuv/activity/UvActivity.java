@@ -8,8 +8,8 @@ package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
 import fr.utt.topuv.constant.IntentConstants;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
@@ -28,17 +28,17 @@ public class UvActivity extends FragmentActivity
         // button will take the user one step up in the application's hierarchy.
         getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
-
+	
 	public boolean onOptionsItemSelected(MenuItem item) 
 	{
-        switch (item.getItemId()) 
+    	switch (item.getItemId()) 
         {
             case android.R.id.home:
                 // This is called when the Home (Up) button is pressed in the action bar.
                 // Create a simple intent that starts the hierarchical parent activity and
                 // use NavUtils in the Support Package to ensure proper handling of Up.
                 Intent upIntent = new Intent(this, MenuActivity.class);
-                int idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER,0);
+                int idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER, 0);
                 upIntent.putExtra(IntentConstants.ID_USER, idUser);
                 if (NavUtils.shouldUpRecreateTask(this, upIntent)) 
                 {
@@ -60,6 +60,5 @@ public class UvActivity extends FragmentActivity
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
+	}
 }

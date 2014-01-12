@@ -42,7 +42,7 @@ public class UvCommentController extends Fragment implements OnClickListener
     	try
         {
             String code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
-    		int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER,0);
+    		int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
     		
     		//Convert the idUser int to String to due AsyncTask restriction (only accept one type, here String)
     		String idUserToString = String.valueOf(idUser);
