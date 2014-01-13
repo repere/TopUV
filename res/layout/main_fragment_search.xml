@@ -67,48 +67,46 @@
             android:layout_height="wrap_content"
             android:text="@string/search_categorie_uv_title" />
 
-        <ExpandableListView
-            android:id="@+id/expandableListView1"
+        <ListView
+            android:id="@+id/uvs_ListView"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="0.17" >
-        </ExpandableListView>
+            android:layout_height="wrap_content" >
+        </ListView>
 
         <TextView
             android:id="@+id/search_designation_uv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_designation_uv_title" />
-        
+
         <EditText
-	        android:id="@+id/editText1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:inputType="text"
-	        android:ems="8" >
-	    </EditText>
-	    
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:inputType="text" >
+        </EditText>
+
         <TextView
             android:id="@+id/search_description_uv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_description_uv_title" />
-        
+
         <EditText
-	        android:id="@+id/editText2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:inputType="text"
-	        android:ems="8" >
-	    </EditText>
-	    
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="8"
+            android:inputType="text" >
+        </EditText>
+
         <Button
             android:id="@+id/search_button_method2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="@string/search_button_title" />
-   
     </LinearLayout>
 
     <!-- End of Method 2 -->

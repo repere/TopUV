@@ -71,6 +71,13 @@
     <string name="topuv_classment">Classement</string>
     <string name="topuv_top">Top</string>
     <string name="topuv_flop">Flop</string>
+    <string-array name="category_uv_expandablelist">
+        <item>CS</item>
+        <item>TM</item>
+        <item>EC</item>
+        <item>ME</item>
+        <item>CT</item>
+    </string-array>
 
     <!-- Search -->
     <string name="search_method1">Recherche de l\'UV par son code :</string>

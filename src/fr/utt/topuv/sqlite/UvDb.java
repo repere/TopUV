@@ -170,6 +170,30 @@ public class UvDb {
 	    return arrayListUvs;
 	}
 	
+	public String[] getAllUv()
+	{
+		int i = 0;
+		
+		Cursor cursor = bdd.query(TABLE_UVS, allColumns, null, null, null, null, null);
+		
+		int count = cursor.getCount();
+		
+		String[] allUv = new String [count];
+
+	    cursor.moveToFirst();
+	    
+	    while (!cursor.isAfterLast()) 
+	    {
+	    	Uv uv = cursorToUv(cursor);
+	    	allUv[i] = uv.getCode();
+	    	i++;
+	    	cursor.moveToNext();
+	    }
+	    
+	    cursor.close();
+	    return allUv;
+	}
+	
 	public Uv getUvByUvCode(String code) 
 	{
 	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + code +"\"", null, null, null, null);
