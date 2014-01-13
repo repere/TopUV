@@ -158,7 +158,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
                 	noteSelected.setNote(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.NOTE));
                 	noteSelected.setDate(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.DATE));
  
-                	if(uvDb.isUvExist(noteSelected.getId()))
+                	if(commentDb.isCommentExist(noteSelected.getId()))
                     {
                 		commentDb.updateComment(noteSelected.getId(), noteSelected);
                     }
