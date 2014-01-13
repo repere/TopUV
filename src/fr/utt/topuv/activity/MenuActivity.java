@@ -7,12 +7,14 @@
 package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
+import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.controller.UvFragmentPagerAdapter;
 import fr.utt.topuv.service.GetAllService;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -48,7 +50,7 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
 
         // Specify that the Home/Up button should not be enabled, since there is no hierarchical
         // parent.
-        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         // Specify that we will be displaying tabs in the action bar.
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -89,10 +91,12 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) 
 	{
-	    // Handle presses on the action bar items
+	    
+		Intent intent;
+		int idUser;
 	    switch (item.getItemId()) 
 	    {  
-	    	case R.id.action_search:
+	    	case R.id.action_refresh:
 	    		String url_uv = WebServiceConstants.UVS.URL;
 	    		String url_comment = WebServiceConstants.COMMENTS.URL;
 	    		
@@ -101,7 +105,27 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
 	        	
         		return true;
         		
-	        default:
+	    	case R.id.action_search:
+	    		intent = new Intent(this, SearchActivity.class);
+	    		
+                idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER, 0);
+                intent.putExtra(IntentConstants.ID_USER, idUser);
+                
+	        	this.startActivity(intent);
+	        	
+        		return true;
+        		
+	    	case R.id.action_topuv:
+    			intent = new Intent(this, TopUvActivity.class);
+	    		
+                idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER, 0);
+                intent.putExtra(IntentConstants.ID_USER, idUser);
+                
+	        	this.startActivity(intent);
+	        	
+        		return true;
+	    	
+	    	default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}

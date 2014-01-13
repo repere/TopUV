@@ -2,4 +2,7 @@
 <resources>
     <!-- Name bar -->
     <color name="name_bar_background">#1e90ff</color>
+    
+    <!-- Button TopUv -->
+    <color name="button_borderless">#cccccc</color>
 </resources>

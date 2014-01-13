@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".UvActivity">
 
     <fragment 
 	    android:layout_width="match_parent"
@@ -13,10 +14,11 @@
 	    tools:layout="@layout/main_fragment_uv" />
     
     <fragment
-        android:id="@+id/fragment_messages"
+        android:id="@+id/fragment_comments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="fr.utt.topuv.controller.ListCommentController"
-        android:smoothScrollbar="true" />
+        android:smoothScrollbar="true"
+        tools:layout="@layout/list_comments_fragment" />
     
 </LinearLayout>

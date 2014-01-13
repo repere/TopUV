@@ -151,6 +151,25 @@ public class UvDb {
 	    return arrayListUvs;
 	}
 	
+	public ArrayList<Uv> getAllUvByOrder(String order) 
+	{
+	    ArrayList<Uv> arrayListUvs = new ArrayList<Uv>();
+
+	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, null, null, null, null, COL_NOTE + " " + order);
+
+	    cursor.moveToFirst();
+	    
+	    while (!cursor.isAfterLast()) 
+	    {
+	    	Uv uv = cursorToUv(cursor);
+	    	arrayListUvs.add(uv);
+	    	cursor.moveToNext();
+	    }
+	    
+	    cursor.close();
+	    return arrayListUvs;
+	}
+	
 	public Uv getUvByUvCode(String code) 
 	{
 	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + code +"\"", null, null, null, null);

@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,11 +32,41 @@
             android:name="fr.utt.topuv.activity.UvActivity"
             android:label="@string/title_activity_uv"
             android:parentActivityName="fr.utt.topuv.activity.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.utt.topuv.activity.MenuActivity" />
         </activity>
         <activity
             android:name="fr.utt.topuv.activity.UvCommentActivity"
             android:label="@string/title_activity_uv_comment"
             android:parentActivityName="fr.utt.topuv.activity.UvActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.utt.topuv.activity.UvActivity" />
+        </activity>
+        <activity
+            android:name="fr.utt.topuv.activity.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName="fr.utt.topuv.activity.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.utt.topuv.activity.MenuActivity" />
+        </activity>
+        <activity
+            android:name="fr.utt.topuv.activity.SearchResultActivity"
+            android:label="@string/title_activity_search_result"
+            android:parentActivityName="fr.utt.topuv.activity.SearchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.utt.topuv.activity.SearchActivity" />
+        </activity>
+        <activity
+            android:name="fr.utt.topuv.activity.TopUvActivity"
+            android:label="@string/title_activity_top_uv"
+            android:parentActivityName="fr.utt.topuv.activity.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.utt.topuv.activity.MenuActivity" />
         </activity>
     </application>
 

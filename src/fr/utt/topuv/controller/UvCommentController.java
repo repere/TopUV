@@ -42,7 +42,6 @@ public class UvCommentController extends Fragment implements OnClickListener
         return viewGroup;
     }
 	
-	
     @Override
     public void onClick(View v)
     {
