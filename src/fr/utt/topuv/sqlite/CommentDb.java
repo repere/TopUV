@@ -12,7 +12,7 @@ import fr.utt.topuv.model.Note;
 public class CommentDb {
 	
 	private static final int VERSION_BDD = 1;
-	private static final String NOM_BDD = "topuv_sqlite_comment.db";
+	private static final String NOM_BDD = "topuv_sqlite_comments.db";
  
 	private static final String TABLE_COMMENTS = "table_comments";
 	

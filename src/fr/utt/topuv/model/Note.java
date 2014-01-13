@@ -17,7 +17,7 @@ public class Note {
 	//Getter & Setter Id
   	public void setId(int inId)
   	{
-  		this.note = inId;
+  		this.id = inId;
   	}
   	
   	public int getId()
