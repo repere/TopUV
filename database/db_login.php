@@ -13,7 +13,7 @@
 		$reponse = array
 		(
 			'success' => 0,
-			'id' => null
+			'id' => 0
 		);
 		
 		$parameters = array
