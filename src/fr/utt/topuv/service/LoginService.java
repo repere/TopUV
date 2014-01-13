@@ -58,6 +58,7 @@ public class LoginService extends AsyncTask<String, Void, User>
         pDialog = new ProgressDialog(motherActivity);
         pDialog.setTitle("Récupération de votre compte");
         pDialog.setMessage("Connexion en cours...");
+        pDialog.setIcon(R.drawable.ic_action_share);
         pDialog.setIndeterminate(true);
         pDialog.setCancelable(true);
         pDialog.show();

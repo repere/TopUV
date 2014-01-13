@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import fr.utt.topuv.R;
 import fr.utt.topuv.activity.MenuActivity;
 import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.constant.WebServiceConstants;
@@ -59,6 +60,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
         pDialog = new ProgressDialog(motherActivity);
         pDialog.setTitle("Récupération des UVs 1/2");
         pDialog.setMessage("Chargement en cours...");
+        pDialog.setIcon(R.drawable.ic_action_import_export);
         pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         pDialog.setCancelable(false);
         pDialog.show();

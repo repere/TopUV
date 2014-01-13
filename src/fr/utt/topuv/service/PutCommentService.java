@@ -58,6 +58,7 @@ public class PutCommentService extends AsyncTask<String, Void, String>
         pDialog = new ProgressDialog(motherActivity);
         pDialog.setTitle("Envoi de la note");
         pDialog.setMessage("Traitement en cours...");
+        pDialog.setIcon(R.drawable.ic_action_send_now);
         pDialog.setIndeterminate(true);
         pDialog.setCancelable(false);
         pDialog.show();
