@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.UvActivity;
@@ -23,12 +25,11 @@ public class ListUvController extends ListFragment
 	Bundle bundle;
 	String actualCategoryOfUv;
 	
-	@Override
-    public void onActivityCreated(Bundle savedInstanceState)
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onActivityCreated(savedInstanceState);
-        
-        UvDb uvDb= new UvDb(getActivity().getApplicationContext());
+    	ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.list_uvs_fragment, null);
+    	
+    	UvDb uvDb= new UvDb(getActivity().getApplicationContext());
         uvDb.read();
         
         bundle = getArguments();
@@ -43,7 +44,8 @@ public class ListUvController extends ListFragment
         this.setListAdapter(adapter);
         
         uvDb.close();
-
+    	
+    	return viewGroup;
     }
 	
 	@Override
