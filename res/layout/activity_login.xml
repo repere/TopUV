@@ -1,8 +1,15 @@
-<fragment 
+<LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/LoginFragment"
-   	android:name="fr.utt.topuv.controller.LoginController"
-    tools:layout="@layout/main_fragment_login" />
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".LoginActivity" >
+	
+	<fragment
+		android:id="@+id/LoginFragment"
+		android:name="fr.utt.topuv.controller.LoginController"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+	
+</LinearLayout>

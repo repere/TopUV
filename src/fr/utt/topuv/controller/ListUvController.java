@@ -22,8 +22,8 @@ import fr.utt.topuv.sqlite.UvDb;
 public class ListUvController extends ListFragment
 {
 	private ArrayList<Uv> uvs = new ArrayList<Uv>();
-	Bundle bundle;
-	String actualCategoryOfUv;
+	private Bundle bundle;
+	private String actualCategoryOfUv;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
