@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <shape>
+            <solid android:color="#B3BAB9" />
+            <padding
+                android:left="5px"
+                android:top="5px"
+                android:bottom="5px"
+                android:right="5px"
+                />
+        </shape>
+    </item>
 
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/bd_dark_gray"
-    android:tileMode="repeat"
-    android:dither="true" />
+    <item>
+        <bitmap
+            android:src="@drawable/bd_dark_gray"
+            android:tileMode="repeat" />
+    </item>
+</layer-list>
