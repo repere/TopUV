@@ -113,6 +113,24 @@ public class UvDb {
 
 		return bdd.update(TABLE_UVS, values, COL_ID + " = " + inId, null);
 	}
+	
+	public boolean isUvExist (int inId)
+	{
+		boolean result;
+		Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_ID + " = " + inId, null, null, null, null);
+		
+		// If cursor is empty return false, else return true (bacause uv exists...)
+		if(cursor.moveToFirst() == false)
+		{
+			result = false;
+		}
+		else
+		{
+			result = true;
+		}
+		
+		return result;
+	}
 	 
 	public ArrayList<Uv> getUvByCategory(String categorie) 
 	{

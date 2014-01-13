@@ -90,6 +90,7 @@ public class CommentDb {
 	{
 		ContentValues values = new ContentValues();
 
+		values.put(COL_COMMENT_ID, note.getId());
 		values.put(COL_COMMENT_ID_USER, note.getIdUser());
 		values.put(COL_COMMENT_ID_UV, note.getIdUv());
 		values.put(COL_COMMENT_NOTE, note.getNote());
@@ -99,6 +100,39 @@ public class CommentDb {
 		values.put(COL_COMMENT_LAST_NAME, note.getLastName());
 
 		return bdd.insert(TABLE_COMMENTS, null, values);
+	}
+	
+	public long updateComment(int inId, Note note)
+	{
+		ContentValues values = new ContentValues();
+
+		values.put(COL_COMMENT_ID_USER, note.getIdUser());
+		values.put(COL_COMMENT_ID_UV, note.getIdUv());
+		values.put(COL_COMMENT_NOTE, note.getNote());
+		values.put(COL_COMMENT_COMMENT, note.getComment());
+		values.put(COL_COMMENT_DATE, note.getDate());
+		values.put(COL_COMMENT_FIRST_NAME, note.getFirstName());
+		values.put(COL_COMMENT_LAST_NAME, note.getLastName());
+
+		return bdd.update(TABLE_COMMENTS, values, COL_COMMENT_ID + " = " + inId, null);
+	}
+	
+	public boolean isCommentExist (int inId)
+	{
+		boolean result;
+		Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID + " = " + inId, null, null, null, null);
+		
+		// If cursor is empty return false, else return true (bacause uv exists...)
+		if(cursor.moveToFirst() == false)
+		{
+			result = false;
+		}
+		else
+		{
+			result = true;
+		}
+		
+		return result;
 	}
 	
 	public ArrayList<Note> getCommentByCodeUv(int idUv) 

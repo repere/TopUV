@@ -18,7 +18,7 @@ public class SQLiteBaseComment extends SQLiteOpenHelper
 	private static final String COL_COMMENT_LAST_NAME = "last_name";
 	
 	private static final String CREATE_DB_COMMENT = "CREATE TABLE " + TABLE_COMMENTS + " ("
-			+ COL_COMMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
+			+ COL_COMMENT_ID + " INTEGER PRIMARY KEY, " 
 			+ COL_COMMENT_ID_USER + " INTEGER, "
 			+ COL_COMMENT_ID_UV + " INTEGER, "
 			+ COL_COMMENT_NOTE + " INTEGER, "

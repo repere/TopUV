@@ -102,10 +102,7 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
 	        
 	        // UV part
             if(jsonObject.has(WebServiceConstants.UVS.UVS))
-            {
-            	//Delete all the Uv Sqlite Db and rebuilt it
-            	uvDb.onUpgrade();
-            	
+            {          	
             	JSONArray jsonArray = jsonObject.getJSONArray(WebServiceConstants.UVS.UVS);
             	
             	numberOfUvDownloaded = jsonArray.length() - 1;
@@ -121,7 +118,14 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
                     uvSelected.setNote(Float.valueOf(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.NOTE)));
                     uvSelected.setCategorie(jsonArray.getJSONObject(index).getString(WebServiceConstants.UVS.CATEGORIE));
                     
-                    uvDb.insertUv(uvSelected);
+                    if(uvDb.isUvExist(uvSelected.getId()))
+                    {
+                    	uvDb.updateUv(uvSelected.getId(), uvSelected);
+                    }
+                    else
+                    {
+                    	uvDb.insertUv(uvSelected);
+                    }
                     
                     //Update progress bar
                     publishProgress((int) ((index / (float) numberOfUvDownloaded) * 100));
@@ -137,9 +141,6 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
             if(jsonObject.has(WebServiceConstants.COMMENTS.COMMENTS))
             {           	
             	secondTask = 2;
-
-            	//Delete all the Comment Sqlite Db and rebuilt it
-            	commentDb.onUpgrade();
             	
             	JSONArray jsonArray = jsonObject.getJSONArray(WebServiceConstants.COMMENTS.COMMENTS);
             	
@@ -150,13 +151,21 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
                     Note noteSelected = new Note();
                     noteSelected.setFirstName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.FIRSTNAME));
                 	noteSelected.setLastName(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.LASTNAME));
-                    noteSelected.setIdUser(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID_USER));
+                	noteSelected.setId(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID));
+                	noteSelected.setIdUser(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID_USER));
                 	noteSelected.setIdUv(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.ID_UV));
                 	noteSelected.setComment(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.COMMENT));
                 	noteSelected.setNote(jsonArray.getJSONObject(index).getInt(WebServiceConstants.COMMENTS.NOTE));
                 	noteSelected.setDate(jsonArray.getJSONObject(index).getString(WebServiceConstants.COMMENTS.DATE));
  
-                    commentDb.insertComment(noteSelected);
+                	if(uvDb.isUvExist(noteSelected.getId()))
+                    {
+                		commentDb.updateComment(noteSelected.getId(), noteSelected);
+                    }
+                    else
+                    {
+                    	commentDb.insertComment(noteSelected);
+                    }
                     
                     //Update progress bar
                     publishProgress((int) ((index / (float) numberOfNoteDownloaded) * 100));

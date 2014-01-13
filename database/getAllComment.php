@@ -34,6 +34,7 @@
 			{
 				$result[$i]['first_name'] = $user->first_name;
 				$result[$i]['last_name'] = $user->last_name;
+				$result[$i]['id'] = $comment->id;
 				$result[$i]['id_user'] = $comment->id_user;
 				$result[$i]['id_uv'] = $comment->id_uv;
 				$result[$i]['comment'] = $comment->comment;
