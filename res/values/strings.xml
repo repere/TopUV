@@ -22,7 +22,7 @@
     <string name="connexion_success">Connexion réussie</string>
     
     <!-- Menu -->
-    <string name="no_data">Aucune UV présente. Veuillez actualiser !</string>
+    <string name="no_uvs">Aucune UV présente. Veuillez cliquer sur l\'icône rafraichir !</string>
 
     <!-- Uv description -->
     <string name="uv_description_title">Description de l\'UV :</string>
@@ -30,6 +30,7 @@
     <string name="note_uv">Note moyenne de l\'UV :</string>
     <string name="add_comment">Ajouter une note</string>
     <string name="all_comments">Commentaires et notes des étudiants :</string>
+    <string name="no_comments">Aucun commentaire, soyez le premier !</string>
 
     <!-- Uv Comment -->
     <string name="note_title">Votre note concernant l\'UV</string>

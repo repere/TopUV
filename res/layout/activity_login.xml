@@ -10,6 +10,7 @@
 		android:id="@+id/LoginFragment"
 		android:name="fr.utt.topuv.controller.LoginController"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		android:layout_height="match_parent"
+		tools:layout="@layout/main_fragment_login" />
 	
 </LinearLayout>

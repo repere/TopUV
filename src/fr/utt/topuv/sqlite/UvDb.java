@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class UvDb {
 	 
 	private static final int VERSION_BDD = 1;
-	private static final String NOM_BDD = "topuv_uvs.db";
+	private static final String NOM_BDD = "topuv_sqlite_uv.db";
  
 	private static final String TABLE_UVS = "table_uvs";
 	

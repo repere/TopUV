@@ -8,7 +8,9 @@ package fr.utt.topuv.controller;
 import java.util.ArrayList;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 import fr.utt.topuv.R;
@@ -23,12 +25,11 @@ public class ListCommentController extends ListFragment
 {	
 	private String code = null;
     
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState)
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onActivityCreated(savedInstanceState);
-        
-    	code = getActivity().getIntent().getStringExtra(IntentConstants.CODE);
+		ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.list_comments_fragment, null);
+		
+		code = getActivity().getIntent().getStringExtra(IntentConstants.CODE);
     	
     	// Retrieve ID from SQlite db by their code
     	UvDb uvDb= new UvDb(getActivity().getApplicationContext());
@@ -48,6 +49,8 @@ public class ListCommentController extends ListFragment
         
         uvDb.close();
         commentDb.close();
+		
+		return viewGroup;
     }
 
 	@Override

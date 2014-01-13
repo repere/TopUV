@@ -1,8 +1,15 @@
-<fragment 
+<LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/UvCommentFragment"
-   	android:name="fr.utt.topuv.controller.UvCommentController"
-    tools:layout="@layout/main_fragment_uv_comment" />
+    android:orientation="vertical">
+
+	<fragment 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:id="@+id/UvCommentFragment"
+	   	android:name="fr.utt.topuv.controller.UvCommentController"
+	    tools:layout="@layout/main_fragment_uv_comment" />
+
+</LinearLayout>

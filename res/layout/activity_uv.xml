@@ -15,9 +15,8 @@
     <fragment
         android:id="@+id/fragment_messages"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:name="fr.utt.topuv.controller.ListCommentController"
-        android:smoothScrollbar="true"
-        tools:layout="@layout/comments_list_entry" />
+        android:smoothScrollbar="true" />
+    
 </LinearLayout>
