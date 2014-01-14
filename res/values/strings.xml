@@ -71,13 +71,6 @@
     <string name="topuv_classment">Classement</string>
     <string name="topuv_top">Top</string>
     <string name="topuv_flop">Flop</string>
-    <string-array name="category_uv_expandablelist">
-        <item>CS</item>
-        <item>TM</item>
-        <item>EC</item>
-        <item>ME</item>
-        <item>CT</item>
-    </string-array>
 
     <!-- Search -->
     <string name="search_method1">Recherche de l\'UV par son code :</string>
@@ -87,5 +80,10 @@
     <string name="search_description_uv_title">Veuillez entrer sa description (optionnel) :</string>
     <string name="search_designation_uv_title">Veuillez entrer son designation (optionnel) :</string>
     <string name="search_button_title">Rechercher</string>
+    <string name="search_uv_code_required">Code Uv nécessaire</string>
+    <string name="search_uv_code_unknow">Uv inconnue</string>
+    
+    <!-- SearchResult -->
+    <string name="no_uvs_search">Aucune UV trouvée. Faites une nouvelle recherche !</string>
 
 </resources>

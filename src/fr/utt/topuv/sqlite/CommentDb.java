@@ -114,15 +114,15 @@ public class CommentDb {
 		values.put(COL_COMMENT_FIRST_NAME, note.getFirstName());
 		values.put(COL_COMMENT_LAST_NAME, note.getLastName());
 
-		return bdd.update(TABLE_COMMENTS, values, COL_COMMENT_ID + " = " + inId, null);
+		return bdd.update(TABLE_COMMENTS, values, COL_COMMENT_ID + " =? ", new String[] { String.valueOf(inId) });
 	}
 	
 	public boolean isCommentExist (int inId)
 	{
 		boolean result;
-		Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID + " = " + inId, null, null, null, null);
+		Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID + " =? ", new String[] { String.valueOf(inId) }, null, null, null);
 		
-		// If cursor is empty return false, else return true (bacause uv exists...)
+		// If cursor is empty return false, else return true (because comment exists...)
 		if(cursor.moveToFirst() == false)
 		{
 			result = false;
@@ -135,11 +135,11 @@ public class CommentDb {
 		return result;
 	}
 	
-	public ArrayList<Note> getCommentByCodeUv(int idUv) 
+	public ArrayList<Note> getCommentByUvId(int idUv) 
 	{
 	    ArrayList<Note> arrayListComments = new ArrayList<Note>();
 
-	    Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID_UV + " = " + idUv, null, null, null, null);
+	    Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID_UV + " =? ", new String[] { String.valueOf(idUv) }, null, null, null);
 
 	    cursor.moveToFirst();
 	    

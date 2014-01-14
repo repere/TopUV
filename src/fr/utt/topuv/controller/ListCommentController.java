@@ -41,7 +41,7 @@ public class ListCommentController extends ListFragment
     	CommentDb commentDb= new CommentDb(getActivity().getApplicationContext());
     	commentDb.read();
     	
-    	ArrayList<Note> arrayListNotes = commentDb.getCommentByCodeUv(uvId);
+    	ArrayList<Note> arrayListNotes = commentDb.getCommentByUvId(uvId);
 
         ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity().getApplicationContext(),R.layout.comments_list_entry, arrayListNotes);
             

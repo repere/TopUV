@@ -111,15 +111,15 @@ public class UvDb {
 		values.put(COL_NOTE, inUv.getNote());
 		values.put(COL_CATEGORIE, inUv.getCategorie());
 
-		return bdd.update(TABLE_UVS, values, COL_ID + " = " + inId, null);
+		return bdd.update(TABLE_UVS, values, COL_ID + " =? ", new String[] { String.valueOf(inId) });
 	}
 	
 	public boolean isUvExist (int inId)
 	{
 		boolean result;
-		Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_ID + " = " + inId, null, null, null, null);
+		Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_ID + " =? ", new String[] { String.valueOf(inId) }, null, null, null);
 		
-		// If cursor is empty return false, else return true (bacause uv exists...)
+		// If cursor is empty return false, else return true (because uv exists...)
 		if(cursor.moveToFirst() == false)
 		{
 			result = false;
@@ -130,6 +130,30 @@ public class UvDb {
 		}
 		
 		return result;
+	}
+	
+	public ArrayList<Uv> searchUv(String inCategorie, String inDesignation, String inDescription)
+	{
+		ArrayList<Uv> arrayListUvs = new ArrayList<Uv>();
+
+	    String query = 
+	    		COL_CATEGORIE + " LIKE \"%" + inCategorie +"%\" AND" +
+				COL_DESIGNATION + " LIKE \"%" + inDesignation +"%\" AND" +
+				COL_DESCRIPTION + " LIKE \"%" + inDescription +"%\"";
+		
+		Cursor cursor = bdd.query(TABLE_UVS, allColumns, query, null, null, null, null);
+
+	    cursor.moveToFirst();
+	    
+	    while (!cursor.isAfterLast()) 
+	    {
+	    	Uv uv = cursorToUv(cursor);
+	    	arrayListUvs.add(uv);
+	    	cursor.moveToNext();
+	    }
+	    
+	    cursor.close();
+	    return arrayListUvs;
 	}
 	 
 	public ArrayList<Uv> getUvByCategory(String categorie) 
