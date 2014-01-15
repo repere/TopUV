@@ -110,6 +110,6 @@ public class Note {
   	//Get full description lastname + firstname + date
   	public String getFullDescription()
   	{
-  		return "by " + this.last_name + " " + this.first_name + " on " + this.date;
+  		return "by " + this.first_name + " " + this.last_name + " on " + this.date;
   	}
 }

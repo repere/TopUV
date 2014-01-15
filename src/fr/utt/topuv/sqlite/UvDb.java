@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class UvDb {
 	 
@@ -135,11 +136,13 @@ public class UvDb {
 	public ArrayList<Uv> searchUv(String inCategorie, String inDesignation, String inDescription)
 	{
 		ArrayList<Uv> arrayListUvs = new ArrayList<Uv>();
-
-	    String query = 
-	    		COL_CATEGORIE + " LIKE \"%" + inCategorie +"%\" AND" +
-				COL_DESIGNATION + " LIKE \"%" + inDesignation +"%\" AND" +
+		
+		String query = 
+	    		COL_CATEGORIE + " LIKE \"%" + inCategorie +"%\" AND " +
+				COL_DESIGNATION + " LIKE \"%" + inDesignation +"%\" AND " +
 				COL_DESCRIPTION + " LIKE \"%" + inDescription +"%\"";
+		
+		Log.w("test", query);
 		
 		Cursor cursor = bdd.query(TABLE_UVS, allColumns, query, null, null, null, null);
 

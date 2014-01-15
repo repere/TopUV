@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Général -->
-    <string name="app_name">TopUV</string>
+    <string name="app_name">Top UV</string>
 
     <!-- Menu -->
     <string name="action_refresh">Rafraichir</string>
@@ -17,8 +17,8 @@
     <string name="title_activity_uv">Fiche complète de l\'UV</string>
     <string name="title_activity_topuv">Classement</string>
     <string name="title_activity_search">Recherche d\'UV</string>
-    <string name="title_activity_search_result">SearchResultActivity</string>
-    <string name="title_activity_top_uv">TopUvActivity</string>
+    <string name="title_activity_search_result">Recherche avancée</string>
+    <string name="title_activity_top_uv">The Top Uv</string>
 
     <!-- Login -->
     <string name="login">Login</string>
@@ -85,5 +85,6 @@
     
     <!-- SearchResult -->
     <string name="no_uvs_search">Aucune UV trouvée. Faites une nouvelle recherche !</string>
+    <string name="search_result_title">Résultats de votre recherche :</string>
 
 </resources>
