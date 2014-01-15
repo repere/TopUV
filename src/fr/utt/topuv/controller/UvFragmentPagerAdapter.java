@@ -4,12 +4,11 @@
 
 package fr.utt.topuv.controller;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.ListFragment;
+import android.support.v13.app.FragmentPagerAdapter;
 import fr.utt.topuv.R;
 import fr.utt.topuv.constant.IntentConstants;
 
@@ -27,7 +26,7 @@ public class UvFragmentPagerAdapter extends FragmentPagerAdapter
     @Override
     public Fragment getItem(int i) 
     { 	
-    	ListFragment fragment = new ListUvController();
+    	Fragment fragment = new ListUvController();
     	Bundle bundle_uv = new Bundle();
     	
     	switch (i) 

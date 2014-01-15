@@ -6,14 +6,14 @@
 	android:layout_height="match_parent" >
 
      <ListView 
-         android:id="@id/android:list"
+         android:id="@+id/listViewUv"
          android:layout_width="match_parent"
          android:layout_height="0dip"
          android:layout_weight="1"
          android:drawSelectorOnTop="false"/>
 
      <TextView
-         android:id="@id/android:empty"
+         android:id="@+id/listViewUvEmpty"
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          android:background="@drawable/hatched_bg"

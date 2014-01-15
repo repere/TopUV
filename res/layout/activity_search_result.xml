@@ -7,11 +7,10 @@
     tools:context=".SearchResultActivity" >
 
     <fragment
-        android:id="@+id/fragment_search_results"
+        android:id="@+id/search_result_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="fr.utt.topuv.controller.SearchResultController"
-        android:smoothScrollbar="true"
         tools:layout="@layout/list_uvs_fragment_search" />
 
 </LinearLayout>

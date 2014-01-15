@@ -13,15 +13,16 @@ import fr.utt.topuv.controller.UvFragmentPagerAdapter;
 import fr.utt.topuv.service.GetAllService;
 import android.os.Bundle;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class MenuActivity extends FragmentActivity implements ActionBar.TabListener {
+public class MenuActivity extends Activity implements ActionBar.TabListener 
+{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -43,7 +44,7 @@ public class MenuActivity extends FragmentActivity implements ActionBar.TabListe
 
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
-        fmPagerAdapter = new UvFragmentPagerAdapter(getSupportFragmentManager(), this.getApplicationContext());
+        fmPagerAdapter = new UvFragmentPagerAdapter(getFragmentManager(), this.getApplicationContext());
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();

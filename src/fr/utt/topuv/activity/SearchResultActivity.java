@@ -3,12 +3,12 @@ package fr.utt.topuv.activity;
 import fr.utt.topuv.R;
 import fr.utt.topuv.constant.IntentConstants;
 import android.os.Bundle;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 
-public class SearchResultActivity extends FragmentActivity {
+public class SearchResultActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -9,7 +9,7 @@
     tools:context=".SearchActivity" >
 
     <fragment
-		android:id="@+id/SearchFragment"
+		android:id="@+id/search_fragment"
 		android:name="fr.utt.topuv.controller.SearchController"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
