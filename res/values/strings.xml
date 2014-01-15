@@ -15,10 +15,9 @@
     <string name="title_activity_uv_comment">Poster votre commentaire</string>
     <string name="title_activity_menu">Liste d\'UVs</string>
     <string name="title_activity_uv">Fiche complète de l\'UV</string>
-    <string name="title_activity_topuv">Classement</string>
     <string name="title_activity_search">Recherche d\'UV</string>
     <string name="title_activity_search_result">Recherche avancée</string>
-    <string name="title_activity_top_uv">The Top Uv</string>
+    <string name="title_activity_top_uv">Classement</string>
 
     <!-- Login -->
     <string name="login">Login</string>
@@ -68,7 +67,6 @@
     <string name="title_section4">CT</string>
 
     <!-- TopUv -->
-    <string name="topuv_classment">Classement</string>
     <string name="topuv_top">Top</string>
     <string name="topuv_flop">Flop</string>
 
