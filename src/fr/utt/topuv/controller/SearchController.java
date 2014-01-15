@@ -12,6 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.SearchResultActivity;
 import fr.utt.topuv.activity.UvActivity;
@@ -79,29 +80,32 @@ public class SearchController extends Fragment implements OnClickListener
         }
 		
 		// Test if the field contains UV which are in the autocompletetextview
-		error = true;
+		boolean result = false;
 		int lenght = allCodeUv.length;
         for(int i = 0; i<lenght; i++)
         {
-        	if(allCodeUv[i] == code)
+        	if(allCodeUv[i].equals(code))
         	{
-        		error = false;
+        		result = true;
+                break;
         	}
         }
         
-        if(error)
+        if(result)
         {
-        	((EditText) this.getView().findViewById(R.id.autoCompleteTextView1)).setError(this.getString(R.string.search_uv_code_unknow));
-        	return;
-        }   
-		
-		Intent intent = new Intent(this.getActivity(), UvActivity.class);
-        intent.putExtra(IntentConstants.CODE, code);
+        	Intent intent = new Intent(this.getActivity(), UvActivity.class);
+            intent.putExtra(IntentConstants.CODE, code);
+            
+            int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
+            intent.putExtra(IntentConstants.ID_USER, idUser);
+            
+            this.startActivity(intent);
+        }
         
-        int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-        intent.putExtra(IntentConstants.ID_USER, idUser);
-        
-        this.startActivity(intent);
+        else
+        {
+        	Toast.makeText(getActivity(), R.string.search_uv_code_unknow, Toast.LENGTH_SHORT).show();
+        }
 	}
 	
 	private void searchByOtherCriteria()
