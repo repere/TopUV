@@ -6,13 +6,16 @@
 package fr.utt.topuv.controller;
 
 import java.util.ArrayList;
+
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import fr.utt.topuv.R;
 import fr.utt.topuv.adapter.ListCommentAdapter;
 import fr.utt.topuv.constant.IntentConstants;
@@ -21,13 +24,18 @@ import fr.utt.topuv.model.Uv;
 import fr.utt.topuv.sqlite.CommentDb;
 import fr.utt.topuv.sqlite.UvDb;
 
-public class ListCommentController extends ListFragment
+public class ListCommentController extends Fragment implements OnItemClickListener
 {	
-	private String code = null;
+	private String code;
+	
+	private ListView listViewComment;
     
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
 		ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.list_comments_fragment, null);
+		listViewComment = (ListView) viewGroup.findViewById(R.id.listViewComments);
+    	listViewComment.setEmptyView(viewGroup.findViewById(R.id.listViewCommentsEmpty));
+    	listViewComment.setOnItemClickListener(this);
 		
 		code = getActivity().getIntent().getStringExtra(IntentConstants.CODE);
     	
@@ -45,7 +53,7 @@ public class ListCommentController extends ListFragment
 
         ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity().getApplicationContext(),R.layout.comments_list_entry, arrayListNotes);
             
-        this.setListAdapter(adapter);
+        listViewComment.setAdapter(adapter);
         
         uvDb.close();
         commentDb.close();
@@ -54,11 +62,12 @@ public class ListCommentController extends ListFragment
     }
 
 	@Override
-    public void onListItemClick(ListView l, View v, int position, long id)
-    {
-		Note noteSelected = (Note) this.getListAdapter().getItem(position);
+	public void onItemClick(AdapterView<?> parent, View v, int position, long id) 
+	{
+		Note noteSelected = (Note) parent.getItemAtPosition(position);
 		int noteFromDbToRatingBar = (int) noteSelected.getNote();
+		
 		//Display rating bar in toast
 		Toast.makeText(this.getActivity(), "Note donnée : " + String.valueOf(noteFromDbToRatingBar), Toast.LENGTH_SHORT).show();
-    }
+	}
 }

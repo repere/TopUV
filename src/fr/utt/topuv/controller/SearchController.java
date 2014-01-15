@@ -96,9 +96,6 @@ public class SearchController extends Fragment implements OnClickListener
         	Intent intent = new Intent(this.getActivity(), UvActivity.class);
             intent.putExtra(IntentConstants.CODE, code);
             
-            int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-            intent.putExtra(IntentConstants.ID_USER, idUser);
-            
             this.startActivity(intent);
         }
         
@@ -144,9 +141,6 @@ public class SearchController extends Fragment implements OnClickListener
     		description = testNotNull;
     	}
     	intent.putExtra(IntentConstants.DESCRIPTION, description);
-        
-        int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-        intent.putExtra(IntentConstants.ID_USER, idUser);
         
         this.startActivity(intent);
 	}

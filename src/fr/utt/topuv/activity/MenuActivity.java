@@ -7,7 +7,6 @@
 package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
-import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.controller.UvFragmentPagerAdapter;
 import fr.utt.topuv.service.GetAllService;
@@ -94,7 +93,6 @@ public class MenuActivity extends Activity implements ActionBar.TabListener
 	{
 	    
 		Intent intent;
-		int idUser;
 	    switch (item.getItemId()) 
 	    {  
 	    	case R.id.action_refresh:
@@ -108,9 +106,6 @@ public class MenuActivity extends Activity implements ActionBar.TabListener
         		
 	    	case R.id.action_search:
 	    		intent = new Intent(this, SearchActivity.class);
-	    		
-                idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-                intent.putExtra(IntentConstants.ID_USER, idUser);
                 
 	        	this.startActivity(intent);
 	        	
@@ -118,9 +113,6 @@ public class MenuActivity extends Activity implements ActionBar.TabListener
         		
 	    	case R.id.action_topuv:
     			intent = new Intent(this, TopUvActivity.class);
-	    		
-                idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-                intent.putExtra(IntentConstants.ID_USER, idUser);
                 
 	        	this.startActivity(intent);
 	        	

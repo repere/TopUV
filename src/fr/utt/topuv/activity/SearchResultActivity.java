@@ -1,7 +1,6 @@
 package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
-import fr.utt.topuv.constant.IntentConstants;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -32,9 +31,7 @@ public class SearchResultActivity extends Activity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			Intent upIntent = new Intent(this, SearchActivity.class);
-            int idUser = this.getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-            upIntent.putExtra(IntentConstants.ID_USER, idUser);
-            
+
             NavUtils.navigateUpTo(this, upIntent);
 			return true;
 		}

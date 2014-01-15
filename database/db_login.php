@@ -75,6 +75,8 @@
 				$salt=$user->salt;
 				$encrypted_password_from_db=$user->password;
 				$id=$user->id;
+				$firstName=$user->first_name;
+				$lastName=$user->last_name;
 				
 				//Encode password from the user
 				$password_encoded = base64_encode( sha1( $_POST['password'] . $salt, true) . $salt );
@@ -86,6 +88,8 @@
 					(
 						'success' => 1,
 						'id' => $id,
+						'first_name' => $firstName,
+						'last_name' => $lastName,
 					);
 				}
 	           	// Si le mot de passe est faux

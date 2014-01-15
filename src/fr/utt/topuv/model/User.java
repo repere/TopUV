@@ -6,32 +6,32 @@ package fr.utt.topuv.model;
 
 public class User
 {
-    private int id;
+    private static int id;
     private String token;
     private int success;
-    private String firstName;
-    private String lastName;
+    private static String firstName;
+    private static String lastName;
     
     //Getter & Setter First Name
-  	public void setFirstName(String inFirstName)
+  	public static void setFirstName(String inFirstName)
   	{
-  		this.firstName = inFirstName;
+  		firstName = inFirstName;
   	}
   	
-  	public String getFirstName()
+  	public static String getFirstName()
   	{
-  		return this.firstName;
+  		return User.firstName;
   	}
   	
   	//Getter & Setter Last Name
-  	public void setLastName(String inLastName)
+  	public static void setLastName(String inLastName)
   	{
-  		this.lastName = inLastName;
+  		User.lastName = inLastName;
   	}
   	
-  	public String getLastName()
+  	public static String getLastName()
   	{
-  		return this.lastName;
+  		return User.lastName;
   	}
     
     //Getter & Setter Token
@@ -47,14 +47,14 @@ public class User
   	
   	
   	//Getter & Setter Id
-  	public void setId(int inId)
+  	public static void setId(int inId)
   	{
-  		this.id = inId;
+  		User.id = inId;
   	}
   	
-  	public int getId()
+  	public static int getId()
   	{
-  		return this.id;
+  		return User.id;
   	}
   	
   	

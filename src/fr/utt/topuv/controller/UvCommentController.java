@@ -5,6 +5,7 @@
 package fr.utt.topuv.controller;
 
 import fr.utt.topuv.constant.IntentConstants;
+import fr.utt.topuv.model.User;
 import fr.utt.topuv.service.PutCommentService;
 import fr.utt.topuv.R;
 
@@ -46,7 +47,7 @@ public class UvCommentController extends Fragment implements OnClickListener
     public void onClick(View v)
     {
         code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
-		idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
+		idUser = User.getId();
 		
 		//Convert the idUser int to String to due AsyncTask restriction (only accept one type, here String)
 		idUserToString = String.valueOf(idUser);
@@ -67,7 +68,7 @@ public class UvCommentController extends Fragment implements OnClickListener
             error = true;
         }
         
-        if(comment.length() < 2)
+        else if(comment.length() < 2 & comment.length() > 0 )
         {
             ((EditText) this.getView().findViewById(R.id.comment_to_add)).setError(this.getString(R.string.comment_length));
             error = true;

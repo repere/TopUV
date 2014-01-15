@@ -32,7 +32,6 @@ import android.widget.Toast;
 
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.MenuActivity;
-import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.User;
 
@@ -79,10 +78,7 @@ public class LoginService extends AsyncTask<String, Void, User>
 		if(success == 1)
         {
         	Intent intent = new Intent(motherActivity, MenuActivity.class);
-            
-        	int idUser = currentUser.getId();
-        	
-            intent.putExtra(IntentConstants.ID_USER, idUser);
+
             motherActivity.startActivity(intent);
         }
         
@@ -122,8 +118,10 @@ public class LoginService extends AsyncTask<String, Void, User>
 	        JSONObject jsonObject = new JSONObject(response);
 	        
 	        User userSelected = new User();
-	        userSelected.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
+	        User.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
 	        userSelected.setSuccess(jsonObject.getInt(WebServiceConstants.CONNEXION.SUCCESS));
+	        User.setFirstName(jsonObject.getString(WebServiceConstants.CONNEXION.FIRST_NAME));
+	        User.setLastName(jsonObject.getString(WebServiceConstants.CONNEXION.LAST_NAME));
 	        
 	        return userSelected;
         }

@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.MenuActivity;
-import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.Note;
 import fr.utt.topuv.model.Uv;
@@ -195,9 +194,6 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
 	{    
         motherActivity.finish();
 		Intent intent = new Intent(motherActivity, MenuActivity.class);
-		
-		int idUser = motherActivity.getIntent().getIntExtra(IntentConstants.ID_USER,0);
-        intent.putExtra(IntentConstants.ID_USER, idUser);
         
         motherActivity.startActivity(intent);
 	}

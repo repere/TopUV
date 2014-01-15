@@ -57,15 +57,12 @@ public class ListUvController extends Fragment implements OnItemClickListener
     }
 
 	@Override
-	public void onItemClick(AdapterView<?>parent, View v, int position, long id) 
+	public void onItemClick(AdapterView<?> parent, View v, int position, long id) 
 	{
 		Uv uvSelected = (Uv) parent.getItemAtPosition(position);
 
         Intent intent = new Intent(this.getActivity(), UvActivity.class);
         intent.putExtra(IntentConstants.CODE, uvSelected.getCode());
-        
-        int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-        intent.putExtra(IntentConstants.ID_USER, idUser);
         
         this.startActivity(intent);
 		

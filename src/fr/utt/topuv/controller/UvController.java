@@ -28,7 +28,6 @@ public class UvController extends Fragment implements OnClickListener
     private int credit;
     private String description;
     private float note;
-    private int idUser;
     
     private Uv currentUv;
     
@@ -72,9 +71,6 @@ public class UvController extends Fragment implements OnClickListener
     	
     	code = this.getActivity().getIntent().getStringExtra(IntentConstants.CODE);
     	intent.putExtra(IntentConstants.CODE, code);
-    	
-    	idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER,0);
-        intent.putExtra(IntentConstants.ID_USER, idUser);
         
         this.startActivity(intent);
     }

@@ -81,9 +81,6 @@ public class TopUvController extends Fragment implements OnClickListener, OnItem
 		Intent intent = new Intent(this.getActivity(), UvActivity.class);
         intent.putExtra(IntentConstants.CODE, uvSelected.getCode());
         
-        int idUser = this.getActivity().getIntent().getIntExtra(IntentConstants.ID_USER, 0);
-        intent.putExtra(IntentConstants.ID_USER, idUser);
-        
         this.startActivity(intent);	
 	}
 }
