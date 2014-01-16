@@ -9,6 +9,7 @@ package fr.utt.topuv.activity;
 import fr.utt.topuv.R;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.controller.UvFragmentPagerAdapter;
+import fr.utt.topuv.service.CustomApplication;
 import fr.utt.topuv.service.GetAllService;
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -100,7 +101,7 @@ public class MenuActivity extends Activity implements ActionBar.TabListener
 	    		String url_uv = WebServiceConstants.UVS.URL;
 	    		String url_comment = WebServiceConstants.COMMENTS.URL;
 	    		
-	    		GetAllService getAllService = new GetAllService(this);
+	    		GetAllService getAllService = new GetAllService(MenuActivity.this);
 	        	getAllService.execute(url_uv, url_comment);
 	        	
         		return true;
@@ -139,5 +140,21 @@ public class MenuActivity extends Activity implements ActionBar.TabListener
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
     {
+    }
+    
+    @Override
+    public void onSaveInstanceState(Bundle outState) 
+    {
+    	super.onSaveInstanceState(outState);
+    	
+    	((CustomApplication) getApplication()).detach(this);
+    }
+    
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) 
+    {
+    	super.onRestoreInstanceState(savedInstanceState);
+    	
+    	((CustomApplication) getApplication()).attach(this);
     }
 }

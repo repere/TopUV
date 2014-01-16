@@ -18,6 +18,7 @@
     <string name="title_activity_search">Recherche d\'UV</string>
     <string name="title_activity_search_result">Recherche avancée</string>
     <string name="title_activity_top_uv">Classement</string>
+    <string name="title_activity_custom">Custom</string>
 
     <!-- Login -->
     <string name="login">Identifiant:</string>
