@@ -192,7 +192,6 @@ public class GetAllService extends AsyncTask<String, Integer, Integer>
 	
 	private void restartActivity()
 	{    
-        motherActivity.finish();
 		Intent intent = new Intent(motherActivity, MenuActivity.class);
         
         motherActivity.startActivity(intent);

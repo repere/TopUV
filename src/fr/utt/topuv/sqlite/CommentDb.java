@@ -12,7 +12,7 @@ import fr.utt.topuv.model.Note;
 public class CommentDb {
 	
 	private static final int VERSION_BDD = 1;
-	private static final String NOM_BDD = "topuv_sqlite_comments.db";
+	private static final String NOM_BDD = "topuv_comments.db";
  
 	private static final String TABLE_COMMENTS = "table_comments";
 	
@@ -114,13 +114,13 @@ public class CommentDb {
 		values.put(COL_COMMENT_FIRST_NAME, note.getFirstName());
 		values.put(COL_COMMENT_LAST_NAME, note.getLastName());
 
-		return bdd.update(TABLE_COMMENTS, values, COL_COMMENT_ID + " =? ", new String[] { String.valueOf(inId) });
+		return bdd.update(TABLE_COMMENTS, values, COL_COMMENT_ID + " = ? ", new String[] { String.valueOf(inId) });
 	}
 	
 	public boolean isCommentExist (int inId)
 	{
 		boolean result;
-		Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID + " =? ", new String[] { String.valueOf(inId) }, null, null, null);
+		Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID + " = ? ", new String[] { String.valueOf(inId) }, null, null, null);
 		
 		// If cursor is empty return false, else return true (because comment exists...)
 		if(cursor.moveToFirst() == false)
@@ -139,7 +139,26 @@ public class CommentDb {
 	{
 	    ArrayList<Note> arrayListComments = new ArrayList<Note>();
 
-	    Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID_UV + " =? ", new String[] { String.valueOf(idUv) }, null, null, null);
+	    Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, COL_COMMENT_ID_UV + " = ? ", new String[] { String.valueOf(idUv) }, null, null, null);
+
+	    cursor.moveToFirst();
+	    
+	    while (!cursor.isAfterLast()) 
+	    {
+	    	Note note = cursorToNote(cursor);
+	    	arrayListComments.add(note);
+	    	cursor.moveToNext();
+	    }
+	    
+	    cursor.close();
+	    return arrayListComments;
+	}
+	
+	public ArrayList<Note> getAllComment() 
+	{
+		ArrayList<Note> arrayListComments = new ArrayList<Note>();
+
+	    Cursor cursor = bdd.query(TABLE_COMMENTS, allColumns, null, null, null, null, null);
 
 	    cursor.moveToFirst();
 	    

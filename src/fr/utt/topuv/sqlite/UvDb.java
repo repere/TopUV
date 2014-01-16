@@ -14,7 +14,7 @@ import android.util.Log;
 public class UvDb {
 	 
 	private static final int VERSION_BDD = 1;
-	private static final String NOM_BDD = "topuv_sqlite_uvs.db";
+	private static final String NOM_BDD = "topuv_uvs.db";
  
 	private static final String TABLE_UVS = "table_uvs";
 	
@@ -112,13 +112,13 @@ public class UvDb {
 		values.put(COL_NOTE, inUv.getNote());
 		values.put(COL_CATEGORIE, inUv.getCategorie());
 
-		return bdd.update(TABLE_UVS, values, COL_ID + " =? ", new String[] { String.valueOf(inId) });
+		return bdd.update(TABLE_UVS, values, COL_ID + " = ? ", new String[] { String.valueOf(inId) });
 	}
 	
 	public boolean isUvExist (int inId)
 	{
 		boolean result;
-		Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_ID + " =? ", new String[] { String.valueOf(inId) }, null, null, null);
+		Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_ID + " = ? ", new String[] { String.valueOf(inId) }, null, null, null);
 		
 		// If cursor is empty return false, else return true (because uv exists...)
 		if(cursor.moveToFirst() == false)
@@ -163,7 +163,7 @@ public class UvDb {
 	{
 	    ArrayList<Uv> arrayListUvs = new ArrayList<Uv>();
 
-	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CATEGORIE + " LIKE \"" + categorie +"\"", null, null, null, null);
+	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CATEGORIE + " LIKE \"" + categorie + "\"", null, null, null, null);
 
 	    cursor.moveToFirst();
 	    
@@ -223,7 +223,7 @@ public class UvDb {
 	
 	public Uv getUvByUvCode(String code) 
 	{
-	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + code +"\"", null, null, null, null);
+	    Cursor cursor = bdd.query(TABLE_UVS, allColumns, COL_CODE + " LIKE \"" + code + "\"", null, null, null, null);
 
 	    cursor.moveToFirst();
 

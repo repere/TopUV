@@ -26,11 +26,19 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import fr.utt.topuv.R;
 import fr.utt.topuv.constant.WebServiceConstants;
+import fr.utt.topuv.model.Note;
+import fr.utt.topuv.model.User;
+import fr.utt.topuv.model.Uv;
+import fr.utt.topuv.sqlite.CommentDb;
+import fr.utt.topuv.sqlite.UvDb;
 
 public class PutCommentService extends AsyncTask<String, Void, String>
 {
@@ -42,6 +50,12 @@ public class PutCommentService extends AsyncTask<String, Void, String>
 	
 	private String result;
 	private String resultToGive;
+	
+	// Note info
+	private String idUser;
+	private String code;       
+	private String comment;
+	private String note;
 	
 	// Progress Dialog
     private ProgressDialog pDialog = null;   
@@ -78,6 +92,40 @@ public class PutCommentService extends AsyncTask<String, Void, String>
 		if(status.equals("2"))
 	    {
 	    	resultToGive = motherActivity.getString(R.string.comment_sent);
+	    	
+	    	UvDb uvDb = new UvDb(motherActivity);
+			CommentDb commentDb = new CommentDb(motherActivity);
+			uvDb.open();
+			commentDb.open();
+			
+			Uv uv = uvDb.getUvByUvCode(code);
+			int idOfUv = uv.getId();
+			
+			Date dateOfToday = new Date();
+			String dateToString = new SimpleDateFormat("yyy-MM-dd",Locale.FRANCE).format(dateOfToday);
+			
+			int noteToInt = Integer.parseInt(note);
+			
+			ArrayList<Note> arrayListComment;
+			arrayListComment = commentDb.getAllComment();
+			
+			int idNote = arrayListComment.size() + 1;
+			
+	    	Note noteToInsertInSqliteDb = new Note();
+	    	noteToInsertInSqliteDb.setId(idNote);
+	    	noteToInsertInSqliteDb.setComment(comment);
+	    	noteToInsertInSqliteDb.setDate(dateToString);
+	    	noteToInsertInSqliteDb.setFirstName(User.getFirstName());
+	    	noteToInsertInSqliteDb.setIdUser(User.getId());
+	    	noteToInsertInSqliteDb.setIdUv(idOfUv);
+	    	noteToInsertInSqliteDb.setLastName(User.getLastName());
+	    	noteToInsertInSqliteDb.setNote(noteToInt);
+	    	
+	    	commentDb.insertComment(noteToInsertInSqliteDb);
+	    	
+	    	
+	    	uvDb.close();
+			commentDb.close();
 	    }
 	    else if (status.equals("1"))
 	    {
@@ -94,10 +142,10 @@ public class PutCommentService extends AsyncTask<String, Void, String>
 	@Override
     protected String doInBackground(String... params)
     {
-		String idUser = params[0];
-		String code = params[1];       
-        String comment = params[2];
-        String note = params[3];
+		idUser = params[0];
+		code = params[1];       
+        comment = params[2];
+        note = params[3];
 
         //Convert comment to base64
         byte[] data = null;

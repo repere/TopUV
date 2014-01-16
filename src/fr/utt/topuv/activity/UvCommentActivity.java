@@ -7,6 +7,7 @@
 package fr.utt.topuv.activity;
 
 import fr.utt.topuv.R;
+import fr.utt.topuv.constant.IntentConstants;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -28,6 +29,9 @@ public class UvCommentActivity extends Activity
         {
             case android.R.id.home:
             	Intent upIntent = new Intent(this, UvActivity.class);
+            	
+            	String code = this.getIntent().getStringExtra(IntentConstants.CODE);
+            	upIntent.putExtra(IntentConstants.CODE, code);
             	
                 NavUtils.navigateUpTo(this, upIntent);
 				return true;

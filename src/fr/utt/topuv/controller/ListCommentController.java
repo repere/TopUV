@@ -40,18 +40,18 @@ public class ListCommentController extends Fragment implements OnItemClickListen
 		code = getActivity().getIntent().getStringExtra(IntentConstants.CODE);
     	
     	// Retrieve ID from SQlite db by their code
-    	UvDb uvDb= new UvDb(getActivity().getApplicationContext());
+    	UvDb uvDb= new UvDb(getActivity());
     	uvDb.read();
 
     	Uv uv = uvDb.getUvByUvCode(code);
     	int uvId = uv.getId();
 
-    	CommentDb commentDb= new CommentDb(getActivity().getApplicationContext());
+    	CommentDb commentDb= new CommentDb(getActivity());
     	commentDb.read();
     	
     	ArrayList<Note> arrayListNotes = commentDb.getCommentByUvId(uvId);
 
-        ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity().getApplicationContext(),R.layout.comments_list_entry, arrayListNotes);
+        ListCommentAdapter adapter = new ListCommentAdapter(this.getActivity(),R.layout.comments_list_entry, arrayListNotes);
             
         listViewComment.setAdapter(adapter);
         
