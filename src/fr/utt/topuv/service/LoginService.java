@@ -7,19 +7,9 @@
 
 package fr.utt.topuv.service;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -100,45 +90,31 @@ public class LoginService extends AsyncTask<String, Void, User>
         String url = WebServiceConstants.CONNEXION.URL;
 
         // Query string
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.CONNEXION.LOGIN, login));
-        nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.CONNEXION.PASSWORD, password)); 
+        nameValuePairs.add(new BasicNameValuePair(WebServiceConstants.CONNEXION.PASSWORD, password));
+
+        MakeHttpPostRequest makeHttopPostRequest = new MakeHttpPostRequest();
         
-        DefaultHttpClient httpClient = new DefaultHttpClient();
-        try
-        {
-            HttpPost httpPost = new HttpPost(url);
-            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
-            
-            HttpResponse httpResponse = httpClient.execute(httpPost);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            
-            String response = EntityUtils.toString(httpEntity);
-            
-            JSONObject jsonObject = new JSONObject(response);
-            
-            User userSelected = new User();
-            User.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
-            userSelected.setSuccess(jsonObject.getInt(WebServiceConstants.CONNEXION.SUCCESS));
-            User.setFirstName(jsonObject.getString(WebServiceConstants.CONNEXION.FIRST_NAME));
-            User.setLastName(jsonObject.getString(WebServiceConstants.CONNEXION.LAST_NAME));
-            
-            return userSelected;
-        }
+        JSONObject jsonObject = makeHttopPostRequest.execute(url, nameValuePairs);
         
-        catch(JSONException jsonException)
+        User userSelected = new User();
+        
+        try 
         {
-    
-        }
-        catch(ClientProtocolException clientProtocolException)
+			User.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
+			userSelected.setSuccess(jsonObject.getInt(WebServiceConstants.CONNEXION.SUCCESS));
+	        User.setFirstName(jsonObject.getString(WebServiceConstants.CONNEXION.FIRST_NAME));
+	        User.setLastName(jsonObject.getString(WebServiceConstants.CONNEXION.LAST_NAME));
+	        
+	        return userSelected;
+		} 
+        
+        catch (JSONException e) 
         {
-    
-        }
-        catch(IOException ioException)
-        {
-    
-        }
-    
+			e.printStackTrace();
+		}
+        
         return null;
     }        
 }
