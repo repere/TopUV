@@ -36,23 +36,23 @@ import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.User;
 
 public class LoginService extends AsyncTask<String, Void, User>
-{	
-	//To create the Progress Dialog
-	private Activity motherActivity;
-	
-	// Progress Dialog
+{        
+    //To create the Progress Dialog
+    private Activity motherActivity;
+    
+    // Progress Dialog
     private ProgressDialog pDialog;
     
     private User currentUser;
 
-	public LoginService(Activity activity) 
-	{
-		motherActivity = activity;
-	}
+    public LoginService(Activity activity) 
+    {
+        motherActivity = activity;
+    }
 
-	@Override
+        @Override
     protected void onPreExecute() 
-	{
+    {
         super.onPreExecute();
         pDialog = new ProgressDialog(motherActivity);
         pDialog.setTitle("Récupération de votre compte");
@@ -62,35 +62,35 @@ public class LoginService extends AsyncTask<String, Void, User>
         pDialog.setCancelable(true);
         pDialog.show();
     }
-	
-	@Override
-	protected void onPostExecute(User userConnected) 
-	{      
-		currentUser = userConnected;
-		this.loginControl();
-		pDialog.dismiss();
+        
+    @Override
+    protected void onPostExecute(User userConnected) 
+    {      
+        currentUser = userConnected;
+        this.loginControl();
+        pDialog.dismiss();
     }
-	
-	public void loginControl()
-	{
-		int success = currentUser.getSuccess();
-		
-		if(success == 1)
+        
+    public void loginControl()
+    {
+        int success = currentUser.getSuccess();
+        
+        if(success == 1)
         {
-        	Intent intent = new Intent(motherActivity, MenuActivity.class);
+            Intent intent = new Intent(motherActivity, MenuActivity.class);
 
             motherActivity.startActivity(intent);
         }
         
         else
         {
-        	Toast toast = Toast.makeText(motherActivity, R.string.connexion_error, Toast.LENGTH_LONG);
-        	toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-        	toast.show();
+            Toast toast = Toast.makeText(motherActivity, R.string.connexion_error, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
         }
-	}
-	
-	@Override
+    }
+        
+        @Override
     protected User doInBackground(String... params)
     {
         String login = params[0];
@@ -107,38 +107,38 @@ public class LoginService extends AsyncTask<String, Void, User>
         DefaultHttpClient httpClient = new DefaultHttpClient();
         try
         {
-        	HttpPost httpPost = new HttpPost(url);
-        	httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
-        	
-	        HttpResponse httpResponse = httpClient.execute(httpPost);
-	        HttpEntity httpEntity = httpResponse.getEntity();
-	        
-	        String response = EntityUtils.toString(httpEntity);
-	        
-	        JSONObject jsonObject = new JSONObject(response);
-	        
-	        User userSelected = new User();
-	        User.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
-	        userSelected.setSuccess(jsonObject.getInt(WebServiceConstants.CONNEXION.SUCCESS));
-	        User.setFirstName(jsonObject.getString(WebServiceConstants.CONNEXION.FIRST_NAME));
-	        User.setLastName(jsonObject.getString(WebServiceConstants.CONNEXION.LAST_NAME));
-	        
-	        return userSelected;
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+            
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            
+            String response = EntityUtils.toString(httpEntity);
+            
+            JSONObject jsonObject = new JSONObject(response);
+            
+            User userSelected = new User();
+            User.setId(jsonObject.getInt(WebServiceConstants.CONNEXION.ID_USER));
+            userSelected.setSuccess(jsonObject.getInt(WebServiceConstants.CONNEXION.SUCCESS));
+            User.setFirstName(jsonObject.getString(WebServiceConstants.CONNEXION.FIRST_NAME));
+            User.setLastName(jsonObject.getString(WebServiceConstants.CONNEXION.LAST_NAME));
+            
+            return userSelected;
         }
         
-	    catch(JSONException jsonException)
-	    {
-	
-	    }
-	    catch(ClientProtocolException clientProtocolException)
-	    {
-	
-	    }
-	    catch(IOException ioException)
-	    {
-	
-	    }
-        
-	    return null;
-    }	
+        catch(JSONException jsonException)
+        {
+    
+        }
+        catch(ClientProtocolException clientProtocolException)
+        {
+    
+        }
+        catch(IOException ioException)
+        {
+    
+        }
+    
+        return null;
+    }        
 }

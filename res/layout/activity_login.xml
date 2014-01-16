@@ -1,4 +1,4 @@
-<LinearLayout 
+<ScrollView 
     xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
@@ -6,11 +6,11 @@
 	android:orientation="vertical"
 	tools:context=".LoginActivity" >
 	
-	<fragment
-		android:id="@+id/login_fragment"
-		android:name="fr.utt.topuv.controller.LoginController"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		tools:layout="@layout/main_fragment_login" />
+		<fragment
+			android:id="@+id/login_fragment"
+			android:name="fr.utt.topuv.controller.LoginController"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			tools:layout="@layout/main_fragment_login" />
 	
-</LinearLayout>
+</ScrollView>

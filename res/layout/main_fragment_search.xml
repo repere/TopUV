@@ -44,7 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/search_button_title" />
+            android:text="@string/search_button_title"
+            android:background="@drawable/roundbutton"
+            android:textColor="@color/identification_text" />
     </LinearLayout>
     <!-- End of Method 1 -->
 
@@ -157,7 +159,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="@string/search_button_title" />
+            android:text="@string/search_button_title"
+            android:background="@drawable/roundbutton"
+            android:textColor="@color/identification_text" />
     </LinearLayout>
 
     <!-- End of Method 2 -->
