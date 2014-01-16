@@ -52,7 +52,7 @@ public class UvController extends Fragment implements OnClickListener
         //Set text
     	((TextView) viewGroup.findViewById(R.id.name_uv_bar)).setText(code_designation);
         
-        ((TextView) viewGroup.findViewById(R.id.uv_description)).setText(description);
+        ((TextView) viewGroup.findViewById(R.id.uv_description)).setText(" " + description);
         
         ((TextView) viewGroup.findViewById(R.id.credit_uv)).setText(" " + String.valueOf(credit));
         

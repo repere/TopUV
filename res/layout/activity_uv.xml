@@ -6,12 +6,18 @@
     android:orientation="vertical"
     tools:context=".UvActivity">
 
-    <fragment 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:id="@+id/uv_fragment"
-	   	android:name="fr.utt.topuv.controller.UvController"
-	    tools:layout="@layout/main_fragment_uv" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+	    <fragment 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/uv_fragment"
+		   	android:name="fr.utt.topuv.controller.UvController"
+		    tools:layout="@layout/main_fragment_uv" />
+	    
+    </ScrollView>
     
     <fragment
         android:id="@+id/comments_fragment"

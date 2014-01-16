@@ -14,25 +14,62 @@
 	android:paddingBottom="@dimen/login_vertical_margin"
 	 
 	tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/identification_background"
+        android:gravity="center"
+        android:text="@string/title_activity_login"
+        android:textSize="20sp"
+        android:textColor="@color/identification_text" />
+    
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:text="@string/login"
+        android:textColor="@color/name_bar_background" />
 	 
 	<EditText
 	    android:id="@+id/login"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="text"
-	    android:hint="@string/login">
+	    android:inputType="text" >
 	    <requestFocus />
     </EditText>
+    
+	<TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:text="@string/password"
+        android:textColor="@color/name_bar_background" />
     
 	<EditText
 	    android:id="@+id/password"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:inputType="textPassword"
-	    android:hint="@string/password" />
+	    android:inputType="textPassword" />
+
 	<Button
 	    android:id="@+id/connect_button"
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:text="@string/connect" />
+	    android:layout_gravity="center"
+	    android:layout_marginTop="40sp"
+	    android:background="@drawable/roundbutton"
+	    android:text="@string/connect"
+	    android:textColor="@color/identification_text" />
+
 </LinearLayout>

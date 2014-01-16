@@ -11,7 +11,7 @@
     <string name="action_topuv">Classement</string>
 
     <!-- Activity title -->
-    <string name="title_activity_login">Identification</string>
+    <string name="title_activity_login">IDENTIFICATION</string>
     <string name="title_activity_uv_comment">Poster votre commentaire</string>
     <string name="title_activity_menu">Liste d\'UVs</string>
     <string name="title_activity_uv">Fiche complète de l\'UV</string>
@@ -20,9 +20,10 @@
     <string name="title_activity_top_uv">Classement</string>
 
     <!-- Login -->
-    <string name="login">Login</string>
-    <string name="password">Password</string>
-    <string name="connect">Connexion</string>
+    <string name="login">Identifiant:</string>
+    <string name="password">Mot de passe:</string>
+    <string name="connect">SE CONNECTER</string>
+    <string name="button_cancel">EFFACER</string>
     <string name="login_required">Login requis</string>
     <string name="password_required">Mot de passe requis</string>
     <string name="connexion_error">Mauvaise combinaison login/mot de passe</string>

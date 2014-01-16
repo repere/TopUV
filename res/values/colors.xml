@@ -5,4 +5,12 @@
     
     <!-- Button TopUv -->
     <color name="button_borderless">#cccccc</color>
+    
+    <!-- My Custom dropwdon -->
+    <color name="black">#1e90ff</color>
+    <color name="white">#cccccc</color>
+    
+    <!-- login -->
+    <color name="identification_background">#71236F</color>
+    <color name="identification_text">#FFFFFF</color>
 </resources>

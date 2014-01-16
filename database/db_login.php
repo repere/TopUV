@@ -13,12 +13,14 @@
 		$reponse = array
 		(
 			'success' => 0,
-			'id' => 0
+			'id' => 0,
+			'first_name' => "",
+			'last_name' => "",
 		);
 		
 		$parameters = array
 		(
-				':login' => $_POST['login'],
+			':login' => $_POST['login'],
 		);
 		
 		// On initialise $existence_ft
@@ -121,7 +123,7 @@
 	    // Si on a ouvert un fichier, on le referme (eh oui, il ne faut pas l'oublier)
 	    if($existence_ft != 1)
 	    {
-	    fclose($fichier_tentatives);
+	    	fclose($fichier_tentatives);
 	    }
 		
 	    echo json_encode($reponse);

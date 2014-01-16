@@ -30,16 +30,23 @@
 		android:paddingTop="@dimen/uv_description_vertical_margin"
 		android:paddingBottom="@dimen/uv_description_vertical_margin" >
 	    
-	    <TextView
-	        android:id="@+id/uv_description_title"
+	    <LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
+	    
+	    <TextView
+	        android:id="@+id/uv_description_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/name_bar_background"
 	        android:text="@string/uv_description_title" />
 	    
 	    <TextView
 	        android:id="@+id/uv_description"
-	        android:layout_width="match_parent"
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content" />
+	    </LinearLayout>
 	
 	    <LinearLayout
 	        android:layout_width="match_parent"
@@ -50,6 +57,7 @@
 			        android:id="@+id/credit_uv_title"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
+			        android:textColor="@color/name_bar_background"
 			        android:text="@string/credit_uv_title" />
 		    
 			    <TextView
@@ -59,23 +67,24 @@
 			    
 	    </LinearLayout>
 	    
-    </LinearLayout>
+    
 	   
-    <TextView
-        android:id="@+id/note_uv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/note_uv" />
-	
-    <RatingBar
-        android:id="@+id/ratingBar_current_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:stepSize="0.1" />
+	    <TextView
+	        android:id="@+id/note_uv_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/name_bar_background"
+	        android:text="@string/note_uv" />
+		
+	    <RatingBar
+	        android:id="@+id/ratingBar_current_note"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:isIndicator="true"
+	        android:numStars="5"
+	        android:stepSize="0.1" />
+    
+    </LinearLayout>
     
     <Button
         android:id="@+id/add_comment_button"
@@ -88,6 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/name_bar_background"
         android:paddingBottom="@dimen/uv_description_vertical_margin"
         android:paddingLeft="@dimen/uv_description_horizontal_margin"
         android:paddingRight="@dimen/uv_description_horizontal_margin"

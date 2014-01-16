@@ -40,7 +40,7 @@ public class SearchController extends Fragment implements OnClickListener
         uvDb.read();
         allCodeUv = uvDb.getAllUv();
         
-        ArrayAdapter<String> autoCompleteAdapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, allCodeUv);
+        ArrayAdapter<String> autoCompleteAdapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), R.layout.custom_dropdown, allCodeUv);
         AutoCompleteTextView textView = (AutoCompleteTextView) viewGroup.findViewById(R.id.autoCompleteTextView1);
         textView.setAdapter(autoCompleteAdapter);   
         
