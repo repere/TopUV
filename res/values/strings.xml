@@ -29,6 +29,7 @@
     <string name="password_required">Mot de passe requis</string>
     <string name="connexion_error">Mauvaise combinaison login/mot de passe</string>
     <string name="connexion_success">Connexion réussie</string>
+    <string name="logo_utt">Logo de l\'UTT</string>
 
     <!-- Menu -->
     <string name="no_uvs">Aucune UV présente. Veuillez cliquer sur l\'icône rafraichir !</string>
