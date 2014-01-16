@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -25,62 +24,85 @@ import fr.utt.topuv.activity.MenuActivity;
 import fr.utt.topuv.constant.WebServiceConstants;
 import fr.utt.topuv.model.User;
 
-public class LoginService extends AsyncTask<String, Void, User>
+public class LoginService extends CustomAsyncTask<String, Void, User>
 {        
-    //To create the Progress Dialog
-    private Activity motherActivity;
-    
-    // Progress Dialog
+	// Progress Dialog
     private ProgressDialog pDialog;
     
     private User currentUser;
-
-    public LoginService(Activity activity) 
-    {
-        motherActivity = activity;
-    }
-
-        @Override
-    protected void onPreExecute() 
-    {
-        super.onPreExecute();
-        pDialog = new ProgressDialog(motherActivity);
+	
+	public LoginService(Activity activity) 
+	{
+		super(activity);
+	}
+	
+	@Override
+	protected void onPreExecute() 
+	{
+		super.onPreExecute();
+		showProgressDialog();
+	}
+	
+	@Override
+	protected void onActivityDetached() 
+	{
+		if (pDialog != null) 
+		{
+			pDialog.dismiss();
+			pDialog = null;
+		}
+	}
+	
+	@Override
+	protected void onActivityAttached() 
+	{
+		showProgressDialog();
+	}
+	
+	private void showProgressDialog() 
+	{
+		pDialog = new ProgressDialog(mActivity);
         pDialog.setTitle("Récupération de votre compte");
         pDialog.setMessage("Connexion en cours...");
         pDialog.setIcon(R.drawable.ic_action_share);
         pDialog.setIndeterminate(true);
         pDialog.setCancelable(true);
         pDialog.show();
-    }
-        
-    @Override
-    protected void onPostExecute(User userConnected) 
-    {      
-        currentUser = userConnected;
-        this.loginControl();
-        pDialog.dismiss();
-    }
-        
-    public void loginControl()
+	}
+	
+	@Override
+	protected void onPostExecute(User userConnected) 
+	{
+		super.onPostExecute(userConnected);
+
+		if (mActivity != null) 
+		{
+			currentUser = userConnected;
+	        this.loginControl();
+	        pDialog.dismiss();
+		}
+	}
+	
+	public void loginControl()
     {
         int success = currentUser.getSuccess();
         
         if(success == 1)
         {
-            Intent intent = new Intent(motherActivity, MenuActivity.class);
+            Intent intent = new Intent(mActivity, MenuActivity.class);
 
-            motherActivity.startActivity(intent);
+            mActivity.startActivity(intent);
         }
         
         else
         {
-            Toast toast = Toast.makeText(motherActivity, R.string.connexion_error, Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(mActivity, R.string.connexion_error, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
         }
     }
-        
-        @Override
+	
+	@Override
     protected User doInBackground(String... params)
     {
         String login = params[0];
@@ -116,5 +138,5 @@ public class LoginService extends AsyncTask<String, Void, User>
 		}
         
         return null;
-    }        
+    }       
 }

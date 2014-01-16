@@ -8,7 +8,6 @@ package fr.utt.topuv.service;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.util.Base64;
 import android.widget.Toast;
 
@@ -31,61 +30,81 @@ import fr.utt.topuv.model.Uv;
 import fr.utt.topuv.sqlite.CommentDb;
 import fr.utt.topuv.sqlite.UvDb;
 
-public class PutCommentService extends AsyncTask<String, Void, String>
+public class PutCommentService extends CustomAsyncTask<String, Void, String>
 {
-	//To create the Progress Dialog
-	private Activity motherActivity;
-	
-	// THE MAGIC SENTENCE :p
-	private String theMagicSentence = "sesameOuvreToi!";
-	
-	private String result;
-	private String resultToGive;
-	
-	// Note info
-	private String idUser;
-	private String code;       
-	private String comment;
-	private String note;
-	
 	// Progress Dialog
-    private ProgressDialog pDialog = null;   
-
+    private ProgressDialog pDialog;
+    
+    // Note info
+ 	private String idUser;
+ 	private String code;       
+ 	private String comment;
+ 	private String note;
+ 	
+ 	// THE MAGIC SENTENCE :p
+ 	private String theMagicSentence = "sesameOuvreToi!";
+	
 	public PutCommentService(Activity activity) 
 	{
-		motherActivity = activity;
+		super(activity);
 	}
-
+	
 	@Override
-    protected void onPreExecute() 
+	protected void onPreExecute() 
 	{
-        super.onPreExecute();
-        pDialog = new ProgressDialog(motherActivity);
+		super.onPreExecute();
+		showProgressDialog();
+	}
+	
+	@Override
+	protected void onActivityDetached() 
+	{
+		if (pDialog != null) 
+		{
+			pDialog.dismiss();
+			pDialog = null;
+		}
+	}
+	
+	@Override
+	protected void onActivityAttached() 
+	{
+		showProgressDialog();
+	}
+	
+	private void showProgressDialog() 
+	{
+		pDialog = new ProgressDialog(mActivity);
         pDialog.setTitle("Envoi de la note");
         pDialog.setMessage("Traitement en cours...");
         pDialog.setIcon(R.drawable.ic_action_send_now);
         pDialog.setIndeterminate(true);
         pDialog.setCancelable(false);
         pDialog.show();
-    }
+	}
 	
 	@Override
 	protected void onPostExecute(String isSentOrNot) 
-	{      
-		// dismiss the dialog once product deleted
-        pDialog.dismiss();
-        
-        commentSendStatus(isSentOrNot);
-    }
+	{
+		super.onPostExecute(isSentOrNot);
+
+		if (mActivity != null) 
+		{
+			commentSendStatus(isSentOrNot);
+	        pDialog.dismiss();
+		}
+	}
 	
 	private void commentSendStatus(String status)
 	{
+		String resultToGive;
+		
 		if(status.equals("2"))
 	    {
-	    	resultToGive = motherActivity.getString(R.string.comment_sent);
+	    	resultToGive = mActivity.getString(R.string.comment_sent);
 	    	
-	    	UvDb uvDb = new UvDb(motherActivity);
-			CommentDb commentDb = new CommentDb(motherActivity);
+	    	UvDb uvDb = new UvDb(mActivity);
+			CommentDb commentDb = new CommentDb(mActivity);
 			uvDb.open();
 			commentDb.open();
 			
@@ -120,15 +139,15 @@ public class PutCommentService extends AsyncTask<String, Void, String>
 		
 	    else if (status.equals("1"))
 	    {
-	    	resultToGive = motherActivity.getString(R.string.comment_already_sent);
+	    	resultToGive = mActivity.getString(R.string.comment_already_sent);
 	    }
 		
 	    else
 	    {
-	    	resultToGive = motherActivity.getString(R.string.comment_not_sent);
+	    	resultToGive = mActivity.getString(R.string.comment_not_sent);
 	    }
 		
-		Toast.makeText(motherActivity, resultToGive, Toast.LENGTH_LONG).show();
+		Toast.makeText(mActivity, resultToGive, Toast.LENGTH_LONG).show();
 	}
 	
 	@Override
@@ -169,7 +188,7 @@ public class PutCommentService extends AsyncTask<String, Void, String>
         
         try 
         {
-			result = jsonObject.getString(WebServiceConstants.COMMENT.SUCCESS).toString();
+			String result = jsonObject.getString(WebServiceConstants.COMMENT.SUCCESS).toString();
 			return result;
 		} 
         

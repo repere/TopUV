@@ -6,6 +6,7 @@ package fr.utt.topuv.controller;
 
 import fr.utt.topuv.constant.IntentConstants;
 import fr.utt.topuv.model.User;
+import fr.utt.topuv.service.CustomApplication;
 import fr.utt.topuv.service.PutCommentService;
 import fr.utt.topuv.R;
 
@@ -100,5 +101,21 @@ public class UvCommentController extends Fragment implements OnClickListener
                });
 
         builder.show();
+    }
+    
+    @Override
+    public void onSaveInstanceState(Bundle outState) 
+    {
+    	super.onSaveInstanceState(outState);
+    	
+    	((CustomApplication) getActivity().getApplication()).detach(getActivity());
+    }
+    
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) 
+    {
+    	super.onActivityCreated(savedInstanceState);
+    	
+    	((CustomApplication) getActivity().getApplication()).attach(getActivity());
     }
 }

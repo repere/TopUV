@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import fr.utt.topuv.R;
+import fr.utt.topuv.service.CustomApplication;
 import fr.utt.topuv.service.LoginService;
 
 public class LoginController extends Fragment implements OnClickListener
@@ -61,5 +62,21 @@ public class LoginController extends Fragment implements OnClickListener
         }
         
         loginService.execute(login, password);
+    }
+	
+	@Override
+    public void onSaveInstanceState(Bundle outState) 
+    {
+    	super.onSaveInstanceState(outState);
+    	
+    	((CustomApplication) getActivity().getApplication()).detach(getActivity());
+    }
+    
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) 
+    {
+    	super.onActivityCreated(savedInstanceState);
+    	
+    	((CustomApplication) getActivity().getApplication()).attach(getActivity());
     }
 }
