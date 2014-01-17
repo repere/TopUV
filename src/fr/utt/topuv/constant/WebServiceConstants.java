@@ -7,7 +7,7 @@ package fr.utt.topuv.constant;
 public class WebServiceConstants
 {
 
-	public static final String ROOT = "http://geminantoine.myqnapcloud.com/android/";
+	public static final String ROOT = "http://www.geminantoine.fr/android/";
 
     public static class CONNEXION
     {
