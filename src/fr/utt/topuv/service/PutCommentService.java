@@ -9,6 +9,7 @@ package fr.utt.topuv.service;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.util.Base64;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -147,7 +148,9 @@ public class PutCommentService extends CustomAsyncTask<String, Void, String>
 	    	resultToGive = mActivity.getString(R.string.comment_not_sent);
 	    }
 		
-		Toast.makeText(mActivity, resultToGive, Toast.LENGTH_LONG).show();
+		Toast toast = Toast.makeText(mActivity, resultToGive, Toast.LENGTH_LONG);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
 	}
 	
 	@Override

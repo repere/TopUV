@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.view.Gravity;
 import android.widget.Toast;
 import fr.utt.topuv.R;
 import fr.utt.topuv.activity.LoginActivity;
@@ -100,7 +101,9 @@ public class RegisterService extends CustomAsyncTask<String, Void, String>
 	    	resultToGive = mActivity.getString(R.string.register_error);
 	    }
 		
-		Toast.makeText(mActivity, resultToGive, Toast.LENGTH_LONG).show();
+		Toast toast = Toast.makeText(mActivity, resultToGive, Toast.LENGTH_LONG);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
 	}
 	
 	@Override

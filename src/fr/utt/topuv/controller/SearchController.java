@@ -3,6 +3,7 @@ package fr.utt.topuv.controller;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,7 @@ public class SearchController extends Fragment implements OnClickListener
 		// Test if the field contains UV which are in the autocompletetextview
 		boolean result = false;
 		int lenght = allCodeUv.length;
-        for(int i = 0; i<lenght; i++)
+        for(int i = 0; i < lenght; i++)
         {
         	if(allCodeUv[i].equals(code))
         	{
@@ -101,7 +102,9 @@ public class SearchController extends Fragment implements OnClickListener
         
         else
         {
-        	Toast.makeText(getActivity(), R.string.search_uv_code_unknow, Toast.LENGTH_SHORT).show();
+        	Toast toast = Toast.makeText(getActivity(), R.string.search_uv_code_unknow, Toast.LENGTH_SHORT);
+        	toast.setGravity(Gravity.CENTER, 0, 0);
+    		toast.show();
         }
 	}
 	

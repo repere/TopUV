@@ -97,7 +97,7 @@ public class LoginService extends CustomAsyncTask<String, Void, User>
         else
         {
             Toast toast = Toast.makeText(mActivity, R.string.connexion_error, Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
     }
