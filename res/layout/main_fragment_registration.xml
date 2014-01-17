@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    android:orientation="vertical"
+    
+    tools:context=".RegisterActivity" >
+    
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo_utt"
+        android:src="@drawable/background" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:paddingLeft="@dimen/login_horizontal_margin"
+		android:paddingRight="@dimen/login_horizontal_margin"
+		android:paddingBottom="@dimen/login_vertical_margin"
+		android:orientation="vertical" >
+
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:background="@color/identification_background"
+	        android:gravity="center"
+	        android:text="@string/registration"
+	        android:textSize="20sp"
+	        android:textColor="@color/identification_text" />
+	
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20sp"
+	        android:text="@string/last_name"
+	        android:textColor="@color/name_bar_background" />
+	    
+	    <EditText
+	        android:id="@+id/registerLastName"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:inputType="textPersonName" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20sp"
+	        android:text="@string/first_name"
+	        android:textColor="@color/name_bar_background" />
+	    
+	    <EditText
+	        android:id="@+id/registerFirstName"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:inputType="textPersonName" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20sp"
+	        android:text="@string/email"
+	        android:textColor="@color/name_bar_background" />
+	    
+	    <EditText
+	        android:id="@+id/registerEmail"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:inputType="textEmailAddress" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20sp"
+	        android:text="@string/login"
+	        android:textColor="@color/name_bar_background" />
+	    
+	    <EditText
+	        android:id="@+id/registerLogin"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:inputType="text" />
+	    
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20sp"
+	        android:text="@string/password"
+	        android:textColor="@color/name_bar_background" />
+	    
+	    <EditText
+	        android:id="@+id/registerPassword"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:inputType="textPassword" />
+	      
+	    <Button
+	        android:id="@+id/register_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dip"
+	        android:text="@string/register"
+	        android:textColor="@color/identification_text"
+	        android:background="@drawable/roundbutton" />
+	
+	    <Button
+	        android:id="@+id/toLogin_button"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="30dip"
+	        android:background="@null"
+	        android:text="@string/already_account"
+	        android:textColor="#21dbd4"
+	        android:textStyle="bold" />
+    
+    </LinearLayout>
+
+</LinearLayout>

@@ -23,6 +23,21 @@ public class WebServiceConstants
         public static final String LAST_NAME = "last_name";
         public static final String SUCCESS = "success";
     }
+    
+    public static class REGISTER
+    {
+        public static final String URL = ROOT + "db_register.php";
+        
+        //To DB
+        public static final String FIRST_NAME = "first_name";
+        public static final String LAST_NAME = "last_name";
+        public static final String EMAIL = "email";
+        public static final String LOGIN = "login";
+        public static final String PASSWORD = "password";
+        
+        //From DB
+        public static final String SUCCESS = "success";
+    }
 
     public static class UVS
     {

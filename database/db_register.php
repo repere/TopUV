@@ -12,7 +12,7 @@
 	if (!empty($_POST)) 
 	{
 	// Test if we receive not empty input fields
-	    if (empty($_POST['login']) || empty($_POST['password'])|| empty($_POST['firstname']) || empty($_POST['lastname']) || empty($_POST['email'])) 
+	    if (empty($_POST['login']) || empty($_POST['password'])|| empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email'])) 
 	    { 
 	        $response["success"] = 0;
 	        $response["message"] = "Please Enter All Fields !";
@@ -35,7 +35,7 @@
 		// If this login already exist
 		if($user !== false)
 		{
-	        $response["success"] = 0;
+	        $response["success"] = 1;
 	        $response["message"] = "I'm sorry, this login is already taken";
 	        die(json_encode($response));
 	    }
@@ -52,8 +52,8 @@
 			
 		//Creation of object to insert	
  	    $new_user = new User();
-		$new_user->first_name=$_POST['firstname'];
-		$new_user->last_name=$_POST['lastname'];
+		$new_user->first_name=$_POST['first_name'];
+		$new_user->last_name=$_POST['last_name'];
 		$new_user->email=$_POST['email'];
 		$new_user->login =$_POST['login'];
 		$new_user->password=$encrypted_password;
@@ -66,7 +66,7 @@
 		
 		if($id !== false)
 		{
-			$response["success"] = 1;
+			$response["success"] = 2;
 			$response["message"] = "You have been successfully added to our database !";
 			echo json_encode($response);	
 		}
@@ -81,11 +81,11 @@
 		
 		<form action="db_register.php" method="post"> 
 		    First Name : <br/> 
-		    <input type="text" name="firstname" value="" /> 
+		    <input type="text" name="first_name" value="" /> 
 		    
 		    <br/><br/>
 			Last Name : <br/> 
-		    <input type="text" name="lastname" value="" /> 
+		    <input type="text" name="last_name" value="" /> 
 		    
 		    <br/><br/>
 			E-mail : <br/> 

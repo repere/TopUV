@@ -7,6 +7,7 @@
 package fr.utt.topuv.controller;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import fr.utt.topuv.R;
+import fr.utt.topuv.activity.RegisterActivity;
 import fr.utt.topuv.service.CustomApplication;
 import fr.utt.topuv.service.LoginService;
 
@@ -29,6 +31,7 @@ public class LoginController extends Fragment implements OnClickListener
     {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.main_fragment_login, null);
         viewGroup.findViewById(R.id.connect_button).setOnClickListener(this);
+        viewGroup.findViewById(R.id.toRegister_button).setOnClickListener(this);
 
         return viewGroup;
     }
@@ -36,6 +39,20 @@ public class LoginController extends Fragment implements OnClickListener
 	@Override
     public void onClick(View v)
     {
+		switch(v.getId())
+		{
+			case R.id.connect_button:
+				executeLogin();
+				break;
+				
+			case R.id.toRegister_button:
+				executeToRegister();
+				break;
+		}
+    }
+	
+	private void executeLogin()
+	{
 		login = ((EditText) this.getView().findViewById(R.id.login)).getText().toString();
         password = ((EditText) this.getView().findViewById(R.id.password)).getText().toString();
         
@@ -62,7 +79,14 @@ public class LoginController extends Fragment implements OnClickListener
         }
         
         loginService.execute(login, password);
-    }
+	}
+	
+	private void executeToRegister()
+	{
+		Intent intent = new Intent(this.getActivity(), RegisterActivity.class);
+
+		this.getActivity().startActivity(intent);
+	}
 	
 	@Override
     public void onSaveInstanceState(Bundle outState) 
